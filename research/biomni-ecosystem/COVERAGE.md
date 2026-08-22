@@ -19,7 +19,7 @@ Status: PARTIAL
 | PRs: merged | 111 | 111 | 0 | exhausted | COMPLETE |
 | PRs: closed-unmerged | 33 | 33 | 0 | exhausted | COMPLETE |
 | Commits | 487 | 487 | 0 | exhausted | COMPLETE |
-| Public forks | 690 metadata counter | 500 public entries | 0 | next page 6 of 7 | PARTIAL |
+| Public forks | 690 metadata counter | 600 public entries | 0 | next page 7 of 7 | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Fork-branch
 inspection, no-unique-change, and substantive unique-change counts will be added

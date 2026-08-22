@@ -1,9 +1,9 @@
 # Research State
 
-last_updated_utc: 2026-08-22T20:41:03Z
+last_updated_utc: 2026-08-22T20:42:21Z
 current_phase: Phase 2 - breadth-first upstream inventory
-current_entity: snap-stanford/Biomni open pull requests
-current_batch: open-pr-inventory-001
+current_entity: snap-stanford/Biomni closed-unmerged pull requests
+current_batch: closed-unmerged-pr-inventory-001
 current_page_or_cursor: exhausted
 completed_units:
 - recovered existing research branch from origin
@@ -13,6 +13,7 @@ completed_units:
 - verified merged PR inventory page 1 (100 of 111, created ascending)
 - verified public fork discovery page 1 (100 of 690, newest first)
 - completed and verified open PR inventory (38 of 38; pagination exhausted)
+- completed and verified closed-unmerged PR inventory (33 of 33; pagination exhausted)
 pending_units:
 - inventory all public upstream branches
 - inventory open, merged, and closed-unmerged upstream PRs with pagination
@@ -24,6 +25,7 @@ pending_units:
 - inventory merged PR page 2 and exhaust that collection
 - inventory public fork pages 2 through 7
 unresolved_identity_mappings: []
-unresolved_lineages: []
+unresolved_lineages:
+- PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
 unresolved_questions: []
-next_action: verify and reduce returned Phase 2 worker batches; deep-audit substantive open PRs later in bounded groups
+next_action: verify and reduce returned Phase 2 worker batches; deep-audit substantive closed-unmerged PRs later in bounded groups

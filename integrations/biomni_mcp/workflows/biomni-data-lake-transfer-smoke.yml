@@ -1,0 +1,48 @@
+name: Biomni Data Lake transfer smoke test
+
+on:
+  push:
+    branches:
+      - integration/codex-chatgpt-work-mcp
+    paths:
+      - .github/workflows/biomni-data-lake-transfer-smoke.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/biomni-data-lake-transfer-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Download one official Biomni Data Lake object
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p payload/data_lake
+          url="https://biomni-release.s3.amazonaws.com/data_lake/hp.obo"
+          curl --fail --location --retry 5 --retry-all-errors \
+            --output payload/data_lake/hp.obo "$url"
+          test -s payload/data_lake/hp.obo
+          sha256sum payload/data_lake/hp.obo | tee payload/SHA256SUMS
+          stat --printf='hp.obo\t%s bytes\n' payload/data_lake/hp.obo | tee payload/SIZES.tsv
+          printf '%s\n' \
+            'official_registry_commit=400c1f366b96a35ca253e13c9b06c5076af41d65' \
+            'official_url=https://biomni-release.s3.amazonaws.com/data_lake/hp.obo' \
+            "retrieved_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            > payload/PROVENANCE.txt
+
+      - name: Upload smoke-test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-data-lake-smoke-hp-obo
+          path: payload
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7

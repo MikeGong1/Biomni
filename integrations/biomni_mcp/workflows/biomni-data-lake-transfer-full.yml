@@ -1,0 +1,475 @@
+name: Biomni Official Data Lake full snapshot
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/biomni-data-lake-transfer-full.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  OFFICIAL_REPO_COMMIT: 400c1f366b96a35ca253e13c9b06c5076af41d65
+  S3_BASE: https://biomni-release.s3.amazonaws.com/data_lake/
+  SHARD_TARGET_BYTES: "536870912"
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      dataset_count: ${{ steps.plan.outputs.dataset_count }}
+      total_bytes: ${{ steps.plan.outputs.total_bytes }}
+      shard_count: ${{ steps.plan.outputs.shard_count }}
+    steps:
+      - name: Build pinned official inventory and deterministic shard plan
+        id: plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p inventory
+          python3 <<'PY'
+          import ast
+          import base64
+          import concurrent.futures
+          import csv
+          import datetime as dt
+          import hashlib
+          import json
+          import os
+          import pathlib
+          import time
+          import urllib.parse
+          import urllib.request
+
+          commit = os.environ["OFFICIAL_REPO_COMMIT"]
+          base = os.environ["S3_BASE"]
+          target = int(os.environ["SHARD_TARGET_BYTES"])
+          output_dir = pathlib.Path("inventory")
+          output_dir.mkdir(parents=True, exist_ok=True)
+
+          env_desc_url = (
+              "https://raw.githubusercontent.com/snap-stanford/Biomni/"
+              f"{commit}/biomni/env_desc.py"
+          )
+          request = urllib.request.Request(
+              env_desc_url,
+              headers={"User-Agent": "biomni-data-lake-snapshot/1.0"},
+          )
+          with urllib.request.urlopen(request, timeout=120) as response:
+              env_desc_source = response.read().decode("utf-8")
+
+          tree = ast.parse(env_desc_source)
+          registry = None
+          for node in tree.body:
+              if isinstance(node, ast.Assign):
+                  if any(
+                      isinstance(target_node, ast.Name)
+                      and target_node.id == "data_lake_dict"
+                      for target_node in node.targets
+                  ):
+                      registry = ast.literal_eval(node.value)
+                      break
+
+          if not isinstance(registry, dict) or not registry:
+              raise RuntimeError("Could not parse data_lake_dict from pinned env_desc.py")
+
+          # Keep the registry count as the source of truth. The pinned official commit
+          # currently contains 76 entries, despite some secondary documentation saying 77.
+          entries = list(registry.items())
+
+          def inspect_object(index_and_item):
+              index, (name, description) = index_and_item
+              url = base + urllib.parse.quote(name, safe="._-")
+              last_error = None
+              for attempt in range(1, 7):
+                  try:
+                      head = urllib.request.Request(
+                          url,
+                          method="HEAD",
+                          headers={"User-Agent": "biomni-data-lake-snapshot/1.0"},
+                      )
+                      with urllib.request.urlopen(head, timeout=180) as response:
+                          size = int(response.headers.get("Content-Length") or 0)
+                          etag = (response.headers.get("ETag") or "").strip('"')
+                          last_modified = response.headers.get("Last-Modified") or ""
+                      if size <= 0:
+                          raise RuntimeError("HEAD response did not include a positive Content-Length")
+                      return {
+                          "index": index,
+                          "name": name,
+                          "description": description,
+                          "url": url,
+                          "size_bytes": size,
+                          "etag": etag,
+                          "last_modified": last_modified,
+                      }
+                  except Exception as exc:
+                      last_error = exc
+                      # Fallback to a one-byte range request when an endpoint rejects HEAD.
+                      try:
+                          range_request = urllib.request.Request(
+                              url,
+                              headers={
+                                  "User-Agent": "biomni-data-lake-snapshot/1.0",
+                                  "Range": "bytes=0-0",
+                              },
+                          )
+                          with urllib.request.urlopen(range_request, timeout=180) as response:
+                              content_range = response.headers.get("Content-Range") or ""
+                              size = int(content_range.rsplit("/", 1)[1])
+                              etag = (response.headers.get("ETag") or "").strip('"')
+                              last_modified = response.headers.get("Last-Modified") or ""
+                              response.read(1)
+                          if size <= 0:
+                              raise RuntimeError("Range response did not report a positive size")
+                          return {
+                              "index": index,
+                              "name": name,
+                              "description": description,
+                              "url": url,
+                              "size_bytes": size,
+                              "etag": etag,
+                              "last_modified": last_modified,
+                          }
+                      except Exception as fallback_exc:
+                          last_error = fallback_exc
+                      if attempt < 6:
+                          time.sleep(min(2 ** attempt, 20))
+              raise RuntimeError(f"Failed to inspect {name}: {last_error}")
+
+          indexed_entries = list(enumerate(entries, start=1))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+              inspected = list(executor.map(inspect_object, indexed_entries))
+
+          inspected.sort(key=lambda item: item["index"])
+          total_bytes = sum(item["size_bytes"] for item in inspected)
+          retrieved_at = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
+
+          # Best-fit decreasing bin packing. The target is 512 MiB, but an individual
+          # object larger than the target is kept intact in its own shard.
+          shards = []
+          for item in sorted(
+              inspected,
+              key=lambda record: (-record["size_bytes"], record["index"]),
+          ):
+              candidates = [
+                  shard
+                  for shard in shards
+                  if shard["bytes"] + item["size_bytes"] <= target
+              ]
+              if candidates:
+                  chosen = min(
+                      candidates,
+                      key=lambda shard: target - (shard["bytes"] + item["size_bytes"]),
+                  )
+              else:
+                  chosen = {"bytes": 0, "files": []}
+                  shards.append(chosen)
+              chosen["files"].append(item)
+              chosen["bytes"] += item["size_bytes"]
+
+          for shard in shards:
+              shard["files"].sort(key=lambda item: item["index"])
+
+          matrix_include = []
+          shard_plan = []
+          for shard_number, shard in enumerate(shards, start=1):
+              shard_id = f"{shard_number:03d}"
+              file_payload = json.dumps(
+                  shard["files"],
+                  ensure_ascii=False,
+                  separators=(",", ":"),
+              ).encode("utf-8")
+              files_b64 = base64.b64encode(file_payload).decode("ascii")
+              matrix_include.append(
+                  {
+                      "shard": shard_id,
+                      "files_b64": files_b64,
+                      "expected_bytes": shard["bytes"],
+                      "dataset_count": len(shard["files"]),
+                  }
+              )
+              shard_plan.append(
+                  {
+                      "shard": shard_id,
+                      "expected_bytes": shard["bytes"],
+                      "dataset_count": len(shard["files"]),
+                      "files": [item["name"] for item in shard["files"]],
+                  }
+              )
+
+          matrix = {"include": matrix_include}
+          inventory = {
+              "schema_version": 1,
+              "official_repository": "snap-stanford/Biomni",
+              "official_registry_commit": commit,
+              "official_registry_url": env_desc_url,
+              "s3_base": base,
+              "retrieved_at": retrieved_at,
+              "dataset_count": len(inspected),
+              "total_bytes": total_bytes,
+              "total_gib": round(total_bytes / (1024 ** 3), 6),
+              "shard_target_bytes": target,
+              "shard_count": len(shards),
+              "datasets": inspected,
+          }
+
+          (output_dir / "official_data_lake_inventory.json").write_text(
+              json.dumps(inventory, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          (output_dir / "official_data_lake_shard_plan.json").write_text(
+              json.dumps(shard_plan, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          (output_dir / "matrix.json").write_text(
+              json.dumps(matrix, separators=(",", ":")) + "\n",
+              encoding="utf-8",
+          )
+          (output_dir / "pinned_env_desc.py").write_text(
+              env_desc_source,
+              encoding="utf-8",
+          )
+
+          with (output_dir / "official_data_lake_inventory.csv").open(
+              "w",
+              newline="",
+              encoding="utf-8-sig",
+          ) as handle:
+              writer = csv.DictWriter(
+                  handle,
+                  fieldnames=[
+                      "index",
+                      "name",
+                      "size_bytes",
+                      "size_mib",
+                      "etag",
+                      "last_modified",
+                      "url",
+                      "description",
+                  ],
+              )
+              writer.writeheader()
+              for item in inspected:
+                  writer.writerow(
+                      {
+                          **item,
+                          "size_mib": round(item["size_bytes"] / (1024 ** 2), 6),
+                      }
+                  )
+
+          env_desc_sha256 = hashlib.sha256(env_desc_source.encode("utf-8")).hexdigest()
+          (output_dir / "PROVENANCE.txt").write_text(
+              "\n".join(
+                  [
+                      "snapshot_type=official_biomni_data_lake",
+                      "official_repository=snap-stanford/Biomni",
+                      f"official_registry_commit={commit}",
+                      f"official_registry_url={env_desc_url}",
+                      f"official_registry_sha256={env_desc_sha256}",
+                      f"s3_base={base}",
+                      f"retrieved_at={retrieved_at}",
+                      f"dataset_count={len(inspected)}",
+                      f"total_bytes={total_bytes}",
+                      f"shard_target_bytes={target}",
+                      f"shard_count={len(shards)}",
+                      "",
+                  ]
+              ),
+              encoding="utf-8",
+          )
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(
+                  "matrix="
+                  + json.dumps(matrix, separators=(",", ":"))
+                  + "\n"
+              )
+              output.write(f"dataset_count={len(inspected)}\n")
+              output.write(f"total_bytes={total_bytes}\n")
+              output.write(f"shard_count={len(shards)}\n")
+
+          print(
+              json.dumps(
+                  {
+                      "dataset_count": len(inspected),
+                      "total_bytes": total_bytes,
+                      "total_gib": total_bytes / (1024 ** 3),
+                      "shard_count": len(shards),
+                      "largest_object_bytes": max(item["size_bytes"] for item in inspected),
+                  },
+                  indent=2,
+              )
+          )
+          PY
+
+      - name: Upload authoritative inventory artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-official-data-lake-inventory-400c1f366b96
+          path: inventory
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 3
+
+  download:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      FILES_B64: ${{ matrix.files_b64 }}
+      SHARD_ID: ${{ matrix.shard }}
+      EXPECTED_SHARD_BYTES: ${{ matrix.expected_bytes }}
+      EXPECTED_DATASET_COUNT: ${{ matrix.dataset_count }}
+    steps:
+      - name: Decode shard plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p payload/data_lake
+          python3 <<'PY'
+          import base64
+          import json
+          import os
+          import pathlib
+
+          files = json.loads(base64.b64decode(os.environ["FILES_B64"]).decode("utf-8"))
+          pathlib.Path("payload/shard_plan.json").write_text(
+              json.dumps(files, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          with pathlib.Path("payload/files.tsv").open("w", encoding="utf-8") as handle:
+              for item in files:
+                  handle.write(
+                      f"{item['name']}\t{item['size_bytes']}\t"
+                      f"{item['url']}\t{item.get('etag', '')}\n"
+                  )
+          PY
+
+      - name: Download and verify official objects
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > payload/SHA256SUMS
+          : > payload/SIZES.tsv
+          while IFS=$'\t' read -r name expected_bytes url etag; do
+            test -n "$name"
+            output="payload/data_lake/$name"
+            echo "Downloading $name ($expected_bytes bytes)"
+            curl --fail --location \
+              --retry 8 --retry-delay 5 --retry-all-errors \
+              --continue-at - \
+              --output "$output" "$url"
+            actual_bytes="$(stat --printf='%s' "$output")"
+            if [[ "$actual_bytes" != "$expected_bytes" ]]; then
+              echo "Size mismatch for $name: expected $expected_bytes, got $actual_bytes" >&2
+              exit 1
+            fi
+            sha256sum "$output" >> payload/SHA256SUMS
+            printf '%s\t%s\t%s\n' "$name" "$actual_bytes" "$etag" >> payload/SIZES.tsv
+          done < payload/files.tsv
+
+          actual_count="$(find payload/data_lake -maxdepth 1 -type f | wc -l | tr -d ' ')"
+          actual_bytes="$(find payload/data_lake -maxdepth 1 -type f -printf '%s\n' | awk '{s+=$1} END {printf "%.0f", s}')"
+          [[ "$actual_count" == "$EXPECTED_DATASET_COUNT" ]]
+          [[ "$actual_bytes" == "$EXPECTED_SHARD_BYTES" ]]
+
+      - name: Create shard manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import datetime as dt
+          import json
+          import os
+          import pathlib
+
+          plan = json.loads(pathlib.Path("payload/shard_plan.json").read_text(encoding="utf-8"))
+          checksums = {}
+          for line in pathlib.Path("payload/SHA256SUMS").read_text(encoding="utf-8").splitlines():
+              digest, path = line.split("  ", 1)
+              checksums[pathlib.Path(path).name] = digest
+
+          for item in plan:
+              item["sha256"] = checksums[item["name"]]
+              item["drive_member_path"] = f"data_lake/{item['name']}"
+
+          manifest = {
+              "schema_version": 1,
+              "snapshot_type": "official_biomni_data_lake_shard",
+              "official_registry_commit": os.environ["OFFICIAL_REPO_COMMIT"],
+              "shard": os.environ["SHARD_ID"],
+              "generated_at": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),
+              "dataset_count": len(plan),
+              "total_bytes": sum(item["size_bytes"] for item in plan),
+              "datasets": plan,
+          }
+          pathlib.Path("payload/MANIFEST.json").write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          pathlib.Path("payload/PROVENANCE.txt").write_text(
+              "\n".join(
+                  [
+                      "snapshot_type=official_biomni_data_lake_shard",
+                      f"official_registry_commit={os.environ['OFFICIAL_REPO_COMMIT']}",
+                      f"shard={os.environ['SHARD_ID']}",
+                      f"dataset_count={len(plan)}",
+                      f"total_bytes={manifest['total_bytes']}",
+                      f"generated_at={manifest['generated_at']}",
+                      "",
+                  ]
+              ),
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload verified Data Lake shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-official-data-lake-400c1f366b96-shard-${{ matrix.shard }}
+          path: payload
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 3
+
+  complete:
+    needs:
+      - plan
+      - download
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create completion marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p complete
+          cat > complete/COMPLETE.json <<EOF
+          {
+            "schema_version": 1,
+            "snapshot_type": "official_biomni_data_lake",
+            "official_registry_commit": "${OFFICIAL_REPO_COMMIT}",
+            "dataset_count": ${{ needs.plan.outputs.dataset_count }},
+            "total_bytes": ${{ needs.plan.outputs.total_bytes }},
+            "shard_count": ${{ needs.plan.outputs.shard_count }},
+            "workflow_status": "complete"
+          }
+          EOF
+
+      - name: Upload completion marker
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-official-data-lake-complete-400c1f366b96
+          path: complete
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 3

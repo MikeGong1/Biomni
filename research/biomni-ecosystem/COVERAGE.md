@@ -18,12 +18,12 @@ Status: PARTIAL
 | PRs: open | 38 | 38 | 0 | exhausted | COMPLETE |
 | PRs: merged | 111 | 111 | 0 | exhausted | COMPLETE |
 | PRs: closed-unmerged | 33 | 33 | 0 | exhausted | COMPLETE |
-| Commits | unknown | 0 | 0 | not started | NOT_STARTED |
+| Commits | 487 | 100 | 0 | next page 2 of 5 | PARTIAL |
 | Public forks | 690 | 100 | 0 | next page 2 of 7 | PARTIAL |
 
-Commit `mapped_to_pr`, fork-branch inspection, no-unique-change, and substantive
-unique-change counts will be added after their breadth-first inventories establish
-the denominators.
+Current indexed commit batch has 29 explicit subject-to-PR mappings. Fork-branch
+inspection, no-unique-change, and substantive unique-change counts will be added
+after their breadth-first inventories establish the denominators.
 
 ## People and repositories
 

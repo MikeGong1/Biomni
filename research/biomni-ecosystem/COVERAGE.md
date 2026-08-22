@@ -31,8 +31,8 @@ after their breadth-first inventories establish the denominators.
 |---|---:|---:|---:|---|---|
 | Code-visible people | unknown | 0 | 0 | not started | NOT_STARTED |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
-| snap-stanford public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
-| snap-stanford public members | unknown | 0 | 0 | not started | NOT_STARTED |
+| snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
+| snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 
 ## Commercial
 

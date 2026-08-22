@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-22T20:46:41Z
+last_updated_utc: 2026-08-22T20:48:39Z
 current_phase: Phase 2 - breadth-first upstream inventory
-current_entity: snap-stanford/Biomni public forks
-current_batch: fork-discovery-002
-current_page_or_cursor: fork page 3 of 7
+current_entity: snap-stanford organization public repositories and members
+current_batch: snap-org-inventory-001
+current_page_or_cursor: exhausted
 completed_units:
 - recovered existing research branch from origin
 - verified branch ancestry against MikeGong1/Biomni main
@@ -17,12 +17,13 @@ completed_units:
 - completed and verified merged PR inventory (111 of 111; pagination exhausted)
 - verified main commit page 1 (100 of 487; newest first)
 - verified public fork discovery page 2 (cumulative 200 of 690)
+- completed snap-stanford public repository screening (92 of 92; 17 HIGH)
+- completed snap-stanford public member inventory (6 of 6)
 pending_units:
 - inventory all public upstream branches
 - inventory open, merged, and closed-unmerged upstream PRs with pagination
 - index the complete upstream commit graph
 - discover and screen all publicly visible forks
-- inventory snap-stanford public repositories and public members
 - inventory Biomni code-visible GitHub people
 - discover current Biomni Lab / Phylo / Biomni MCP public capabilities
 - inventory public fork pages 2 through 7
@@ -30,4 +31,4 @@ unresolved_identity_mappings: []
 unresolved_lineages:
 - PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
 unresolved_questions: []
-next_action: verify and reduce returned Phase 2 worker batches; resume fork discovery at page 3
+next_action: verify and reduce returned Phase 2 worker batches; later deep-audit 17 HIGH and disambiguate 28 POSSIBLE repositories

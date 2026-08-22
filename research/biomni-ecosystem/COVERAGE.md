@@ -19,7 +19,7 @@ Status: PARTIAL
 | PRs: merged | 111 | 100 | 0 | next page 2 | PARTIAL |
 | PRs: closed-unmerged | unknown | 0 | 0 | not started | NOT_STARTED |
 | Commits | unknown | 0 | 0 | not started | NOT_STARTED |
-| Public forks | unknown | 0 | 0 | not started | NOT_STARTED |
+| Public forks | 690 | 100 | 0 | next page 2 of 7 | PARTIAL |
 
 Commit `mapped_to_pr`, fork-branch inspection, no-unique-change, and substantive
 unique-change counts will be added after their breadth-first inventories establish

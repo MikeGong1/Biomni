@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - '.github/workflows/biomni-s3-cors-probe.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/biomni-s3-cors-probe.yml'
 
 jobs:
   probe:

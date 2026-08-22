@@ -40,7 +40,7 @@ substantive unique, one format-only, one docs-only, and one non-feature utility.
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
-| Public fork repository identities | 683 | 683 | 0 | not applicable | COMPLETE |
+| Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
 
 The 86 public user logins are the canonical union of public organization members,
 contributors, and all 182 open/merged/closed-unmerged PR authors. One contributor/

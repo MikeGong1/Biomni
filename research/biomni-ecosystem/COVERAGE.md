@@ -29,10 +29,14 @@ after their breadth-first inventories establish the denominators.
 
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Code-visible people | unknown | 0 | 0 | not started | NOT_STARTED |
+| Code-visible people | 45 user logins + 1 bot; 56 raw tuples unresolved | 45 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history exhausted; PR/fork merge pending | PARTIAL |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
+
+The 45 public user logins are the union of six public organization members and 39
+distinct contributor logins. The contributor bot is stored but excluded from the
+human count. Raw commit tuples are not silently mapped to GitHub accounts.
 
 ## Commercial
 

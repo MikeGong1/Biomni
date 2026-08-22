@@ -19,14 +19,15 @@ Status: PARTIAL
 | PRs: merged | 111 | 111 | 0 | exhausted | COMPLETE |
 | PRs: closed-unmerged | 33 | 33 | 0 | exhausted | COMPLETE |
 | Commits | 487 | 487 | 0 | exhausted | COMPLETE |
-| Public fork discovery | 683 enumerated | 683 | 0 | exhausted | COMPLETE |
-| Fork unique-change screening | 683 | 0 | 0 | not started | NOT_STARTED |
+| Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
+| Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
+| Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
+| Fork unique-change screening | 694 | 0 | 0 | batch 001 in progress | PARTIAL |
 
-All commit batches contain 111 explicit subject-to-PR mappings. The authenticated
-repository counter reports 690 forks while exhausted List forks pagination yields
-683 unique public entries; the unexplained seven-entry discrepancy is retained as
-an observability limitation. Fork-branch inspection, no-unique-change, and
-substantive unique-change counts begin from the 683 enumerated public entries.
+All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
+reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
+current tree is complete at 690/690 and the durable union is 694. Fork-branch
+inspection, no-unique-change, and substantive unique-change counts use that union.
 
 ## People and repositories
 

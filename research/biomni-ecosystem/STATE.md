@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-22T21:01:14Z
+last_updated_utc: 2026-08-22T21:04:17Z
 current_phase: Phase 2 - breadth-first upstream inventory
-current_entity: snap-stanford/Biomni main commit graph
-current_batch: commit-index-003
-current_page_or_cursor: commit page 4 of 5
+current_entity: snap-stanford/Biomni PR authors
+current_batch: pr-author-normalization-001
+current_page_or_cursor: exhausted for 182 PRs
 completed_units:
 - recovered existing research branch from origin
 - verified branch ancestry against MikeGong1/Biomni main
@@ -26,11 +26,12 @@ completed_units:
 - verified public fork discovery page 3 (cumulative 300 of 690)
 - verified public fork discovery page 4 (cumulative 400 of 690)
 - verified main commit page 3 (cumulative 300 of 487)
+- normalized all 182 PR authors into 76 unique logins and canonical people IDs
 pending_units:
 - inventory open, merged, and closed-unmerged upstream PRs with pagination
 - index the complete upstream commit graph
 - discover and screen all publicly visible forks
-- inventory Biomni code-visible GitHub people
+- merge branch-only and substantive-fork-owner accounts into P
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -42,4 +43,4 @@ unresolved_lineages:
 - PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
 - popper_biomni, 0.0.4_release, hotfix/v0.0.6-param-naming, and pre-commit-ci-update-config branch leads require patch/PR normalization
 unresolved_questions: []
-next_action: verify and reduce returned Phase 2 GitHub batches; resume commit inventory at page 4
+next_action: resume GitHub API pagination after rate-limit reset; then complete commit/fork inventories

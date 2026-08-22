@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-22T20:53:22Z
+last_updated_utc: 2026-08-22T20:55:40Z
 current_phase: Phase 2 - breadth-first upstream inventory
-current_entity: snap-stanford/Biomni code-visible people seeds
-current_batch: people-seed-inventory-001
-current_page_or_cursor: exhausted
+current_entity: Biomni Lab / Biomni Everywhere / Biomni MCP
+current_batch: commercial-discovery-001
+current_page_or_cursor: no provably exhaustive site cursor
 completed_units:
 - recovered existing research branch from origin
 - verified branch ancestry against MikeGong1/Biomni main
@@ -21,12 +21,15 @@ completed_units:
 - completed snap-stanford public member inventory (6 of 6)
 - completed and verified upstream branch inventory (33 of 33; 29 ahead=0)
 - verified 45 contributor endpoint rows and all 487 main-history commits
+- verified bounded commercial discovery: 17 grouped behaviors and 11 timeline events
 pending_units:
 - inventory open, merged, and closed-unmerged upstream PRs with pagination
 - index the complete upstream commit graph
 - discover and screen all publicly visible forks
 - inventory Biomni code-visible GitHub people
-- discover current Biomni Lab / Phylo / Biomni MCP public capabilities
+- continue official commercial discovery where pagination/indexing permits
+- compare verified commercial behaviors against frozen OSS baseline
+- assess clean-room reconstruction only after OSS comparison
 - inventory public fork pages 2 through 7
 unresolved_identity_mappings:
 - 56 exact Git author/committer tuples remain unmapped; see people/github/seed-inventory-001.md
@@ -35,4 +38,4 @@ unresolved_lineages:
 - PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
 - popper_biomni, 0.0.4_release, hotfix/v0.0.6-param-naming, and pre-commit-ci-update-config branch leads require patch/PR normalization
 unresolved_questions: []
-next_action: merge PR-author and later substantive-fork-owner logins into P before person-repository inventory
+next_action: verify and reduce returned Phase 2 GitHub batches; later perform commercial-to-OSS gap analysis

@@ -42,7 +42,11 @@ human count. Raw commit tuples are not silently mapped to GitHub accounts.
 
 | Collection | Discovered | Verified | Compared to OSS | Reconstruction assessed | Status |
 |---|---:|---:|---:|---:|---|
-| Public commercial capabilities | unknown | 0 | 0 | 0 | NOT_STARTED |
+| Public commercial capabilities | 17 grouped behaviors | 17 | 0 | 0 | PARTIAL |
+
+Batch 001 verified 13 grouped Biomni Lab behaviors and four Biomni MCP facts from
+official sources. Product-site/search pagination is not provably exhausted; OSS
+comparison and reconstruction assessment have not started.
 
 ## Completion rule
 

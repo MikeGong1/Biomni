@@ -4,10 +4,44 @@ Status: PARTIAL
 
 ## Initialization
 
-- Research branch: created
-- Methodology: initializing
-- Upstream baseline: pending
+- Research branch: COMPLETE (`research/biomni-ecosystem-audit`)
+- Branch base verified: COMPLETE (`MikeGong1/Biomni` main `400c1f366b96a35ca253e13c9b06c5076af41d65`)
+- Methodology: COMPLETE (scope, evidence, deduplication, security, limitations)
+- Structured database foundation: COMPLETE
+- Upstream baseline: COMPLETE (`snap-stanford/Biomni` main `400c1f366b96a35ca253e13c9b06c5076af41d65`)
 
-Completion rule:
+## Biomni upstream archaeology
 
-A collection is COMPLETE only when discovered == processed and pagination is exhausted.
+| Collection | Discovered | Processed/indexed | Deep audited | Pagination | Status |
+|---|---:|---:|---:|---|---|
+| Branches | unknown | 0 | 0 | not started | NOT_STARTED |
+| PRs: open | unknown | 0 | 0 | not started | NOT_STARTED |
+| PRs: merged | unknown | 0 | 0 | not started | NOT_STARTED |
+| PRs: closed-unmerged | unknown | 0 | 0 | not started | NOT_STARTED |
+| Commits | unknown | 0 | 0 | not started | NOT_STARTED |
+| Public forks | unknown | 0 | 0 | not started | NOT_STARTED |
+
+Commit `mapped_to_pr`, fork-branch inspection, no-unique-change, and substantive
+unique-change counts will be added after their breadth-first inventories establish
+the denominators.
+
+## People and repositories
+
+| Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
+|---|---:|---:|---:|---|---|
+| Code-visible people | unknown | 0 | 0 | not started | NOT_STARTED |
+| Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
+| snap-stanford public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
+| snap-stanford public members | unknown | 0 | 0 | not started | NOT_STARTED |
+
+## Commercial
+
+| Collection | Discovered | Verified | Compared to OSS | Reconstruction assessed | Status |
+|---|---:|---:|---:|---:|---|
+| Public commercial capabilities | unknown | 0 | 0 | 0 | NOT_STARTED |
+
+## Completion rule
+
+A bounded collection is `COMPLETE` only when discovered equals processed and
+pagination is exhausted. Unknown denominators and unfinished cursors are always
+`PARTIAL` or `NOT_STARTED`, never complete.

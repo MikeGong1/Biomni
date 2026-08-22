@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 225 | 0 | batches 001–009 complete | PARTIAL |
+| Fork unique-change screening | 694 | 250 | 0 | batches 001–010 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -60,19 +60,23 @@ Fork screening batch 009: 19 no-unique, three substantive, two documentation
 classes, and one exact PR lineage. One four-branch substantive lineage was
 normalized; shared branch heads were counted once at the change level.
 
+Fork screening batch 010: 17 no-unique, three substantive, three format-only,
+one exact PR lineage, and one PR-plus-format lineage. Two nested substantive
+branch chains were normalized; shared maintenance heads were counted once.
+
 ## People and repositories
 
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Code-visible people | 107 user logins + 1 bot; 56 raw tuples unresolved | 107 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
+| Code-visible people | 110 user logins + 1 bot; 56 raw tuples unresolved | 110 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
 
-The 107 public user logins are the canonical union of public organization members,
+The 110 public user logins are the canonical union of public organization members,
 contributors, and all 182 open/merged/closed-unmerged PR authors. One contributor/
-PR bot is stored but excluded from the human count; twenty-four substantive unique fork
+PR bot is stored but excluded from the human count; twenty-seven substantive unique fork
 owners have now entered P. Raw commit tuples are not silently mapped to accounts.
 
 ## Commercial

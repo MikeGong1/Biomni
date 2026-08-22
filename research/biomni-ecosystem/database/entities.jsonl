@@ -927,3 +927,11 @@
 {"entity_id":"change-000028","entity_type":"change","canonical_id":"change-000028","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-009.md"}
 {"entity_id":"change-000029","entity_type":"change","canonical_id":"change-000029","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-009.md"}
 {"entity_id":"lineage-000006","entity_type":"lineage","canonical_id":"lineage-000006","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-009.md"}
+{"entity_id":"person-github-000109","entity_type":"person","canonical_id":"person-github-000109","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-010.md"}
+{"entity_id":"person-github-000110","entity_type":"person","canonical_id":"person-github-000110","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-010.md"}
+{"entity_id":"person-github-000111","entity_type":"person","canonical_id":"person-github-000111","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-010.md"}
+{"entity_id":"change-000030","entity_type":"change","canonical_id":"change-000030","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-010.md"}
+{"entity_id":"change-000031","entity_type":"change","canonical_id":"change-000031","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-010.md"}
+{"entity_id":"change-000032","entity_type":"change","canonical_id":"change-000032","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-010.md"}
+{"entity_id":"lineage-000007","entity_type":"lineage","canonical_id":"lineage-000007","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-010.md"}
+{"entity_id":"lineage-000008","entity_type":"lineage","canonical_id":"lineage-000008","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-010.md"}

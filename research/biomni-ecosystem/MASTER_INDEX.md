@@ -6,7 +6,7 @@
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |
-| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000786`, `person-github-000001`–`person-github-000108`, `change-000001`–`change-000029`, `lineage-000001`–`lineage-000006`, `evidence-000001`–`evidence-000066` |
+| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000786`, `person-github-000001`–`person-github-000111`, `change-000001`–`change-000032`, `lineage-000001`–`lineage-000008`, `evidence-000001`–`evidence-000070` |
 | Merged PRs, batch 001 | PR inventory | COMPLETE | First 100 of 111 merged PRs, created ascending | `upstream/prs/merged-batch-001.md` | `evidence-000010` |
 | Public forks, batch 001 | fork inventory | COMPLETE | Public forks 1–100, newest first | `upstream/forks/batch-001.md` | `evidence-000011` |
 | Open PRs | PR inventory | COMPLETE | 38 of 38 open PRs inventoried; substantive candidates await deep audit | `upstream/prs/open-inventory.md` | `evidence-000012` |
@@ -40,3 +40,4 @@
 | Fork screening batch 007 | unique-change screening | COMPLETE | 25 forks screened; four substantive unique changes retained | `upstream/forks/screening-batch-007.md` | `change-000018`–`change-000021`, `evidence-000059`–`evidence-000060` |
 | Fork screening batch 008 | unique-change screening | COMPLETE | 25 forks screened; five substantive/derived changes and three lineages retained | `upstream/forks/screening-batch-008.md` | `change-000022`–`change-000026`, `lineage-000003`–`lineage-000005`, `evidence-000061`–`evidence-000063` |
 | Fork screening batch 009 | unique-change screening | COMPLETE | 25 forks screened; three substantive changes and one lineage retained | `upstream/forks/screening-batch-009.md` | `change-000027`–`change-000029`, `lineage-000006`, `evidence-000064`–`evidence-000066` |
+| Fork screening batch 010 | unique-change screening | COMPLETE | 25 forks screened; three substantive changes and two lineages retained | `upstream/forks/screening-batch-010.md` | `change-000030`–`change-000032`, `lineage-000007`–`lineage-000008`, `evidence-000067`–`evidence-000070` |

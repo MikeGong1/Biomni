@@ -6,6 +6,11 @@ on:
       - integration/codex-chatgpt-work-mcp
     paths:
       - .github/workflows/biomni-data-lake-transfer-smoke.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/biomni-data-lake-transfer-smoke.yml
   workflow_dispatch:
 
 permissions:

@@ -910,3 +910,14 @@
 {"entity_id":"change-000019","entity_type":"change","canonical_id":"change-000019","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-007.md"}
 {"entity_id":"change-000020","entity_type":"change","canonical_id":"change-000020","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-007.md"}
 {"entity_id":"change-000021","entity_type":"change","canonical_id":"change-000021","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-007.md"}
+{"entity_id":"person-github-000104","entity_type":"person","canonical_id":"person-github-000104","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"person-github-000105","entity_type":"person","canonical_id":"person-github-000105","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"person-github-000106","entity_type":"person","canonical_id":"person-github-000106","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"change-000022","entity_type":"change","canonical_id":"change-000022","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"change-000023","entity_type":"change","canonical_id":"change-000023","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"change-000024","entity_type":"change","canonical_id":"change-000024","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"change-000025","entity_type":"change","canonical_id":"change-000025","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"change-000026","entity_type":"change","canonical_id":"change-000026","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"lineage-000003","entity_type":"lineage","canonical_id":"lineage-000003","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"lineage-000004","entity_type":"lineage","canonical_id":"lineage-000004","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-008.md"}
+{"entity_id":"lineage-000005","entity_type":"lineage","canonical_id":"lineage-000005","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-008.md"}

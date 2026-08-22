@@ -18,10 +18,10 @@ Status: PARTIAL
 | PRs: open | 38 | 38 | 0 | exhausted | COMPLETE |
 | PRs: merged | 111 | 111 | 0 | exhausted | COMPLETE |
 | PRs: closed-unmerged | 33 | 33 | 0 | exhausted | COMPLETE |
-| Commits | 487 | 400 | 0 | next page 5 of 5 | PARTIAL |
+| Commits | 487 | 487 | 0 | exhausted | COMPLETE |
 | Public forks | 690 | 400 | 0 | next page 5 of 7 | PARTIAL |
 
-Current indexed commit batches have 97 explicit subject-to-PR mappings. Fork-branch
+All commit batches contain 111 explicit subject-to-PR mappings. Fork-branch
 inspection, no-unique-change, and substantive unique-change counts will be added
 after their breadth-first inventories establish the denominators.
 

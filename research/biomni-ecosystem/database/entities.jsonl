@@ -896,3 +896,9 @@
 {"entity_id":"person-github-000097","entity_type":"person","canonical_id":"person-github-000097","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-003.md"}
 {"entity_id":"change-000012","entity_type":"change","canonical_id":"change-000012","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-003.md"}
 {"entity_id":"change-000013","entity_type":"change","canonical_id":"change-000013","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-003.md"}
+{"entity_id":"person-github-000098","entity_type":"person","canonical_id":"person-github-000098","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-005.md"}
+{"entity_id":"person-github-000099","entity_type":"person","canonical_id":"person-github-000099","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-005.md"}
+{"entity_id":"change-000014","entity_type":"change","canonical_id":"change-000014","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-005.md"}
+{"entity_id":"change-000015","entity_type":"change","canonical_id":"change-000015","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-005.md"}
+{"entity_id":"change-000016","entity_type":"change","canonical_id":"change-000016","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-005.md"}
+{"entity_id":"change-000017","entity_type":"change","canonical_id":"change-000017","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-005.md"}

@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-22T20:55:40Z
+last_updated_utc: 2026-08-22T20:57:48Z
 current_phase: Phase 2 - breadth-first upstream inventory
-current_entity: Biomni Lab / Biomni Everywhere / Biomni MCP
-current_batch: commercial-discovery-001
-current_page_or_cursor: no provably exhaustive site cursor
+current_entity: snap-stanford/Biomni main commit graph
+current_batch: commit-index-002
+current_page_or_cursor: commit page 3 of 5
 completed_units:
 - recovered existing research branch from origin
 - verified branch ancestry against MikeGong1/Biomni main
@@ -22,6 +22,7 @@ completed_units:
 - completed and verified upstream branch inventory (33 of 33; 29 ahead=0)
 - verified 45 contributor endpoint rows and all 487 main-history commits
 - verified bounded commercial discovery: 17 grouped behaviors and 11 timeline events
+- verified main commit page 2 (cumulative 200 of 487)
 pending_units:
 - inventory open, merged, and closed-unmerged upstream PRs with pagination
 - index the complete upstream commit graph
@@ -38,4 +39,4 @@ unresolved_lineages:
 - PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
 - popper_biomni, 0.0.4_release, hotfix/v0.0.6-param-naming, and pre-commit-ci-update-config branch leads require patch/PR normalization
 unresolved_questions: []
-next_action: verify and reduce returned Phase 2 GitHub batches; later perform commercial-to-OSS gap analysis
+next_action: verify and reduce returned Phase 2 GitHub batches; resume commit inventory at page 3

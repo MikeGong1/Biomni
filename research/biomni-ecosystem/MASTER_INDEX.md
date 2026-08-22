@@ -6,7 +6,7 @@
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |
-| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000092`, `person-github-000001`–`person-github-000046`, `evidence-000001`–`evidence-000030` |
+| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000092`, `person-github-000001`–`person-github-000046`, `evidence-000001`–`evidence-000031` |
 | Merged PRs, batch 001 | PR inventory | COMPLETE | First 100 of 111 merged PRs, created ascending | `upstream/prs/merged-batch-001.md` | `evidence-000010` |
 | Public forks, batch 001 | fork inventory | PARTIAL | 100 of 690 public forks, newest first; page 2 pending | `upstream/forks/batch-001.md` | `evidence-000011` |
 | Open PRs | PR inventory | COMPLETE | 38 of 38 open PRs inventoried; substantive candidates await deep audit | `upstream/prs/open-inventory.md` | `evidence-000012` |
@@ -19,3 +19,4 @@
 | Biomni people seeds | person inventory | PARTIAL | 45 public user logins, one bot, and 56 unresolved raw Git tuples; PR/fork merge pending | `people/github/seed-inventory-001.md` | `person-github-000001`–`person-github-000046`, `evidence-000019` |
 | Commercial discovery batch 001 | commercial inventory | PARTIAL | Biomni Lab/Everywhere/MCP identity, 17 behaviors, and 11 dated events verified; site exhaustion and OSS gap pending | `commercial/discovery-001.md` | `evidence-000020`–`evidence-000030` |
 | Commercial timeline | timeline | PARTIAL | Bounded official timeline from 2026-02-03 through 2026-08-04 | `commercial/timeline.md` | `evidence-000020`–`evidence-000030` |
+| Main commits, batch 002 | commit inventory | PARTIAL | Commits 101–200 of 487; page 3 pending | `upstream/commits/batch-002.md` | `evidence-000031` |

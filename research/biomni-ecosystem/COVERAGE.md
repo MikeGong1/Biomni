@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 125 | 0 | batches 001–005 complete | PARTIAL |
+| Fork unique-change screening | 694 | 150 | 0 | batches 001–006 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -45,6 +45,9 @@ lineage, one format-only, and one non-feature notebook/CI change.
 
 Fork screening batch 005: 17 no-unique, one JHK-derived substantive extension,
 three substantive unique, two format-only, and two PR-plus-format lineages.
+
+Fork screening batch 006: 20 no-unique, three format-only, one exact PR lineage,
+and one CI-only change.
 
 ## People and repositories
 

@@ -1,0 +1,555 @@
+name: Biomni Data Lake Drive-sized chunks
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/biomni-data-lake-drive-chunks.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  OFFICIAL_REPO_COMMIT: 400c1f366b96a35ca253e13c9b06c5076af41d65
+  S3_BASE: https://biomni-release.s3.amazonaws.com/data_lake/
+  CHUNK_PAYLOAD_LIMIT: "102000000"
+
+jobs:
+  plan:
+    name: plan-drive-chunks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      dataset_count: ${{ steps.plan.outputs.dataset_count }}
+      total_bytes: ${{ steps.plan.outputs.total_bytes }}
+      chunk_count: ${{ steps.plan.outputs.chunk_count }}
+    steps:
+      - name: Build pinned inventory and reassembly plan
+        id: plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p drive_plan
+          python3 <<'PY'
+          import ast
+          import base64
+          import concurrent.futures
+          import csv
+          import datetime as dt
+          import hashlib
+          import json
+          import os
+          import pathlib
+          import time
+          import urllib.parse
+          import urllib.request
+
+          commit = os.environ["OFFICIAL_REPO_COMMIT"]
+          base = os.environ["S3_BASE"]
+          limit = int(os.environ["CHUNK_PAYLOAD_LIMIT"])
+          outdir = pathlib.Path("drive_plan")
+          outdir.mkdir(parents=True, exist_ok=True)
+
+          env_desc_url = (
+              "https://raw.githubusercontent.com/snap-stanford/Biomni/"
+              f"{commit}/biomni/env_desc.py"
+          )
+          req = urllib.request.Request(
+              env_desc_url,
+              headers={"User-Agent": "biomni-drive-chunk-snapshot/1.0"},
+          )
+          with urllib.request.urlopen(req, timeout=120) as response:
+              env_desc_source = response.read().decode("utf-8")
+
+          tree = ast.parse(env_desc_source)
+          registry = None
+          for node in tree.body:
+              if isinstance(node, ast.Assign) and any(
+                  isinstance(target, ast.Name) and target.id == "data_lake_dict"
+                  for target in node.targets
+              ):
+                  registry = ast.literal_eval(node.value)
+                  break
+          if not isinstance(registry, dict) or not registry:
+              raise RuntimeError("Could not parse official data_lake_dict")
+
+          def inspect_object(index_and_item):
+              index, (name, description) = index_and_item
+              url = base + urllib.parse.quote(name, safe="._-")
+              last_error = None
+              for attempt in range(1, 7):
+                  try:
+                      request = urllib.request.Request(
+                          url,
+                          method="HEAD",
+                          headers={"User-Agent": "biomni-drive-chunk-snapshot/1.0"},
+                      )
+                      with urllib.request.urlopen(request, timeout=180) as response:
+                          size = int(response.headers.get("Content-Length") or 0)
+                          etag = (response.headers.get("ETag") or "").strip('"')
+                          last_modified = response.headers.get("Last-Modified") or ""
+                      if size <= 0:
+                          raise RuntimeError("Missing Content-Length")
+                      return {
+                          "index": index,
+                          "name": name,
+                          "description": description,
+                          "url": url,
+                          "size_bytes": size,
+                          "etag": etag,
+                          "last_modified": last_modified,
+                      }
+                  except Exception as exc:
+                      last_error = exc
+                      if attempt < 6:
+                          time.sleep(min(2 ** attempt, 20))
+              raise RuntimeError(f"Could not inspect {name}: {last_error}")
+
+          indexed = list(enumerate(registry.items(), start=1))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+              datasets = list(executor.map(inspect_object, indexed))
+          datasets.sort(key=lambda item: item["index"])
+
+          # Split each dataset into deterministic byte ranges no larger than the
+          # Drive connector-safe payload limit.
+          segments = []
+          for dataset in datasets:
+              offset = 0
+              part_index = 0
+              while offset < dataset["size_bytes"]:
+                  length = min(limit, dataset["size_bytes"] - offset)
+                  segment_path = (
+                      f"segments/d{dataset['index']:03d}/"
+                      f"p{part_index:04d}.part"
+                  )
+                  segments.append(
+                      {
+                          "dataset_index": dataset["index"],
+                          "name": dataset["name"],
+                          "dataset_size_bytes": dataset["size_bytes"],
+                          "url": dataset["url"],
+                          "etag": dataset["etag"],
+                          "part_index": part_index,
+                          "offset": offset,
+                          "length": length,
+                          "segment_path": segment_path,
+                      }
+                  )
+                  offset += length
+                  part_index += 1
+
+          # Best-fit decreasing packing lets small files and tail ranges share a
+          # Drive object while keeping every artifact below 100 MiB.
+          chunks = []
+          for segment in sorted(
+              segments,
+              key=lambda item: (
+                  -item["length"],
+                  item["dataset_index"],
+                  item["part_index"],
+              ),
+          ):
+              candidates = [
+                  chunk
+                  for chunk in chunks
+                  if chunk["bytes"] + segment["length"] <= limit
+              ]
+              if candidates:
+                  chosen = min(
+                      candidates,
+                      key=lambda chunk: limit - (
+                          chunk["bytes"] + segment["length"]
+                      ),
+                  )
+              else:
+                  chosen = {"bytes": 0, "segments": []}
+                  chunks.append(chosen)
+              chosen["segments"].append(segment)
+              chosen["bytes"] += segment["length"]
+
+          for chunk in chunks:
+              chunk["segments"].sort(
+                  key=lambda item: (
+                      item["dataset_index"],
+                      item["part_index"],
+                  )
+              )
+
+          matrix_include = []
+          global_chunks = []
+          segment_location = {}
+          for number, chunk in enumerate(chunks, start=1):
+              chunk_id = f"{number:04d}"
+              payload = json.dumps(
+                  chunk["segments"],
+                  separators=(",", ":"),
+              ).encode("utf-8")
+              payload_b64 = base64.b64encode(payload).decode("ascii")
+              matrix_include.append(
+                  {
+                      "chunk_id": chunk_id,
+                      "segments_b64": payload_b64,
+                      "expected_bytes": chunk["bytes"],
+                      "segment_count": len(chunk["segments"]),
+                  }
+              )
+              global_chunks.append(
+                  {
+                      "chunk_id": chunk_id,
+                      "expected_payload_bytes": chunk["bytes"],
+                      "segment_count": len(chunk["segments"]),
+                      "artifact_name": f"biomni-drive-chunk-{chunk_id}",
+                  }
+              )
+              for segment in chunk["segments"]:
+                  key = (segment["dataset_index"], segment["part_index"])
+                  segment_location[key] = {
+                      "chunk_id": chunk_id,
+                      "artifact_name": f"biomni-drive-chunk-{chunk_id}",
+                      "segment_path": segment["segment_path"],
+                      "offset": segment["offset"],
+                      "length": segment["length"],
+                  }
+
+          reassembly_datasets = []
+          for dataset in datasets:
+              part_count = (
+                  dataset["size_bytes"] + limit - 1
+              ) // limit
+              dataset_segments = [
+                  segment_location[(dataset["index"], part_index)]
+                  for part_index in range(part_count)
+              ]
+              reassembly_datasets.append(
+                  {
+                      **dataset,
+                      "part_count": part_count,
+                      "segments": dataset_segments,
+                  }
+              )
+
+          retrieved_at = dt.datetime.now(dt.timezone.utc).replace(
+              microsecond=0
+          ).isoformat()
+          total_bytes = sum(item["size_bytes"] for item in datasets)
+          matrix = {"include": matrix_include}
+          reassembly = {
+              "schema_version": 1,
+              "snapshot_type": "official_biomni_data_lake_drive_chunks",
+              "official_repository": "snap-stanford/Biomni",
+              "official_registry_commit": commit,
+              "official_registry_url": env_desc_url,
+              "s3_base": base,
+              "retrieved_at": retrieved_at,
+              "dataset_count": len(datasets),
+              "total_bytes": total_bytes,
+              "total_gib": round(total_bytes / (1024 ** 3), 6),
+              "chunk_payload_limit": limit,
+              "chunk_count": len(chunks),
+              "chunks": global_chunks,
+              "datasets": reassembly_datasets,
+          }
+
+          (outdir / "drive_chunk_reassembly_manifest.json").write_text(
+              json.dumps(reassembly, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          (outdir / "drive_chunk_matrix.json").write_text(
+              json.dumps(matrix, separators=(",", ":")) + "\n",
+              encoding="utf-8",
+          )
+          (outdir / "pinned_env_desc.py").write_text(
+              env_desc_source,
+              encoding="utf-8",
+          )
+          with (outdir / "drive_chunk_inventory.csv").open(
+              "w",
+              newline="",
+              encoding="utf-8-sig",
+          ) as handle:
+              writer = csv.DictWriter(
+                  handle,
+                  fieldnames=[
+                      "index",
+                      "name",
+                      "size_bytes",
+                      "part_count",
+                      "etag",
+                      "last_modified",
+                      "url",
+                      "description",
+                  ],
+              )
+              writer.writeheader()
+              for dataset in reassembly_datasets:
+                  writer.writerow(
+                      {
+                          key: dataset[key]
+                          for key in writer.fieldnames
+                      }
+                  )
+
+          env_desc_sha = hashlib.sha256(
+              env_desc_source.encode("utf-8")
+          ).hexdigest()
+          (outdir / "PROVENANCE.txt").write_text(
+              "\n".join(
+                  [
+                      "snapshot_type=official_biomni_data_lake_drive_chunks",
+                      "official_repository=snap-stanford/Biomni",
+                      f"official_registry_commit={commit}",
+                      f"official_registry_sha256={env_desc_sha}",
+                      f"s3_base={base}",
+                      f"retrieved_at={retrieved_at}",
+                      f"dataset_count={len(datasets)}",
+                      f"total_bytes={total_bytes}",
+                      f"chunk_payload_limit={limit}",
+                      f"chunk_count={len(chunks)}",
+                      "",
+                  ]
+              ),
+              encoding="utf-8",
+          )
+
+          with open(
+              os.environ["GITHUB_OUTPUT"],
+              "a",
+              encoding="utf-8",
+          ) as output:
+              output.write(
+                  "matrix="
+                  + json.dumps(matrix, separators=(",", ":"))
+                  + "\n"
+              )
+              output.write(f"dataset_count={len(datasets)}\n")
+              output.write(f"total_bytes={total_bytes}\n")
+              output.write(f"chunk_count={len(chunks)}\n")
+
+          print(
+              json.dumps(
+                  {
+                      "dataset_count": len(datasets),
+                      "total_bytes": total_bytes,
+                      "raw_segment_count": len(segments),
+                      "drive_chunk_count": len(chunks),
+                      "largest_chunk_payload": max(
+                          chunk["bytes"] for chunk in chunks
+                      ),
+                  },
+                  indent=2,
+              )
+          )
+          PY
+
+      - name: Upload Drive reassembly plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-drive-reassembly-plan-400c1f366b96
+          path: drive_plan
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 1
+
+  transfer:
+    name: drive-chunk-${{ matrix.chunk_id }}
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      CHUNK_ID: ${{ matrix.chunk_id }}
+      SEGMENTS_B64: ${{ matrix.segments_b64 }}
+      EXPECTED_BYTES: ${{ matrix.expected_bytes }}
+      EXPECTED_SEGMENT_COUNT: ${{ matrix.segment_count }}
+    steps:
+      - name: Decode chunk plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p payload/segments
+          python3 <<'PY'
+          import base64
+          import json
+          import os
+          import pathlib
+
+          segments = json.loads(
+              base64.b64decode(
+                  os.environ["SEGMENTS_B64"]
+              ).decode("utf-8")
+          )
+          pathlib.Path("payload/CHUNK_PLAN.json").write_text(
+              json.dumps(segments, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          with pathlib.Path("payload/segments.tsv").open(
+              "w",
+              encoding="utf-8",
+          ) as handle:
+              for item in segments:
+                  handle.write(
+                      "\t".join(
+                          [
+                              item["segment_path"],
+                              str(item["offset"]),
+                              str(item["length"]),
+                              str(item["dataset_size_bytes"]),
+                              item["url"],
+                              str(item["dataset_index"]),
+                              str(item["part_index"]),
+                              item["name"],
+                          ]
+                      )
+                      + "\n"
+                  )
+          PY
+
+      - name: Download exact official byte ranges
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > payload/SHA256SUMS
+          : > payload/SIZES.tsv
+          while IFS=$'\t' read -r segment_path offset length dataset_size url dataset_index part_index name; do
+            output="payload/$segment_path"
+            mkdir -p "$(dirname "$output")"
+            end=$((offset + length - 1))
+            headers="${output}.headers"
+            status="$(
+              curl --silent --show-error --fail --location \
+                --retry 8 --retry-delay 3 --retry-all-errors \
+                --range "${offset}-${end}" \
+                --dump-header "$headers" \
+                --write-out '%{http_code}' \
+                --output "$output" \
+                "$url"
+            )"
+            actual="$(stat --printf='%s' "$output")"
+            if [[ "$actual" != "$length" ]]; then
+              echo "Range size mismatch for $name part $part_index: expected $length, got $actual" >&2
+              exit 1
+            fi
+            if [[ "$length" != "$dataset_size" && "$status" != "206" ]]; then
+              echo "Server ignored partial range for $name part $part_index: HTTP $status" >&2
+              exit 1
+            fi
+            rm -f "$headers"
+            sha256sum "$output" >> payload/SHA256SUMS
+            printf '%s\t%s\t%s\t%s\t%s\n' \
+              "$segment_path" "$actual" "$name" "$offset" "$part_index" \
+              >> payload/SIZES.tsv
+          done < payload/segments.tsv
+
+          count="$(find payload/segments -type f | wc -l | tr -d ' ')"
+          bytes="$(find payload/segments -type f -printf '%s\n' | awk '{s+=$1} END {printf "%.0f", s}')"
+          [[ "$count" == "$EXPECTED_SEGMENT_COUNT" ]]
+          [[ "$bytes" == "$EXPECTED_BYTES" ]]
+
+      - name: Create verified chunk manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import datetime as dt
+          import json
+          import os
+          import pathlib
+
+          segments = json.loads(
+              pathlib.Path("payload/CHUNK_PLAN.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          hashes = {}
+          for line in pathlib.Path("payload/SHA256SUMS").read_text(
+              encoding="utf-8"
+          ).splitlines():
+              digest, path = line.split("  ", 1)
+              relative = pathlib.Path(path).relative_to("payload").as_posix()
+              hashes[relative] = digest
+
+          for item in segments:
+              item["sha256"] = hashes[item["segment_path"]]
+
+          generated_at = dt.datetime.now(dt.timezone.utc).replace(
+              microsecond=0
+          ).isoformat()
+          manifest = {
+              "schema_version": 1,
+              "snapshot_type": "official_biomni_data_lake_drive_chunk",
+              "official_registry_commit": os.environ["OFFICIAL_REPO_COMMIT"],
+              "chunk_id": os.environ["CHUNK_ID"],
+              "generated_at": generated_at,
+              "segment_count": len(segments),
+              "payload_bytes": sum(
+                  item["length"] for item in segments
+              ),
+              "segments": segments,
+          }
+          pathlib.Path("payload/CHUNK_MANIFEST.json").write_text(
+              json.dumps(manifest, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          pathlib.Path("payload/PROVENANCE.txt").write_text(
+              "\n".join(
+                  [
+                      "snapshot_type=official_biomni_data_lake_drive_chunk",
+                      f"official_registry_commit={os.environ['OFFICIAL_REPO_COMMIT']}",
+                      f"chunk_id={os.environ['CHUNK_ID']}",
+                      f"generated_at={generated_at}",
+                      f"segment_count={len(segments)}",
+                      f"payload_bytes={manifest['payload_bytes']}",
+                      "",
+                  ]
+              ),
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload connector-safe chunk artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-drive-chunk-${{ matrix.chunk_id }}
+          path: payload
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 1
+
+  complete:
+    name: complete-drive-chunks
+    needs:
+      - plan
+      - transfer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build completion marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p complete
+          cat > complete/COMPLETE.json <<EOF
+          {
+            "schema_version": 1,
+            "snapshot_type": "official_biomni_data_lake_drive_chunks",
+            "official_registry_commit": "${OFFICIAL_REPO_COMMIT}",
+            "dataset_count": ${{ needs.plan.outputs.dataset_count }},
+            "total_bytes": ${{ needs.plan.outputs.total_bytes }},
+            "chunk_count": ${{ needs.plan.outputs.chunk_count }},
+            "workflow_status": "complete"
+          }
+          EOF
+
+      - name: Upload Drive chunk completion marker
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-drive-chunks-complete-400c1f366b96
+          path: complete
+          if-no-files-found: error
+          compression-level: 6
+          retention-days: 1

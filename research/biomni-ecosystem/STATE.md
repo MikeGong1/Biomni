@@ -1,9 +1,9 @@
 # Research State
 
-last_updated_utc: 2026-08-22T20:48:39Z
+last_updated_utc: 2026-08-22T20:51:47Z
 current_phase: Phase 2 - breadth-first upstream inventory
-current_entity: snap-stanford organization public repositories and members
-current_batch: snap-org-inventory-001
+current_entity: snap-stanford/Biomni public branches
+current_batch: branch-inventory-001
 current_page_or_cursor: exhausted
 completed_units:
 - recovered existing research branch from origin
@@ -19,8 +19,8 @@ completed_units:
 - verified public fork discovery page 2 (cumulative 200 of 690)
 - completed snap-stanford public repository screening (92 of 92; 17 HIGH)
 - completed snap-stanford public member inventory (6 of 6)
+- completed and verified upstream branch inventory (33 of 33; 29 ahead=0)
 pending_units:
-- inventory all public upstream branches
 - inventory open, merged, and closed-unmerged upstream PRs with pagination
 - index the complete upstream commit graph
 - discover and screen all publicly visible forks
@@ -30,5 +30,6 @@ pending_units:
 unresolved_identity_mappings: []
 unresolved_lineages:
 - PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
+- popper_biomni, 0.0.4_release, hotfix/v0.0.6-param-naming, and pre-commit-ci-update-config branch leads require patch/PR normalization
 unresolved_questions: []
-next_action: verify and reduce returned Phase 2 worker batches; later deep-audit 17 HIGH and disambiguate 28 POSSIBLE repositories
+next_action: verify and reduce returned Phase 2 worker batches; later deep-audit four nonzero-ahead branch lineages

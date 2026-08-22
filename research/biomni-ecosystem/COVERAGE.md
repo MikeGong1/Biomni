@@ -14,7 +14,7 @@ Status: PARTIAL
 
 | Collection | Discovered | Processed/indexed | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Branches | unknown | 0 | 0 | not started | NOT_STARTED |
+| Branches | 33 | 33 | 0 | exhausted | COMPLETE |
 | PRs: open | 38 | 38 | 0 | exhausted | COMPLETE |
 | PRs: merged | 111 | 111 | 0 | exhausted | COMPLETE |
 | PRs: closed-unmerged | 33 | 33 | 0 | exhausted | COMPLETE |

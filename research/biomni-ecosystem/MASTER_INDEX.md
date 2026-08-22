@@ -6,7 +6,7 @@
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |
-| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000092`, `person-github-000001`–`person-github-000046`, `evidence-000001`–`evidence-000033` |
+| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000092`, `person-github-000001`–`person-github-000046`, `evidence-000001`–`evidence-000034` |
 | Merged PRs, batch 001 | PR inventory | COMPLETE | First 100 of 111 merged PRs, created ascending | `upstream/prs/merged-batch-001.md` | `evidence-000010` |
 | Public forks, batch 001 | fork inventory | PARTIAL | 100 of 690 public forks, newest first; page 2 pending | `upstream/forks/batch-001.md` | `evidence-000011` |
 | Open PRs | PR inventory | COMPLETE | 38 of 38 open PRs inventoried; substantive candidates await deep audit | `upstream/prs/open-inventory.md` | `evidence-000012` |
@@ -22,3 +22,4 @@
 | Main commits, batch 002 | commit inventory | PARTIAL | Commits 101–200 of 487; page 3 pending | `upstream/commits/batch-002.md` | `evidence-000031` |
 | Public forks, batch 003 | fork inventory | PARTIAL | Forks 201–300 of 690, newest first; page 4 pending | `upstream/forks/batch-003.md` | `evidence-000032` |
 | Public forks, batch 004 | fork inventory | PARTIAL | Forks 301–400 of 690, newest first; page 5 pending | `upstream/forks/batch-004.md` | `evidence-000033` |
+| Main commits, batch 003 | commit inventory | PARTIAL | Commits 201–300 of 487; page 4 pending | `upstream/commits/batch-003.md` | `evidence-000034` |

@@ -16,7 +16,7 @@ Status: PARTIAL
 |---|---:|---:|---:|---|---|
 | Branches | unknown | 0 | 0 | not started | NOT_STARTED |
 | PRs: open | unknown | 0 | 0 | not started | NOT_STARTED |
-| PRs: merged | unknown | 0 | 0 | not started | NOT_STARTED |
+| PRs: merged | 111 | 100 | 0 | next page 2 | PARTIAL |
 | PRs: closed-unmerged | unknown | 0 | 0 | not started | NOT_STARTED |
 | Commits | unknown | 0 | 0 | not started | NOT_STARTED |
 | Public forks | unknown | 0 | 0 | not started | NOT_STARTED |

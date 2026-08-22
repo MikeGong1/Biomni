@@ -1,0 +1,120 @@
+name: Biomni BindingDB runtime parts
+
+on:
+  push:
+    branches:
+      - integration/codex-chatgpt-work-mcp
+    paths:
+      - .github/workflows/biomni-bindingdb-runtime-parts.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/biomni-bindingdb-runtime-parts.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SOURCE_URL: https://biomni-release.s3.amazonaws.com/data_lake/BindingDB_All_202409.tsv
+  FILE_SIZE: "6245551822"
+  PART_SIZE: "450000000"
+  EXPECTED_MD5: d4242e73df160597d1a183b020a23932
+  REGISTRY_COMMIT: 400c1f366b96a35ca253e13c9b06c5076af41d65
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      part_count: ${{ steps.plan.outputs.part_count }}
+    steps:
+      - id: plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json, os
+          size=int(os.environ['FILE_SIZE']); part=int(os.environ['PART_SIZE'])
+          rows=[]
+          offset=0; index=0
+          while offset<size:
+              length=min(part,size-offset)
+              rows.append({'part_id':f'{index:04d}','offset':offset,'length':length,'end':offset+length-1})
+              offset += length; index += 1
+          matrix={'include':rows}
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('matrix='+json.dumps(matrix,separators=(',',':'))+'\n')
+              f.write(f'part_count={len(rows)}\n')
+          print(json.dumps({'part_count':len(rows),'file_size':size,'part_size':part},indent=2))
+          PY
+
+  transfer:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 14
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - name: Download exact official byte range
+        shell: bash
+        env:
+          PART_ID: ${{ matrix.part_id }}
+          OFFSET: ${{ matrix.offset }}
+          LENGTH: ${{ matrix.length }}
+          END: ${{ matrix.end }}
+        run: |
+          set -euo pipefail
+          mkdir -p payload
+          out="payload/BindingDB_All_202409.tsv.part-${PART_ID}"
+          curl --fail --location --retry 8 --retry-all-errors \
+            -H "Range: bytes=${OFFSET}-${END}" \
+            --output "$out" "$SOURCE_URL"
+          actual=$(stat -c '%s' "$out")
+          test "$actual" -eq "$LENGTH"
+          sha256sum "$out" | tee payload/SHA256SUMS
+          cat > payload/PART_MANIFEST.json <<EOF
+          {
+            "schema_version": 1,
+            "dataset": "BindingDB_All_202409.tsv",
+            "source_url": "$SOURCE_URL",
+            "official_registry_commit": "$REGISTRY_COMMIT",
+            "whole_file_size": $FILE_SIZE,
+            "whole_file_md5": "$EXPECTED_MD5",
+            "part_id": "$PART_ID",
+            "offset": $OFFSET,
+            "length": $LENGTH,
+            "end_inclusive": $END
+          }
+          EOF
+
+      - name: Upload connector-safe runtime part
+        uses: actions/upload-artifact@v4
+        with:
+          name: biomni-bindingdb-runtime-part-${{ matrix.part_id }}
+          path: payload
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 3
+
+  complete:
+    needs: [plan, transfer]
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          printf '%s\n' \
+            "dataset=BindingDB_All_202409.tsv" \
+            "file_size=$FILE_SIZE" \
+            "expected_md5=$EXPECTED_MD5" \
+            "part_count=${{ needs.plan.outputs.part_count }}" \
+            "registry_commit=$REGISTRY_COMMIT" \
+            > COMPLETE.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: biomni-bindingdb-runtime-complete
+          path: COMPLETE.txt
+          retention-days: 3

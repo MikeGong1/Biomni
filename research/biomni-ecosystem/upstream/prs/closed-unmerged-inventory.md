@@ -7,13 +7,13 @@ official PR resources confirm #289 and #290 share base SHA, head repository/ref,
 and head SHA. This remains a PR-surface duplicate candidate, not a resolved unique
 change identity.
 
-task_id: `closed-unmerged-pr-inventory-001`  
-scope: official GitHub results for `repo:snap-stanford/Biomni is:pr is:closed is:unmerged`  
-repository: `snap-stanford/Biomni`  
-observed_at_utc: `2026-08-22T20:36:23Z`  
-claim_class: `FACT` for API metadata; `INFERENCE` for preliminary class, relevance, and lineage flags  
-source_tier: `1`  
-execution_boundary: static metadata inventory only; no PR code or third-party content executed  
+task_id: `closed-unmerged-pr-inventory-001`
+scope: official GitHub results for `repo:snap-stanford/Biomni is:pr is:closed is:unmerged`
+repository: `snap-stanford/Biomni`
+observed_at_utc: `2026-08-22T20:36:23Z`
+claim_class: `FACT` for API metadata; `INFERENCE` for preliminary class, relevance, and lineage flags
+source_tier: `1`
+execution_boundary: static metadata inventory only; no PR code or third-party content executed
 
 ## Count and pagination
 

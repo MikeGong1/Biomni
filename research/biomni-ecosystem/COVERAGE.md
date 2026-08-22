@@ -19,11 +19,14 @@ Status: PARTIAL
 | PRs: merged | 111 | 111 | 0 | exhausted | COMPLETE |
 | PRs: closed-unmerged | 33 | 33 | 0 | exhausted | COMPLETE |
 | Commits | 487 | 487 | 0 | exhausted | COMPLETE |
-| Public forks | 690 metadata counter | 600 public entries | 0 | next page 7 of 7 | PARTIAL |
+| Public fork discovery | 683 enumerated | 683 | 0 | exhausted | COMPLETE |
+| Fork unique-change screening | 683 | 0 | 0 | not started | NOT_STARTED |
 
-All commit batches contain 111 explicit subject-to-PR mappings. Fork-branch
-inspection, no-unique-change, and substantive unique-change counts will be added
-after their breadth-first inventories establish the denominators.
+All commit batches contain 111 explicit subject-to-PR mappings. The authenticated
+repository counter reports 690 forks while exhausted List forks pagination yields
+683 unique public entries; the unexplained seven-entry discrepancy is retained as
+an observability limitation. Fork-branch inspection, no-unique-change, and
+substantive unique-change counts begin from the 683 enumerated public entries.
 
 ## People and repositories
 

@@ -1,19 +1,19 @@
 # Research State
 
-last_updated_utc: 2026-08-22T21:17:11Z
+last_updated_utc: 2026-08-22T21:19:11Z
 current_phase: Phase 2 - breadth-first upstream inventory
 current_entity: snap-stanford/Biomni public forks
-current_batch: fork-discovery-006
-current_page_or_cursor: commits exhausted; forks page 7 of 7 cached
+current_batch: fork-discovery-007
+current_page_or_cursor: commits exhausted; public fork discovery exhausted
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
-- completed main commit index 487/487 and discovered forks 600 public entries
+- completed main commit index 487/487 and public fork discovery 683/683
 - screened snap-stanford repositories 92/92 and public members 6/6
 - normalized contributors/history/182 PR authors to 83 user logins plus one bot
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
-- canonicalize cached fork page 7, then screen all discovered forks for unique changes
+- normalize stable repository IDs for 683 forks, then screen unique changes
 - merge branch-only and substantive-fork-owner accounts into P
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
@@ -24,5 +24,6 @@ unresolved_identity_mappings:
 unresolved_lineages:
 - PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
 - popper_biomni, 0.0.4_release, hotfix/v0.0.6-param-naming, and pre-commit-ci-update-config branch leads require patch/PR normalization
-unresolved_questions: []
-next_action: canonicalize cached terminal fork page 7 and record counter discrepancy
+unresolved_questions:
+- authenticated repository forks_count/network_count is 690 while public List forks enumerates 683; cause UNKNOWN
+next_action: normalize fork repository IDs, then begin bounded unique-change screening

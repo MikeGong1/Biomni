@@ -1,9 +1,9 @@
 # Research State
 
-last_updated_utc: 2026-08-22T22:29:23Z
+last_updated_utc: 2026-08-22T22:38:11Z
 current_phase: Phase 3 - normalize Biomni unique changes
 current_entity: snap-stanford/Biomni fork unique changes
-current_batch: fork-screening-006
+current_batch: fork-screening-007
 current_page_or_cursor: commits exhausted; public fork discovery exhausted
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
@@ -16,11 +16,12 @@ completed_units:
 - screened next 25 active forks; no new capability change retained
 - screened next 25 active forks; retained four substantive/derived changes
 - screened next 25 active forks; no new capability change retained
+- screened next 25 active forks; retained four substantive unique changes
 - screened snap-stanford repositories 92/92 and public members 6/6
 - normalized contributors/history/182 PR authors to 83 user logins plus one bot
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
-- screen remaining 544 observed fork identities for substantive unique changes
+- screen remaining 519 observed fork identities for substantive unique changes
 - merge branch-only and substantive-fork-owner accounts into P
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline

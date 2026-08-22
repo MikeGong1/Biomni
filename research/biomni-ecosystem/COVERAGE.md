@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 150 | 0 | batches 001–006 complete | PARTIAL |
+| Fork unique-change screening | 694 | 175 | 0 | batches 001–007 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -49,19 +49,22 @@ three substantive unique, two format-only, and two PR-plus-format lineages.
 Fork screening batch 006: 20 no-unique, three format-only, one exact PR lineage,
 and one CI-only change.
 
+Fork screening batch 007: 18 no-unique, four substantive unique, one format-only,
+and two exact open-PR lineages.
+
 ## People and repositories
 
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Code-visible people | 98 user logins + 1 bot; 56 raw tuples unresolved | 98 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
+| Code-visible people | 102 user logins + 1 bot; 56 raw tuples unresolved | 102 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
 
-The 98 public user logins are the canonical union of public organization members,
+The 102 public user logins are the canonical union of public organization members,
 contributors, and all 182 open/merged/closed-unmerged PR authors. One contributor/
-PR bot is stored but excluded from the human count; fifteen substantive unique fork
+PR bot is stored but excluded from the human count; nineteen substantive unique fork
 owners have now entered P. Raw commit tuples are not silently mapped to accounts.
 
 ## Commercial

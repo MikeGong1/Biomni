@@ -15,7 +15,7 @@ Status: PARTIAL
 | Collection | Discovered | Processed/indexed | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
 | Branches | unknown | 0 | 0 | not started | NOT_STARTED |
-| PRs: open | unknown | 0 | 0 | not started | NOT_STARTED |
+| PRs: open | 38 | 38 | 0 | exhausted | COMPLETE |
 | PRs: merged | 111 | 100 | 0 | next page 2 | PARTIAL |
 | PRs: closed-unmerged | unknown | 0 | 0 | not started | NOT_STARTED |
 | Commits | unknown | 0 | 0 | not started | NOT_STARTED |

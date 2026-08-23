@@ -1,0 +1,427 @@
+# Public Repository Inventory for Code-visible People — Batch 006
+
+Parent verification: `VERIFIED`. Scope: `person-github-000052`–`000061`.
+
+Eleven serialized successful GraphQL responses exhausted all 10 User connections.
+inodb required two pages; hklee-hits returned an explicit total of zero. The batch
+contains 383 repositories, six existing Biomni IDs, and 377 new IDs
+(`repo-002651`–`repo-003027`). No repository code was executed.
+
+## Coverage
+
+| Person ID | Login | Repositories | Existing | New | High | Possible | Low | Irrelevant |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| person-github-000052 | de-grave | 20 | 1 | 19 | 11 | 0 | 4 | 5 |
+| person-github-000053 | erhuve | 43 | 1 | 42 | 5 | 1 | 5 | 32 |
+| person-github-000054 | goodb | 15 | 1 | 14 | 11 | 4 | 0 | 0 |
+| person-github-000055 | Harrydirk41 | 8 | 0 | 8 | 4 | 2 | 1 | 1 |
+| person-github-000056 | hklee-hits | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| person-github-000057 | inodb | 137 | 0 | 137 | 92 | 9 | 26 | 10 |
+| person-github-000058 | jaechang-hits | 14 | 0 | 14 | 6 | 2 | 3 | 3 |
+| person-github-000059 | JinL0 | 40 | 1 | 39 | 4 | 0 | 14 | 22 |
+| person-github-000060 | jissen706 | 19 | 1 | 18 | 9 | 0 | 3 | 7 |
+| person-github-000061 | KalinNonchev | 87 | 1 | 86 | 73 | 2 | 6 | 6 |
+| **Total** | **10 accounts** | **383** | **6** | **377** | **215** | **20** | **62** | **86** |
+
+Metadata-only screening follows the canonical four labels. HIGH is a deep-audit
+queue, not an integration decision. Fork status does not prove unique code;
+licenses and repository contents require later static review. Person depth remains
+one, and external text is untrusted.
+
+## Repository ledger
+
+| Repository ID | Repository | Form | License | Relevance |
+|---|---|---|---|---|
+| repo-002651 | de-grave/artifacts | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002652 | de-grave/awesome-mcp-servers | fork | MIT | HIGH_RELEVANCE |
+| repo-002653 | de-grave/beacon-v2-nci | fork | LGPL-2.1 | HIGH_RELEVANCE |
+| repo-000171 | de-grave/Biomni | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002654 | de-grave/bionemo-agent-toolkit | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002655 | de-grave/BioReason | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002656 | de-grave/claude-ai-mcp | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002657 | de-grave/Data-Structure-Algorithms-LLD-HLD | fork | MIT | IRRELEVANT |
+| repo-002658 | de-grave/free-llm-api-resources | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002659 | de-grave/hw-smi | fork | NOASSERTION | LOW_RELEVANCE |
+| repo-002660 | de-grave/infinite-agentic-loop | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002661 | de-grave/inspect_ai | fork | MIT | LOW_RELEVANCE |
+| repo-002662 | de-grave/jvm-readings | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002663 | de-grave/kubectl-aliases | fork | Apache-2.0 | IRRELEVANT |
+| repo-002664 | de-grave/onekgpd-mcp | source | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002665 | de-grave/OpenClaw-Medical-Skills | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002666 | de-grave/openonco-mcp | source | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002667 | de-grave/openscience | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002668 | de-grave/superpowers | fork | MIT | HIGH_RELEVANCE |
+| repo-002669 | de-grave/worldmonitor | fork | NOASSERTION | IRRELEVANT |
+| repo-002670 | erhuve/ai | fork | NOASSERTION | LOW_RELEVANCE |
+| repo-002671 | erhuve/Anime-Girls-Holding-Programming-Books | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002672 | erhuve/bangla | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-000756 | erhuve/Biomni | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002673 | erhuve/buildspace-projects | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002674 | erhuve/cv | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002675 | erhuve/doggle_wasm | source | Unlicense | IRRELEVANT |
+| repo-002676 | erhuve/erhuve | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002677 | erhuve/erhuve.github.io | source | MIT | IRRELEVANT |
+| repo-002678 | erhuve/ethereum-org-website | fork | MIT | IRRELEVANT |
+| repo-002679 | erhuve/eve | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002680 | erhuve/flowershop | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002681 | erhuve/frontend-test | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002682 | erhuve/garfield | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002683 | erhuve/gaze-focus | source | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002684 | erhuve/guess_da_breed | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002685 | erhuve/guessing_game | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002686 | erhuve/hello-kitty-table-slam | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002687 | erhuve/hopper | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002688 | erhuve/introtodeeplearning | fork | MIT | IRRELEVANT |
+| repo-002689 | erhuve/itwasthebestdayever | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002690 | erhuve/LEADiversity | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002691 | erhuve/memorandum-maker | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002692 | erhuve/ml-blog-post | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002693 | erhuve/monai_tutorials | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002694 | erhuve/mustard | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002695 | erhuve/nyu-ml-fa22-cap | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002696 | erhuve/pipedream | fork | NOASSERTION | LOW_RELEVANCE |
+| repo-002697 | erhuve/psychopy | fork | GPL-3.0 | HIGH_RELEVANCE |
+| repo-002698 | erhuve/puzzle_dogs | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002699 | erhuve/pydantic-ai | fork | MIT | LOW_RELEVANCE |
+| repo-002700 | erhuve/quizme | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002701 | erhuve/raytracing2 | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002702 | erhuve/Resume | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002703 | erhuve/Resume-1 | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002704 | erhuve/rust-analyzer | fork | Apache-2.0 | IRRELEVANT |
+| repo-002705 | erhuve/rust-book-server | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002706 | erhuve/skills | fork | MIT | HIGH_RELEVANCE |
+| repo-002707 | erhuve/SlicerCompose | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002708 | erhuve/social-app | fork | MIT | IRRELEVANT |
+| repo-002709 | erhuve/tasneemode | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002710 | erhuve/www.rust-lang.org | fork | Apache-2.0 | IRRELEVANT |
+| repo-002711 | erhuve/zuckerbot | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002712 | goodb/AWS_Claude_Skill | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002713 | goodb/beacons | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002714 | goodb/berkeleybop.github.io | fork | GPL-2.0 | POSSIBLE_RELEVANCE |
+| repo-000350 | goodb/Biomni | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002715 | goodb/go-site | fork | BSD-3-Clause | HIGH_RELEVANCE |
+| repo-002716 | goodb/mcp-proto-okn | fork | BSD-3-Clause | HIGH_RELEVANCE |
+| repo-002717 | goodb/obo-relations | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002718 | goodb/OKN-WOBD | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002719 | goodb/pi-team | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002720 | goodb/saw-rnaseq-dogfood | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002721 | goodb/scidata | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002722 | goodb/scripps-hackathon-starter | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002723 | goodb/speedrichr | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002724 | goodb/spoke_genelab | fork | BSD-3-Clause | HIGH_RELEVANCE |
+| repo-002725 | goodb/tsri-lecture | fork | MIT | HIGH_RELEVANCE |
+| repo-002726 | Harrydirk41/ConformFlow | source | MIT | HIGH_RELEVANCE |
+| repo-002727 | Harrydirk41/ESMAdam | source | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002728 | Harrydirk41/ExEnDiff | fork | MIT | POSSIBLE_RELEVANCE |
+| repo-002729 | Harrydirk41/Harrydirk41.github.io | source | MIT | IRRELEVANT |
+| repo-002730 | Harrydirk41/MoBi | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002731 | Harrydirk41/pipeshub-ai | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002732 | Harrydirk41/ProTDyn | source | MIT | HIGH_RELEVANCE |
+| repo-002733 | Harrydirk41/UniFlow | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002734 | inodb/2013-metagenomics-workshop-gbg | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002735 | inodb/2014-05-mdopson-viral | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002736 | inodb/2014-06-favorite-microbe | source | MIT | HIGH_RELEVANCE |
+| repo-002737 | inodb/2014-06-lims-developers-workshop | source | MIT | HIGH_RELEVANCE |
+| repo-002738 | inodb/2014-08-work-seminar | source | MIT | POSSIBLE_RELEVANCE |
+| repo-002739 | inodb/2014-09-haspeborg-moose-project | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002740 | inodb/2014-11-masmvali-presentation | source | MIT | HIGH_RELEVANCE |
+| repo-002741 | inodb/2014-3-lims-presentation | source | MIT | HIGH_RELEVANCE |
+| repo-002742 | inodb/2014-5-metagenomics-workshop | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002743 | inodb/2014hack | source | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002744 | inodb/2015-04-13-verse-virusfinder-presentation | source | MIT | HIGH_RELEVANCE |
+| repo-002745 | inodb/alexsigaras | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002746 | inodb/annotation-tools | fork | MIT | HIGH_RELEVANCE |
+| repo-002747 | inodb/assembly-workshop | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002748 | inodb/Azurify | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002749 | inodb/bioconda-recipes | fork | MIT | HIGH_RELEVANCE |
+| repo-002750 | inodb/biogene-backend | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002751 | inodb/bioinfo-outreach | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002752 | inodb/biorhino-tools | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002753 | inodb/blog-inopm | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002754 | inodb/bsc-thesis | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002755 | inodb/cancerhotspots | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002756 | inodb/canopy | fork | MIT | LOW_RELEVANCE |
+| repo-002757 | inodb/cbio-agent-null | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002758 | inodb/cbioportal | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002759 | inodb/cbioportal-buildpack | fork | MIT | HIGH_RELEVANCE |
+| repo-002760 | inodb/cbioportal-cell-explorer | fork | MIT | HIGH_RELEVANCE |
+| repo-002761 | inodb/cbioportal-core | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002762 | inodb/cbioportal-docker-compose | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002763 | inodb/cbioportal-frontend | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002764 | inodb/cbioportal-frontend-archive-1 | source | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002765 | inodb/cbioportal-frontend-test | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002766 | inodb/cbioportal-navigator | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002767 | inodb/cbioportal-octane-overlay | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002768 | inodb/cBioPortalData | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002769 | inodb/cbioportalR | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002770 | inodb/cbiopubkb | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002771 | inodb/cbsp-hackathon | fork | MIT | HIGH_RELEVANCE |
+| repo-002772 | inodb/cellassign | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002773 | inodb/cellBrowser | fork | GPL-3.0 | HIGH_RELEVANCE |
+| repo-002774 | inodb/charts | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002775 | inodb/clinical-timeline | fork | LGPL-3.0 | HIGH_RELEVANCE |
+| repo-002776 | inodb/codenames | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002777 | inodb/community | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002778 | inodb/CONCOCT | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002779 | inodb/CONCOCT-test-data | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002780 | inodb/conda-buildpack | fork | MIT | LOW_RELEVANCE |
+| repo-002781 | inodb/cyftools | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002782 | inodb/d3-timeline | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002783 | inodb/datahub | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002784 | inodb/devbox | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002785 | inodb/devcenter-embedded-tomcat | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002786 | inodb/dicom-flask-uploader | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002787 | inodb/django-import-export | fork | BSD-2-Clause | LOW_RELEVANCE |
+| repo-002788 | inodb/dotfiles | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002789 | inodb/envgen.github.io | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002790 | inodb/es-loaders | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002791 | inodb/ETTLIMS | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002792 | inodb/facs | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002793 | inodb/fastVEP | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002794 | inodb/forgitful | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002795 | inodb/gefes | source | MIT | HIGH_RELEVANCE |
+| repo-002796 | inodb/genome-nexus | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002797 | inodb/genome-nexus-annotation-pipeline | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002798 | inodb/genome-nexus-cli | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002799 | inodb/genome-nexus-frontend | fork | MIT | HIGH_RELEVANCE |
+| repo-002800 | inodb/genome-nexus-importer | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002801 | inodb/gnu-make-job-scheduler | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002802 | inodb/hdash | fork | MIT | HIGH_RELEVANCE |
+| repo-002803 | inodb/helm | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002804 | inodb/homebrew-core | fork | BSD-2-Clause | IRRELEVANT |
+| repo-002805 | inodb/hotspots | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002806 | inodb/hsim | fork | MIT | HIGH_RELEVANCE |
+| repo-002807 | inodb/htan-artist | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002808 | inodb/HTAN-Data-Ingress-Docs | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002809 | inodb/htan_missing_manual | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002810 | inodb/igo-landing-page | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002811 | inodb/img-compare | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002812 | inodb/ingress-nginx | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002813 | inodb/ino.bio | source | MIT | IRRELEVANT |
+| repo-002814 | inodb/inodb | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002815 | inodb/jsii | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002816 | inodb/khmer | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002817 | inodb/knowledgesystems-k8s-deployment | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002818 | inodb/kops | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002819 | inodb/masmvali | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002820 | inodb/masmvali-publication | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002821 | inodb/masmvaliweb | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002822 | inodb/maven-external-version | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002823 | inodb/mcp-agent-base | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002824 | inodb/mcp-agent-base-1 | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002825 | inodb/metassemble | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002826 | inodb/minerva-lib-python | fork | MIT | POSSIBLE_RELEVANCE |
+| repo-002827 | inodb/mira-graphql | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002828 | inodb/mira-react | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002829 | inodb/modules | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002830 | inodb/msc-thesis | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002831 | inodb/msk-claude | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002832 | inodb/msk-insight | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002833 | inodb/NGSTools | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002834 | inodb/notebooks | source | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002835 | inodb/oncokb | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002836 | inodb/oncokb-public | fork | AGPL-3.0 | HIGH_RELEVANCE |
+| repo-002837 | inodb/oncokbR | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002838 | inodb/oncoprintjs | fork | LGPL-3.0 | HIGH_RELEVANCE |
+| repo-002839 | inodb/oncotree | fork | CC-BY-4.0 | HIGH_RELEVANCE |
+| repo-002840 | inodb/pathway-mapper | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002841 | inodb/pdx-data-hub | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002842 | inodb/picard | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002843 | inodb/ProBin | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002844 | inodb/prometheus-operator | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002845 | inodb/pydicom | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002846 | inodb/python-selenium | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002847 | inodb/r-conda | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002848 | inodb/r-workshop-march-2019 | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002849 | inodb/react | fork | MIT | LOW_RELEVANCE |
+| repo-002850 | inodb/react-tooltip-test | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002851 | inodb/readthedocs | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002852 | inodb/revmut | source | MIT | HIGH_RELEVANCE |
+| repo-002853 | inodb/run-claude-docker | fork | MIT | LOW_RELEVANCE |
+| repo-002854 | inodb/schematic | fork | MIT | HIGH_RELEVANCE |
+| repo-002855 | inodb/scripts | fork | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002856 | inodb/session-service | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002857 | inodb/shpe | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002858 | inodb/slurm | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002859 | inodb/snakemake-parallel-bwa | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002860 | inodb/snakemake-uppmax-demo | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002861 | inodb/snakemake-workflows | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002862 | inodb/spectra | fork | MIT | HIGH_RELEVANCE |
+| repo-002863 | inodb/spectrum-viz-website | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002864 | inodb/spoetify | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002865 | inodb/sufam | source | MIT | HIGH_RELEVANCE |
+| repo-002866 | inodb/tap-to-tmux | fork | MIT | LOW_RELEVANCE |
+| repo-002867 | inodb/test-codespaces | source | MIT | LOW_RELEVANCE |
+| repo-002868 | inodb/vcf2maf | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002869 | inodb/vibe-vep | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002870 | inodb/webapp-runner | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002871 | jaechang-hits/AutoGPT | fork | MIT | LOW_RELEVANCE |
+| repo-002872 | jaechang-hits/Awesome-Bioinformatics | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002873 | jaechang-hits/awesome-claude-code-toolkit | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002874 | jaechang-hits/awesome-claude-skills | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002875 | jaechang-hits/BBAR-pytorch | source | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-002876 | jaechang-hits/biomni_hits_test | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002877 | jaechang-hits/claude-gov-proposal-config | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002878 | jaechang-hits/draw-image | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002879 | jaechang-hits/PIGNet2 | fork | MIT | POSSIBLE_RELEVANCE |
+| repo-002880 | jaechang-hits/ppt-master | fork | MIT | LOW_RELEVANCE |
+| repo-002881 | jaechang-hits/SciAgent-Skills | source | NOASSERTION | HIGH_RELEVANCE |
+| repo-002882 | jaechang-hits/standigm_paper_citation | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002883 | jaechang-hits/tmp | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002884 | jaechang-hits/Vue-study | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002885 | JinL0/AlgorithumPractice | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002886 | JinL0/angular | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-000598 | JinL0/Biomni | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002887 | JinL0/chatbot-ui | fork | MIT | LOW_RELEVANCE |
+| repo-002888 | JinL0/command-log.java | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002889 | JinL0/Drug-Discovery-Safety-Skills | source | MIT | HIGH_RELEVANCE |
+| repo-002890 | JinL0/fastmcpcloud-test | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002891 | JinL0/gs-spring-boot | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002892 | JinL0/gs-spring-ecommerce | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002893 | JinL0/javaMultithread | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002894 | JinL0/javascriptproject | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002895 | JinL0/jinl0.github.io | source | MIT | IRRELEVANT |
+| repo-002896 | JinL0/jokeapp | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002897 | JinL0/knowledage | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002898 | JinL0/leetcodequestions | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002899 | JinL0/limuMachineLearningTutorial | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002900 | JinL0/MRI-education-resources | fork | MIT | HIGH_RELEVANCE |
+| repo-002901 | JinL0/NewsApp | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002902 | JinL0/nukleus-echo.java | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002903 | JinL0/nukleus-mqtt.java | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002904 | JinL0/nukleus-socks.java | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002905 | JinL0/nukleus-socks.spec | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002906 | JinL0/nukleus.java | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002907 | JinL0/open-webui | fork | NOASSERTION | LOW_RELEVANCE |
+| repo-002908 | JinL0/pdf2ePUB | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002909 | JinL0/project-starter-code | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002910 | JinL0/pytorch_geometric | fork | MIT | LOW_RELEVANCE |
+| repo-002911 | JinL0/ray-serve-llama | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002912 | JinL0/ray-serve-multi-deployments | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002913 | JinL0/ruby | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002914 | JinL0/rubyproj | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002915 | JinL0/ry-bom.java | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-002916 | JinL0/sampleCaptionQAConvert | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002917 | JinL0/sfg-pet-clinic | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002918 | JinL0/spring5-di-demo | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002919 | JinL0/spring5webapp | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002920 | JinL0/svit-app | fork | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002921 | JinL0/system-design-primer | fork | NOASSERTION | IRRELEVANT |
+| repo-002922 | JinL0/tutorials | fork | MIT | IRRELEVANT |
+| repo-002923 | JinL0/zelda | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002924 | jissen706/Abdominal-Symprom-Clarify-Bot | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002925 | jissen706/aliquot-first-class-tracker | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002926 | jissen706/BentoML | fork | Apache-2.0 | LOW_RELEVANCE |
+| repo-000145 | jissen706/Biomni | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002927 | jissen706/Coffeemeet_Backend | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002928 | jissen706/Coffeemeet_Frontend | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002929 | jissen706/Ec2_idle_reaper | source | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002930 | jissen706/Electricity-Magnetism-Simulations | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002931 | jissen706/feedMeUPenn | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002932 | jissen706/jissen706.github.io | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002933 | jissen706/Magellan | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002934 | jissen706/Megahuman_V2 | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002935 | jissen706/moss | fork | BSD-2-Clause | LOW_RELEVANCE |
+| repo-002936 | jissen706/PyTorch-Medical-Image-Classification-Project | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002937 | jissen706/REPITITION | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002938 | jissen706/scikit-bio | fork | BSD-3-Clause | HIGH_RELEVANCE |
+| repo-002939 | jissen706/scvi-tools | fork | BSD-3-Clause | HIGH_RELEVANCE |
+| repo-002940 | jissen706/TamilWordle | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-002941 | jissen706/Timbre | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002942 | KalinNonchev/apd-core | fork | GPL-3.0 | LOW_RELEVANCE |
+| repo-002943 | KalinNonchev/Awesome-AI-Pathology | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002944 | KalinNonchev/Awesome-AI4DigitalPathology | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002945 | KalinNonchev/Awesome-AI4Med | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002946 | KalinNonchev/awesome-AI4SingleCell | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002947 | KalinNonchev/Awesome-Bio-Foundation-Models | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002948 | KalinNonchev/Awesome-Bioinformatics | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002949 | KalinNonchev/awesome-computational-biology | fork | CC0-1.0 | HIGH_RELEVANCE |
+| repo-002950 | KalinNonchev/Awesome-Computational-Pathology-Papers | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002951 | KalinNonchev/awesome-deep-learning-single-cell-papers | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002952 | KalinNonchev/awesome-deepbio | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002953 | KalinNonchev/awesome-foundation-model-single-cell-papers | fork | MIT | HIGH_RELEVANCE |
+| repo-002954 | KalinNonchev/Awesome-Foundation-Models-for-Advancing-Healthcare | fork | MIT | HIGH_RELEVANCE |
+| repo-002955 | KalinNonchev/Awesome-Foundation-Models-in-Medical-Imaging | fork | MIT | HIGH_RELEVANCE |
+| repo-002956 | KalinNonchev/Awesome-Generative-Models-in-Pathology | fork | MIT | HIGH_RELEVANCE |
+| repo-002957 | KalinNonchev/awesome-healthcare-datasets | fork | CC0-1.0 | HIGH_RELEVANCE |
+| repo-002958 | KalinNonchev/Awesome-Healthcare-Foundation-Models | fork | MIT | HIGH_RELEVANCE |
+| repo-002959 | KalinNonchev/Awesome-His-to-Spatial-Transcriptomics-Translation | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002960 | KalinNonchev/Awesome-Histopathology-to-Omics | fork | MIT | HIGH_RELEVANCE |
+| repo-002961 | KalinNonchev/Awesome-Medical-Dataset | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002962 | KalinNonchev/Awesome-Medical-Multimodal-Models-and-Datasets | fork | MIT | HIGH_RELEVANCE |
+| repo-002963 | KalinNonchev/Awesome-Medical-VLMs-and-Datasets | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002964 | KalinNonchev/Awesome-Multi-Modal-Foundation-Models-for-Computational-Pathology | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002965 | KalinNonchev/awesome-multi-omics | fork | MIT | HIGH_RELEVANCE |
+| repo-002966 | KalinNonchev/Awesome-Multimodal-Datasets | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002967 | KalinNonchev/awesome-multimodal-in-medical-imaging | fork | MIT | HIGH_RELEVANCE |
+| repo-002968 | KalinNonchev/awesome-multimodal-multiomic-multiscale-papers | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002969 | KalinNonchev/awesome-pathology | fork | CC0-1.0 | HIGH_RELEVANCE |
+| repo-002970 | KalinNonchev/Awesome-Pathology-Agents | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002971 | KalinNonchev/awesome-pathology-spatial-omics | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-002972 | KalinNonchev/Awesome-Pathology-VLMs | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002973 | KalinNonchev/awesome-public-datasets | fork | MIT | LOW_RELEVANCE |
+| repo-002974 | KalinNonchev/awesome-single-cell | fork | MIT | HIGH_RELEVANCE |
+| repo-002975 | KalinNonchev/Awesome-Single-Cell-Clustering | fork | MIT | HIGH_RELEVANCE |
+| repo-002976 | KalinNonchev/awesome-single-cell-foundation | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002977 | KalinNonchev/Awesome-Single-Cell-Foundation-Models | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002978 | KalinNonchev/awesome-single-cell-foundation-models-for-oncology | fork | MIT | HIGH_RELEVANCE |
+| repo-002979 | KalinNonchev/Awesome-Single-cell-Spatial-Transcriptomics-Imputation | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002980 | KalinNonchev/awesome-spatial-omics | fork | MIT | HIGH_RELEVANCE |
+| repo-002981 | KalinNonchev/awesome-spatial-omics-1 | fork | CC0-1.0 | HIGH_RELEVANCE |
+| repo-002982 | KalinNonchev/Awesome-Spatial-Transcriptomics-Pathology-Large-Models | fork | MIT | HIGH_RELEVANCE |
+| repo-002983 | KalinNonchev/Awesome-SpatialOmics-AI | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002984 | KalinNonchev/awesome-transformers-in-medical-imaging | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002985 | KalinNonchev/Awesome-Virtual-Cell | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002986 | KalinNonchev/awesome_spatial_omics | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002987 | KalinNonchev/awosome-bioinformatics | fork | CC0-1.0 | HIGH_RELEVANCE |
+| repo-002988 | KalinNonchev/azimuth | fork | GPL-3.0 | HIGH_RELEVANCE |
+| repo-002989 | KalinNonchev/azimuthpy | source | MIT | HIGH_RELEVANCE |
+| repo-002990 | KalinNonchev/biomed_nccl_benchmark | source | MIT | HIGH_RELEVANCE |
+| repo-000124 | KalinNonchev/Biomni | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002991 | KalinNonchev/biotools | fork | MIT | HIGH_RELEVANCE |
+| repo-002992 | KalinNonchev/blog | fork | LICENSE_UNCLEAR | LOW_RELEVANCE |
+| repo-002993 | KalinNonchev/ChatSpatial | fork | MIT | HIGH_RELEVANCE |
+| repo-002994 | KalinNonchev/ClawBio | fork | MIT | HIGH_RELEVANCE |
+| repo-002995 | KalinNonchev/computer_vision_spatial_omics | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-002996 | KalinNonchev/Deep-Learning-in-Spatial-Transcriptomics-Analysis | fork | MIT | HIGH_RELEVANCE |
+| repo-002997 | KalinNonchev/DeepCell | source | MIT | HIGH_RELEVANCE |
+| repo-002998 | KalinNonchev/deeplearning-biology | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-002999 | KalinNonchev/ecosystem-packages | fork | BSD-3-Clause | HIGH_RELEVANCE |
+| repo-003000 | KalinNonchev/eth_thesis_template | source | MIT | IRRELEVANT |
+| repo-003001 | KalinNonchev/gnomAD_DB | source | MIT | HIGH_RELEVANCE |
+| repo-003002 | KalinNonchev/hail-db | source | LICENSE_UNCLEAR | POSSIBLE_RELEVANCE |
+| repo-003003 | KalinNonchev/HEST | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-003004 | KalinNonchev/Histopathology-Datasets | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-003005 | KalinNonchev/KalinNonchev | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-003006 | KalinNonchev/kipoiseq | fork | MIT | HIGH_RELEVANCE |
+| repo-003007 | KalinNonchev/LazySlide | fork | MIT | HIGH_RELEVANCE |
+| repo-003008 | KalinNonchev/lazyslide-models | fork | MIT | HIGH_RELEVANCE |
+| repo-003009 | KalinNonchev/lazyslide-tutorials | fork | MIT | HIGH_RELEVANCE |
+| repo-003010 | KalinNonchev/material | fork | MIT | IRRELEVANT |
+| repo-003011 | KalinNonchev/mclustpy | source | MIT | LOW_RELEVANCE |
+| repo-003012 | KalinNonchev/ML-SRT | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-003013 | KalinNonchev/pathology-hooknet-tls-pytorch | source | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-003014 | KalinNonchev/scanpy | fork | BSD-3-Clause | HIGH_RELEVANCE |
+| repo-003015 | KalinNonchev/scientific-agent-skills | fork | MIT | HIGH_RELEVANCE |
+| repo-003016 | KalinNonchev/scRNA-seq_notes | fork | MIT | HIGH_RELEVANCE |
+| repo-003017 | KalinNonchev/SequencingCancerFinder | fork | MIT | HIGH_RELEVANCE |
+| repo-003018 | KalinNonchev/Spatial-Biology-Tools | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-003019 | KalinNonchev/spatial-transcriptomics-python-methods | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-003020 | KalinNonchev/Spatial_transcriptomics_tools | fork | LICENSE_UNCLEAR | HIGH_RELEVANCE |
+| repo-003021 | KalinNonchev/springer_nature_latex_template | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-003022 | KalinNonchev/STA426 | source | LICENSE_UNCLEAR | IRRELEVANT |
+| repo-003023 | KalinNonchev/tiatoolbox | fork | NOASSERTION | HIGH_RELEVANCE |
+| repo-003024 | KalinNonchev/tMAE | fork | MIT | POSSIBLE_RELEVANCE |
+| repo-003025 | KalinNonchev/ToolUniverse | fork | Apache-2.0 | HIGH_RELEVANCE |
+| repo-003026 | KalinNonchev/WOKO_alert | source | MIT | IRRELEVANT |
+| repo-003027 | KalinNonchev/xgbexcel | source | MIT | LOW_RELEVANCE |
+
+## Evidence and limits
+
+All final node counts equal owner `totalCount` and final `hasNextPage` is false.
+Private, deleted, transferred, and later-created repositories remain unobservable.
+Metadata labels are INFERENCE.
+
+## Next action
+
+Continue the next stable-ID User batch after `person-github-000061`.

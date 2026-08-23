@@ -161,8 +161,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
-| Canonical accounts with repository status closed | 161 | 51 | 0 | 50 User cursors exhausted + 1 Bot not applicable; 110 accounts pending | PARTIAL |
-| Person public repositories | 1895 discovered from processed User accounts; global denominator unknown | 1895 metadata-screened | 0 | all 50 processed User owner connections exhausted; global collection incomplete | PARTIAL |
+| Canonical accounts with repository status closed | 161 | 61 | 0 | 60 User cursors exhausted + 1 Bot not applicable; 100 accounts pending | PARTIAL |
+| Person public repositories | 2278 discovered from processed User accounts; global denominator unknown | 2278 metadata-screened | 0 | all 60 processed User owner connections exhausted; global collection incomplete | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -198,6 +198,11 @@ Person-repository batch 005 exhausted `person-github-000042`–`000051`: 386
 repositories, five existing Biomni fork IDs and 381 new IDs. Screening produced
 99 HIGH, 59 POSSIBLE, 79 LOW, and 149 IRRELEVANT. Cumulative coverage is 1,895
 relations: 486 HIGH, 318 POSSIBLE, 499 LOW, and 592 IRRELEVANT.
+
+Person-repository batch 006 exhausted `person-github-000052`–`000061`: 383
+repositories, six existing Biomni fork IDs and 377 new IDs. Screening produced
+215 HIGH, 20 POSSIBLE, 62 LOW, and 86 IRRELEVANT. Cumulative coverage is 2,278
+relations: 701 HIGH, 338 POSSIBLE, 561 LOW, and 678 IRRELEVANT.
 
 Person-repository batch 003 closed stable IDs `person-github-000021`–`000031`:
 10 User cursors yielded 205 repositories, while the intervening Bot was marked

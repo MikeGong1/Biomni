@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 475 | 0 | batches 001–019 complete | PARTIAL |
+| Fork unique-change screening | 694 | 500 | 0 | batches 001–020 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -106,6 +106,13 @@ changes and two lineages were normalized. A 322-commit nested chain was fully
 paginated; a complete 19,316-item tree and selected immutable blobs closed the
 compare-cap gap for Reti, while the exact maximal Streamlit blob proved critical
 Synapse profile injection and cross-session credential/data risks.
+
+Fork screening batch 020: 20 no-unique, one historical substantive composite,
+one exact-PR-only repository, one upstream patch-equivalent repository, one
+image-only bot surface, and one dependency-only bot surface. One change and one
+lineage were normalized. Stable patch IDs deduplicated DeepSeek to PR #106 and
+the fork streaming hunk to PR #102; canonical history proves its PR #114 revert
+and later PR #122/#161 component successors.
 
 ## People and repositories
 

@@ -1019,3 +1019,5 @@
 {"entity_id":"change-000070","entity_type":"change","canonical_id":"change-000070","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-019.md"}
 {"entity_id":"lineage-000022","entity_type":"lineage","canonical_id":"lineage-000022","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-019.md"}
 {"entity_id":"lineage-000023","entity_type":"lineage","canonical_id":"lineage-000023","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-019.md"}
+{"entity_id":"change-000071","entity_type":"change","canonical_id":"change-000071","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-020.md"}
+{"entity_id":"lineage-000024","entity_type":"lineage","canonical_id":"lineage-000024","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-020.md"}

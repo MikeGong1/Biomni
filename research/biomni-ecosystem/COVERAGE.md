@@ -163,6 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 0 | 111 prior Biomni-lineage records excluded; 2161 queued | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 0 (3 PARTIAL entry audits) | deterministic queue orders 1–2069 | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -264,6 +266,15 @@ Person-repository batch 016 exhausted terminal IDs `person-github-000152`–
 existing fork ID was reused and 81 new IDs added. Screening produced 11 HIGH,
 3 POSSIBLE, 24 LOW, and 44 IRRELEVANT. Final available-User total: 6,912
 relations — 2,272 HIGH, 670 POSSIBLE, 2,175 LOW, and 1,795 IRRELEVANT.
+
+Phase 8 normalized all 2,272 HIGH records. The 111 records already carrying a
+completed Biomni `fork_screen_status` remain in that prior audit surface; the
+remaining 2,161 records collapse to 2,069 external families. Sixty-six duplicate
+families contain 158 records, and 513 families contain an in-database independent
+source member. Scheduling tiers are A 68, B 911, and C 1,090. The tier is only a
+queue heuristic, not an integration score. Static batch 001 inspected ezST,
+SciAgent-Skills, and Drug-Discovery-Safety-Skills at immutable heads, but all three
+remain PARTIAL and therefore add zero to the deep-audited count.
 
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains

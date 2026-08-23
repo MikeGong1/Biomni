@@ -6,7 +6,9 @@
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |
-| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-007587`, `person-github-000001`–`person-github-000161`, `change-000001`–`change-000075`, `lineage-000001`–`lineage-000028`, `evidence-000001`–`evidence-000136` |
+| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-007587`, `person-github-000001`–`person-github-000161`, `change-000001`–`change-000075`, `lineage-000001`–`lineage-000028`, `evidence-000001`–`evidence-000140` |
+| External deep-audit queue | queue normalization | COMPLETE | 2,272 HIGH records normalized: 111 prior Biomni-lineage exclusions and 2,161 records in 2,069 ordered families | `external-repos/queue-summary.md` | `evidence-000137` |
+| External deep audit batch 001 | repository audit | PARTIAL | ezST, SciAgent-Skills, and Drug-Discovery-Safety-Skills statically inspected at immutable heads; all remain PARTIAL | `external-repos/deep-audit-batch-001.md` | `repo-003211`, `repo-002881`, `repo-002889`, `evidence-000138`–`evidence-000140` |
 | Merged PRs, batch 001 | PR inventory | COMPLETE | First 100 of 111 merged PRs, created ascending | `upstream/prs/merged-batch-001.md` | `evidence-000010` |
 | Public forks, batch 001 | fork inventory | COMPLETE | Public forks 1–100, newest first | `upstream/forks/batch-001.md` | `evidence-000011` |
 | Open PRs | PR inventory | COMPLETE | 38 of 38 open PRs inventoried; substantive candidates await deep audit | `upstream/prs/open-inventory.md` | `evidence-000012` |

@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T11:05:56Z
+last_updated_utc: 2026-08-23T12:01:41Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: terminal person repository inventory and HIGH_RELEVANCE queue handoff
-current_batch: person-repository-inventory-016
-current_page_or_cursor: 161/161 statuses closed; 158 User cursors exhausted, two Bots N/A, one User unavailable; 6912 repositories screened
+current_entity: repo-003211 QING1105/ezST; repo-002881 jaechang-hits/SciAgent-Skills; repo-002889 JinL0/Drug-Discovery-Safety-Skills
+current_batch: external-deep-audit-001
+current_page_or_cursor: 2272/2272 HIGH records normalized to 2069 families; 3 PARTIAL; 0 DEEP_AUDITED
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -57,10 +57,12 @@ completed_units:
 - exhausted public repository cursors for stable IDs 000132–000141; screened 374 repositories and allocated 366 IDs
 - closed repository status for stable IDs 000142–000151; screened 129 User repositories, one Bot N/A, allocated 125 IDs
 - exhausted terminal stable IDs 000152–000161; screened 82 repositories and allocated 81 IDs; all 161 repository statuses closed
+- normalized 2272 HIGH person-repository records: 111 prior Biomni-lineage exclusions and 2161 queued records in 2069 deterministic families
+- statically inspected first three independent-source A-tier targets at immutable heads; all remain PARTIAL and no feature/implementation ID was allocated
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- normalize the unique HIGH_RELEVANCE external-repository deep-audit queue and begin static audit batches
+- close batch 001 gaps and continue the 2069-family external deep-audit queue
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -92,4 +94,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: normalize the unique external-repository queue from 2272 HIGH_RELEVANCE person-repository relations, exclude already-audited Biomni/snap surfaces, and start deep-audit batch 001
+next_action: continue external deep-audit batch 001 by inspecting ezST child-fork refs and remaining text, then incrementally audit SciAgent branches/forks/remaining Skills and reacquire section-addressable primary regulatory sources for Drug-Discovery-Safety-Skills

@@ -65,25 +65,32 @@ key ascending. Orders are contiguous from 1 through 2,069.
 Three apparent independent-source A-tier families were selected near the head of
 the queue for the first static batch. Static audit resolved ezST to the Biomni PR
 #330 lineage, and authority-source audit closed/rejected Drug-Discovery-Safety-
-Skills; full corpus/branch/PR/fork audit closed/rejected SciAgent-Skills.
+Skills; full corpus/branch/PR/fork audit closed/rejected SciAgent-Skills. Batch
+002 then resolved the three earlier fork-only families against their upstream
+source DAGs.
 
 | Queue order | Repository | Immutable head | Audit status |
 |---:|---|---|---|
 | 1 | `QING1105/ezST` | `427792f0bbf2564dbf124b4444ffdb07cc400a25` | DEEP_AUDITED; DERIVED PR #330 LINEAGE |
+| 2 | `shantanusharma/bionemo-framework` + `dabulseco/bionemo-recipes` | `30202cac91e2c23a958bf9bdeff59288f261b9bb` / `648f4d983392d0c38f2d2da18dea0479cdc650b2` | DEEP_AUDITED; SOURCE HISTORY + GENERATED DOC DEPLOYMENT; NO SUBSTANTIVE UNIQUE CODE |
+| 3 | `KalinNonchev/ClawBio` | `c2c0754ba09e68c1e21edc79a63fa112ed47fd9e` | DEEP_AUDITED; SOURCE HISTORY + STALE GENERATED BENCHMARK; NO SUBSTANTIVE UNIQUE CODE |
+| 4 | `KalinNonchev/scanpy` + `Mr-Milk/scanpy` | `b863ce0477f4afbce1fd5ebc267cc897854c8099` / `532d7b14c8e0d615def56438755a545af92c64d5` | DEEP_AUDITED; SOURCE ANCESTORS + OPEN DOC_ONLY PR #4311; NO SUBSTANTIVE UNIQUE CODE |
 | 5 | `jaechang-hits/SciAgent-Skills` | `a0aac0f4576a550d5316baf6da3d72e53408b3a2` | DEEP_AUDITED; REJECT ALL AS-IS |
 | 8 | `JinL0/Drug-Discovery-Safety-Skills` | `89364d8ea0bfd1393c51df750198ce086e0ebb84` | DEEP_AUDITED; REJECT AS-IS |
 
 Queue orders remain stable historical scheduling identifiers and are not
-renumbered after lineage resolution. Batch 001 is complete at three deep-audited
-families—one derived-lineage resolution and two independent rejections—and 2,066
-families are not yet deep-audited. Detailed evidence is in
-`deep-audit-batch-001.md`, `ezst.md`, `drug-discovery-safety-skills.md`, and
-`sciagent-skills.md`.
+renumbered after lineage resolution. Batches 001–002 are complete at six
+deep-audited families: one derived-lineage resolution, two independent
+rejections, and three fork/source lineage closures with no substantive unique
+code. **2,063** families are not yet deep-audited. Detailed evidence is in the
+two batch reports and their linked repository/manifests.
 
 ## Reproducibility boundary
 
 Queue construction used only canonical Phase 7 metadata and deterministic family,
-priority, and order predicates. GitHub acquisition for batch 001 was serialized
-with bounded requests; repository code was decoded and inspected statically, never
-executed. Mutable metadata, uncaptured sources, uninspected branches/forks, and
-scientific or regulatory claims remain explicitly unresolved.
+priority, and order predicates. GitHub acquisition for batches 001–002 was
+serialized with bounded requests; repository code and notebooks were decoded and
+inspected statically, never executed. Batch 002 source repositories were lineage
+anchors only: their out-of-scope fork networks and full scientific/runtime content
+were not deep-audited. Mutable metadata and unprocessed queue families remain
+explicitly unresolved.

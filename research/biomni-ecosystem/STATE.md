@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T15:33:49Z
+last_updated_utc: 2026-08-23T16:16:43Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: queue order 2 NVIDIA-BioNeMo/bionemo-recipes; order 3 ClawBio/ClawBio; order 4 scverse/scanpy
-current_batch: external-deep-audit-002
-current_page_or_cursor: external-deep-audit-001 complete 3/3; 2272/2272 HIGH records normalized to 2069 stable orders; 3 DEEP_AUDITED; 2066 not deep-audited
+current_entity: queue order 6 K-Dense-AI/scientific-agent-skills; order 7 latchbio/latch; order 9 JuneYaooo/awesome-medical-ai
+current_batch: external-deep-audit-003
+current_page_or_cursor: external-deep-audit batches 001-002 complete; 2272/2272 HIGH records normalized to 2069 stable orders; 6 families DEEP_AUDITED; 2063 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -69,10 +69,13 @@ completed_units:
 - cloned and statically audited all 34 SciAgent forks and 86 heads sequentially; normalized 55 distinct unique commits into 17 merged-PR heads, three candidate forks, and one documentation-only head
 - rejected all 203 SciAgent Skills as-is; retained 125 bounded clean-room reconstruction leads, recorded 78 without a near-term candidate, and documented benchmark, infrastructure, scientific, security, privacy, supply-chain, and provenance failures
 - normalized SciAgent changes change-000081–change-000087 and lineages lineage-000031–lineage-000032; allocated fork repository IDs repo-007589–repo-007622 without allocating Feature/Implementation IDs
+- exhausted native refs, pulls, releases and child-fork surfaces for five bounded BioNeMo, ClawBio and Scanpy forks; compared 24 heads and nine tags against 592 source heads and 132 source tags
+- resolved queue orders 2–4 with zero substantive unique code: two fork-only generated artifacts and exact open DOC_ONLY Scanpy PR #4311; corrected source-tag auto-follow contamination using direct remote refs
+- closed external deep-audit batch 002 without expanding three out-of-scope source owners/networks or allocating Repository, Person, Change, Lineage, Feature or Implementation IDs
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- continue the 2066 not-yet-deep-audited family orders, beginning with queue orders 2–4
+- continue the 2063 not-yet-deep-audited family orders, beginning with queue orders 6, 7 and 9
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -104,4 +107,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: begin external deep-audit batch 002 with queue orders 2–4, resolving absent upstream sources and fork-only family representatives before source/history/skill inspection
+next_action: begin external deep-audit batch 003 with queue orders 6, 7 and 9; resolve fork-only sources before substantive source/history/skill inspection

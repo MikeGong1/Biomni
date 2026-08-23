@@ -6,7 +6,7 @@
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |
-| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000786`, `person-github-000001`–`person-github-000161`, `change-000001`–`change-000075`, `lineage-000001`–`lineage-000028`, `evidence-000001`–`evidence-000120` |
+| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-001000`, `person-github-000001`–`person-github-000161`, `change-000001`–`change-000075`, `lineage-000001`–`lineage-000028`, `evidence-000001`–`evidence-000121` |
 | Merged PRs, batch 001 | PR inventory | COMPLETE | First 100 of 111 merged PRs, created ascending | `upstream/prs/merged-batch-001.md` | `evidence-000010` |
 | Public forks, batch 001 | fork inventory | COMPLETE | Public forks 1–100, newest first | `upstream/forks/batch-001.md` | `evidence-000011` |
 | Open PRs | PR inventory | COMPLETE | 38 of 38 open PRs inventoried; substantive candidates await deep audit | `upstream/prs/open-inventory.md` | `evidence-000012` |
@@ -25,6 +25,7 @@
 | Main commits, batch 003 | commit inventory | COMPLETE | Main commits 201–300 of 487 | `upstream/commits/batch-003.md` | `evidence-000034` |
 | Biomni PR authors | person normalization | COMPLETE | 182 PRs reduced to 76 unique author logins; 38 existing and 38 newly allocated IDs | `people/github/pr-author-inventory.md` | `person-github-000001`–`person-github-000084`, `evidence-000035` |
 | Code-visible people universe reconciliation | person normalization | COMPLETE | All five entry surfaces and 1,791/1,791 normalized change authors reconciled to 161 accounts | `people/github/universe-reconciliation-001.md` | `person-github-000001`–`person-github-000161`, `evidence-000120` |
+| Person public repositories batch 001 | repository inventory | COMPLETE | First 10 account cursors exhausted; 217 repositories metadata-screened, 214 new IDs | `people/github/repository-inventory-batch-001.md` | `repo-000391`, `repo-000498`, `repo-000519`, `repo-000787`–`repo-001000`, `evidence-000121` |
 | Main commits, batch 004 | commit inventory | COMPLETE | Main commits 301–400 of 487 | `upstream/commits/batch-004.md` | `evidence-000036` |
 | Main commits, batch 005 | commit inventory | COMPLETE | Final 87 commits through root; 487/487 and pagination exhausted | `upstream/commits/batch-005.md` | `evidence-000037` |
 | Public forks, batch 005 | fork inventory | COMPLETE | Public forks 401–500, newest first | `upstream/forks/batch-005.md` | `evidence-000038` |

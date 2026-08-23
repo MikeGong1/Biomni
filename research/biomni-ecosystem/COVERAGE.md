@@ -161,7 +161,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
-| Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
+| Canonical accounts with public-repository cursor exhausted | 161 | 10 | 0 | batch 001 complete; 151 accounts pending | PARTIAL |
+| Person public repositories | 217 discovered from processed accounts; global denominator unknown | 217 metadata-screened | 0 | all 10 processed owner connections exhausted; global collection incomplete | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -174,6 +175,12 @@ accounts, and one Bot. The canonical total is 161 accounts: 156 human-counted an
 five automation/non-human. All 1,791 normalized change SHAs have official author
 objects; 96 resolved logins are canonical and 26 no-login raw fork tuples remain
 unmapped. The separate 56-tuple frozen-main ledger is also preserved.
+
+Person-repository batch 001 exhausted owner-public-repository cursors for
+`person-github-000001`–`000010`: 217 repositories, including three existing
+Biomni fork IDs and 214 new IDs. Metadata screening produced 64 HIGH, 56
+POSSIBLE, 59 LOW, and 38 IRRELEVANT results. HIGH is a deep-audit queue, not an
+integration recommendation; POSSIBLE requires bounded README disambiguation.
 
 ## Commercial
 

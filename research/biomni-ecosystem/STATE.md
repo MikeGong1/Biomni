@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T14:46:21Z
+last_updated_utc: 2026-08-23T15:33:49Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: repo-002881 jaechang-hits/SciAgent-Skills
-current_batch: external-deep-audit-001
-current_page_or_cursor: 2272/2272 HIGH records normalized to 2069 stable orders; 2 DEEP_AUDITED; 1 PARTIAL; 2067 not deep-audited
+current_entity: queue order 2 NVIDIA-BioNeMo/bionemo-recipes; order 3 ClawBio/ClawBio; order 4 scverse/scanpy
+current_batch: external-deep-audit-002
+current_page_or_cursor: external-deep-audit-001 complete 3/3; 2272/2272 HIGH records normalized to 2069 stable orders; 3 DEEP_AUDITED; 2066 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -65,10 +65,14 @@ completed_units:
 - exhausted Drug-Discovery-Safety-Skills across three live branches, five commits, one merged PR, 24 blobs, no forks/tags/releases, and one active unmerged docs/demo head
 - checked all 33 committed regulator-source rows: froze and hashed 29 PDFs plus one official HTML, independently live-verified three timeout pages, and visually checked representative claim pages
 - rejected Drug-Discovery-Safety-Skills as-is after FDA, ICH, EMA, MHRA/GB-NI, OECD, WHO, PMDA, TGA, and Health Canada source audits; normalized change-000079–000080 and lineage-000030 without Feature/Implementation IDs
+- exhausted SciAgent-Skills across 10 branches, 140 main commits, 39 PRs, 327 current files, all 203 active Skills, and all 85 ancillary skill files
+- cloned and statically audited all 34 SciAgent forks and 86 heads sequentially; normalized 55 distinct unique commits into 17 merged-PR heads, three candidate forks, and one documentation-only head
+- rejected all 203 SciAgent Skills as-is; retained 125 bounded clean-room reconstruction leads, recorded 78 without a near-term candidate, and documented benchmark, infrastructure, scientific, security, privacy, supply-chain, and provenance failures
+- normalized SciAgent changes change-000081–change-000087 and lineages lineage-000031–lineage-000032; allocated fork repository IDs repo-007589–repo-007622 without allocating Feature/Implementation IDs
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- close the remaining SciAgent-Skills PARTIAL entry and continue the 2067 not-yet-deep-audited family orders
+- continue the 2066 not-yet-deep-audited family orders, beginning with queue orders 2–4
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -100,4 +104,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: continue external deep-audit batch 001 by incrementally auditing SciAgent branches, fork families, remaining Skills, bundled scripts/references, evaluation claims, and per-Skill provenance
+next_action: begin external deep-audit batch 002 with queue orders 2–4, resolving absent upstream sources and fork-only family representatives before source/history/skill inspection

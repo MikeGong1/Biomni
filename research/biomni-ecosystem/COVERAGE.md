@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 2 | 111 prior exclusions; 1 derived lineage resolved; 1 independent audit complete; 2159 remain queued/partial | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 2 (1 PARTIAL entry audit) | stable deterministic queue orders 1–2069; 2067 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 3 | 111 prior exclusions; 1 derived lineage resolved; 2 independent audits complete; 2158 remain queued | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 3 | stable deterministic queue orders 1–2069; batch 001 complete; 2066 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -276,8 +276,9 @@ queue heuristic, not an integration score. Static batch 001 inspected ezST,
 SciAgent-Skills, and Drug-Discovery-Safety-Skills at immutable heads. ezST is now
 deep-audited and resolved as a derived Biomni PR #330 lineage. Drug-Discovery-
 Safety-Skills is deep-audited after all 33 authority sources were checked and is
-rejected as-is; SciAgent-Skills remains PARTIAL. Stable queue orders are not
-renumbered after resolution.
+rejected as-is. SciAgent-Skills is deep-audited after all 203 Skills, 327 source
+files, 39 PRs and 34 forks were processed; all Skills are rejected as-is. Batch
+001 is complete 3/3. Stable queue orders are not renumbered after resolution.
 
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains

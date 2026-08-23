@@ -65,19 +65,20 @@ key ascending. Orders are contiguous from 1 through 2,069.
 Three apparent independent-source A-tier families were selected near the head of
 the queue for the first static batch. Static audit resolved ezST to the Biomni PR
 #330 lineage, and authority-source audit closed/rejected Drug-Discovery-Safety-
-Skills; SciAgent-Skills remains PARTIAL.
+Skills; full corpus/branch/PR/fork audit closed/rejected SciAgent-Skills.
 
 | Queue order | Repository | Immutable head | Audit status |
 |---:|---|---|---|
 | 1 | `QING1105/ezST` | `427792f0bbf2564dbf124b4444ffdb07cc400a25` | DEEP_AUDITED; DERIVED PR #330 LINEAGE |
-| 5 | `jaechang-hits/SciAgent-Skills` | `a0aac0f4576a550d5316baf6da3d72e53408b3a2` | PARTIAL |
+| 5 | `jaechang-hits/SciAgent-Skills` | `a0aac0f4576a550d5316baf6da3d72e53408b3a2` | DEEP_AUDITED; REJECT ALL AS-IS |
 | 8 | `JinL0/Drug-Discovery-Safety-Skills` | `89364d8ea0bfd1393c51df750198ce086e0ebb84` | DEEP_AUDITED; REJECT AS-IS |
 
 Queue orders remain stable historical scheduling identifiers and are not
-renumbered after lineage resolution. The result is two deep-audited families—one
-derived-lineage resolution and one independent rejection—and 2,067 families not
-yet deep-audited. Detailed evidence and unresolved gaps are in
-`deep-audit-batch-001.md`, `ezst.md`, and `drug-discovery-safety-skills.md`.
+renumbered after lineage resolution. Batch 001 is complete at three deep-audited
+families—one derived-lineage resolution and two independent rejections—and 2,066
+families are not yet deep-audited. Detailed evidence is in
+`deep-audit-batch-001.md`, `ezst.md`, `drug-discovery-safety-skills.md`, and
+`sciagent-skills.md`.
 
 ## Reproducibility boundary
 

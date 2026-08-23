@@ -2,7 +2,7 @@
 
 Observed at: `2026-08-23T12:01:41Z`
 
-Batch status: **PARTIAL**
+Batch status: **COMPLETE**
 
 This batch statically inspected three apparent independent-source A-tier
 repositories at immutable heads. One has since been resolved to a Biomni PR
@@ -70,11 +70,15 @@ security policy. This does not reopen the static audit surface, but it prevents
 
 - Canonical ID: `repo-002881`; queue order: 5; tier: A.
 - Head: `a0aac0f4576a550d5316baf6da3d72e53408b3a2` on `main`.
-- Inventory: 10 branches, 140 default-branch commits, 39 PRs (1 open, 38 closed,
-  36 merged), 34 forks, no tags/releases, and an untruncated 613-item tree
-  (327 blobs, 286 trees).
-- Decoded sample: 18 selected files, including five representative Skills.
-- Disposition: **selective clean-room migration only after per-Skill audit**.
+- Audit status: **DEEP_AUDITED — STATIC_ONLY; all 203 rejected as-is**.
+- Full source inventory: 10 branches, 140 main commits, 143-commit public-head
+  union, 39 PRs (36 merged, two closed-unmerged, one open), no tags/releases,
+  and all 327 tracked files processed.
+- Fork inventory: 34 forks, 86 heads, 55 distinct fork-unique commits; 17 exact
+  merged-PR groups, three substantive alternatives, and one docs-only lead.
+- Skill scope: all 203 active Skills and 85 ancillary files line-by-line; 125
+  clean-room leads, 78 no-near-term candidates, zero direct adoptions.
+- Disposition: **reject corpus/plugin as-is; selective clean-room requirements only**.
 
 Tree/registry reconciliation found 203 current `SKILL.md` entries plus four legacy
 entries: 72 toolkit, 53 database, 40 pipeline, and 38 guide Skills. README counts
@@ -98,10 +102,13 @@ structural lint as a lowest-level gate, individual scientifically reviewed Skill
 and a redesigned marginal-value benchmark with gold answers, repeats, confidence
 intervals, and complete registry coverage.
 
-Unresolved: 198/203 current Skills were not content-audited; nine non-default
-branches, 34 fork lineages, full PR patches, most reference/script/integration
-surfaces, external APIs, runtime claims, and per-Skill license provenance remain
-open.
+All prior collection gaps are closed. Detailed audit found stale discovery counts,
+plugin exposure of only 196/203 Skills, an unreproducible 92% BixBench claim, an
+invalid 140-row blind test, structural-only validation, scaffolder/YAML and HTML
+injection, credential/supply-chain/hardware risks, missing source provenance, and
+material scientific errors in every domain. Seven changes and two lineages preserve
+main, PR/branch alternatives, and three substantive fork variants without formal
+Feature/Implementation IDs. See `sciagent-skills.md` and the two SciAgent manifests.
 
 ## `JinL0/Drug-Discovery-Safety-Skills`
 
@@ -152,7 +159,6 @@ lead. A dedicated report and 33-row manifest are in
 
 ## Batch decision
 
-Batch 001 now contains **2 DEEP_AUDITED** repositories—one lineage-resolved and
-one independent rejection—and **1 PARTIAL** repository. The next bounded work is
-to audit SciAgent's other branches, fork families, remaining Skills and provenance
-incrementally.
+Batch 001 is **COMPLETE: 3/3 DEEP_AUDITED**. All three are rejected as-is or
+resolved to a blocked lineage; useful concepts remain clean-room leads only. The
+next bounded work starts external deep-audit batch 002 at stable queue orders 2–4.

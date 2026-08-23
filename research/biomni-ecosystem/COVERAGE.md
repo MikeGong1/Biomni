@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 525 | 0 | batches 001–021 complete | PARTIAL |
+| Fork unique-change screening | 694 | 550 | 0 | batches 001–022 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -119,6 +119,12 @@ two exact-PR-only repositories, three reused-maintenance repositories, and one
 non-substantive repository-automation script. Three changes and three lineages
 were normalized for parser/self-critic regression, Azure/Bohrium MCP supervision,
 and an early ESM embedding prototype conceptually superseded by PR #205.
+
+Fork screening batch 022: 21 no-unique, two README-only repositories, one empty-net
+merge history, and one documentation-only repository. No change, lineage, feature,
+implementation, or person ID was added. The Chinese guide was statically checked
+and found to mix some accurate overview material with systematic inventory/API/
+environment errors and unsafe secret-printing guidance.
 
 ## People and repositories
 

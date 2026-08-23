@@ -6,7 +6,7 @@
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |
-| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-002269`, `person-github-000001`–`person-github-000161`, `change-000001`–`change-000075`, `lineage-000001`–`lineage-000028`, `evidence-000001`–`evidence-000124` |
+| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-002650`, `person-github-000001`–`person-github-000161`, `change-000001`–`change-000075`, `lineage-000001`–`lineage-000028`, `evidence-000001`–`evidence-000125` |
 | Merged PRs, batch 001 | PR inventory | COMPLETE | First 100 of 111 merged PRs, created ascending | `upstream/prs/merged-batch-001.md` | `evidence-000010` |
 | Public forks, batch 001 | fork inventory | COMPLETE | Public forks 1–100, newest first | `upstream/forks/batch-001.md` | `evidence-000011` |
 | Open PRs | PR inventory | COMPLETE | 38 of 38 open PRs inventoried; substantive candidates await deep audit | `upstream/prs/open-inventory.md` | `evidence-000012` |
@@ -29,6 +29,7 @@
 | Person public repositories batch 002 | repository inventory | COMPLETE | Next 10 account cursors exhausted; 587 repositories metadata-screened, 580 new IDs | `people/github/repository-inventory-batch-002.md` | seven existing Biomni fork IDs, `repo-001001`–`repo-001580`, `evidence-000122` |
 | Person public repositories batch 003 | repository inventory | COMPLETE | Stable IDs 000021–000031 closed; 10 User cursors, one Bot N/A, 205 repositories, 197 new IDs | `people/github/repository-inventory-batch-003.md` | eight existing Biomni lineage IDs, `repo-001581`–`repo-001777`, `evidence-000123` |
 | Person public repositories batch 004 | repository inventory | COMPLETE | Stable IDs 000032–000041 exhausted; 500 repositories metadata-screened, 492 new IDs | `people/github/repository-inventory-batch-004.md` | eight existing Biomni fork IDs, `repo-001778`–`repo-002269`, `evidence-000124` |
+| Person public repositories batch 005 | repository inventory | COMPLETE | Stable IDs 000042–000051 exhausted; 386 repositories metadata-screened, 381 new IDs | `people/github/repository-inventory-batch-005.md` | five existing Biomni fork IDs, `repo-002270`–`repo-002650`, `evidence-000125` |
 | Main commits, batch 004 | commit inventory | COMPLETE | Main commits 301–400 of 487 | `upstream/commits/batch-004.md` | `evidence-000036` |
 | Main commits, batch 005 | commit inventory | COMPLETE | Final 87 commits through root; 487/487 and pagination exhausted | `upstream/commits/batch-005.md` | `evidence-000037` |
 | Public forks, batch 005 | fork inventory | COMPLETE | Public forks 401–500, newest first | `upstream/forks/batch-005.md` | `evidence-000038` |

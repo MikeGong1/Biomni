@@ -161,8 +161,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
-| Canonical accounts with public-repository cursor exhausted | 161 | 10 | 0 | batch 001 complete; 151 accounts pending | PARTIAL |
-| Person public repositories | 217 discovered from processed accounts; global denominator unknown | 217 metadata-screened | 0 | all 10 processed owner connections exhausted; global collection incomplete | PARTIAL |
+| Canonical accounts with public-repository cursor exhausted | 161 | 20 | 0 | batches 001–002 complete; 141 accounts pending | PARTIAL |
+| Person public repositories | 804 discovered from processed accounts; global denominator unknown | 804 metadata-screened | 0 | all 20 processed owner connections exhausted; global collection incomplete | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -181,6 +181,13 @@ Person-repository batch 001 exhausted owner-public-repository cursors for
 Biomni fork IDs and 214 new IDs. Metadata screening produced 64 HIGH, 56
 POSSIBLE, 59 LOW, and 38 IRRELEVANT results. HIGH is a deep-audit queue, not an
 integration recommendation; POSSIBLE requires bounded README disambiguation.
+
+Person-repository batch 002 exhausted owner-public-repository cursors for
+`person-github-000011`–`000020`: 587 repositories, including seven existing
+Biomni fork IDs and 580 new IDs. Metadata screening produced 143 HIGH, 92
+POSSIBLE, 121 LOW, and 231 IRRELEVANT results. Cumulative processed-account
+coverage is 804 repository relations: 207 HIGH, 148 POSSIBLE, 180 LOW, and 269
+IRRELEVANT.
 
 ## Commercial
 

@@ -17,3 +17,12 @@
 - Modification: Froze all native refs and bounded fork PR/release/child-fork surfaces, compared them against full source ref unions, statically inspected three deltas, and independently verified the DAG and native tag counts.
 - Result change: Queue orders 2–4 and five repository records moved from `NOT_STARTED` to `DEEP_AUDITED`/no-substantive-unique; unresolved family count fell from 2,066 to 2,063 with no new canonical capability IDs.
 - Retained: Yes; detailed batch report, five-row lineage manifest, five evidence records, repository/entity status changes, control-ledger updates, and the tag auto-follow correction retained.
+
+## 2026-08-24 — External fork families batch 003
+
+- Experimental hypothesis: Seven K-Dense, Latch, and medical-AI forks may expose independent scientific capabilities or safer successors absent from their source repositories.
+- Observed failure: Latch was exact source, the medical-AI delta was one catalog row, and most K-Dense refs were source history/PRs; the substantive Kuan, BIDS, and DataLad content contained material scientific, privacy, execution, deletion, supply-chain, version-identity, and provenance blockers.
+- Suspected cause: Metadata screening conflated recently pushed fork refs and same-name releases with independent capability, while instruction corpora lacked uniform executable scientific/security validation.
+- Modification: Froze and normalized 15 heads, 170 tags, 674 source PR refs, bounded PR/release/child-fork surfaces, 12 Kuan Skills, BIDS PR 125, DataLad PR 227, two fork API patches, and minor documentation/environment deltas.
+- Result change: Seven repository records and three families became `DEEP_AUDITED`; four changes and three lineages were retained, unresolved family count fell from 2,063 to 2,060, and no Feature/Implementation was allocated.
+- Retained: Yes; batch report, two machine manifests, evidence 163–168, changes 88–91, lineages 33–35, database/control updates, and same-name tag collision warnings retained.

@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T16:16:43Z
+last_updated_utc: 2026-08-23T16:52:08Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: queue order 6 K-Dense-AI/scientific-agent-skills; order 7 latchbio/latch; order 9 JuneYaooo/awesome-medical-ai
-current_batch: external-deep-audit-003
-current_page_or_cursor: external-deep-audit batches 001-002 complete; 2272/2272 HIGH records normalized to 2069 stable orders; 6 families DEEP_AUDITED; 2063 not deep-audited
+current_entity: queue order 10 zjlrock777/Awesome-LLM-Agents-Scientific-Discovery; order 11 Agents365-ai/awesome-ai-for-science-skills; order 12 G14nTDo4/Awesome-Pathology-Agents
+current_batch: external-deep-audit-004
+current_page_or_cursor: external-deep-audit batches 001-003 complete; 2272/2272 HIGH records normalized to 2069 stable orders; 9 families DEEP_AUDITED; 2060 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -72,10 +72,14 @@ completed_units:
 - exhausted native refs, pulls, releases and child-fork surfaces for five bounded BioNeMo, ClawBio and Scanpy forks; compared 24 heads and nine tags against 592 source heads and 132 source tags
 - resolved queue orders 2–4 with zero substantive unique code: two fork-only generated artifacts and exact open DOC_ONLY Scanpy PR #4311; corrected source-tag auto-follow contamination using direct remote refs
 - closed external deep-audit batch 002 without expanding three out-of-scope source owners/networks or allocating Repository, Person, Change, Lineage, Feature or Implementation IDs
+- exhausted 15 native heads, 170 tags, pull/release/child-fork surfaces and source comparison refs for seven bounded K-Dense, Latch and Awesome Medical AI forks
+- retained merged Kuan 12-Skill PR 75, two fork-only API fix patches, merged BIDS PR 125 and open DataLad PR 227 as change-000088–change-000091 and lineage-000033–lineage-000035
+- rejected direct adoption across all 12 Kuan Skills, BIDS and DataLad after material scientific, privacy, security, destructive-operation, supply-chain and provenance failures; no Feature/Implementation ID allocated
+- closed Latch as exact source, Awesome DILRAN as one DOC_ONLY PR row, codespell as environment/format only and Alex security report as unsupported DOC_ONLY assurance
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- continue the 2063 not-yet-deep-audited family orders, beginning with queue orders 6, 7 and 9
+- continue the 2060 not-yet-deep-audited family orders, beginning with queue orders 10–12
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -107,4 +111,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: begin external deep-audit batch 003 with queue orders 6, 7 and 9; resolve fork-only sources before substantive source/history/skill inspection
+next_action: begin external deep-audit batch 004 with queue orders 10–12; resolve the three awesome-list fork families against source refs before content audit

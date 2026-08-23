@@ -957,3 +957,5 @@
 {"entity_id":"change-000045","entity_type":"change","canonical_id":"change-000045","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-012.md"}
 {"entity_id":"lineage-000011","entity_type":"lineage","canonical_id":"lineage-000011","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-012.md"}
 {"entity_id":"lineage-000012","entity_type":"lineage","canonical_id":"lineage-000012","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-012.md"}
+{"entity_id":"person-github-000117","entity_type":"person","canonical_id":"person-github-000117","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-013.md"}
+{"entity_id":"change-000046","entity_type":"change","canonical_id":"change-000046","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-013.md"}

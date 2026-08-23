@@ -1,9 +1,9 @@
 # Research State
 
-last_updated_utc: 2026-08-22T23:54:19Z
+last_updated_utc: 2026-08-23T00:06:56Z
 current_phase: Phase 3 - normalize Biomni unique changes
 current_entity: snap-stanford/Biomni fork unique changes
-current_batch: fork-screening-012
+current_batch: fork-screening-013
 current_page_or_cursor: commits exhausted; public fork discovery exhausted
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
@@ -22,11 +22,12 @@ completed_units:
 - screened next 25 active forks; retained three substantive changes and normalized two lineages
 - screened next 25 active forks; retained six substantive changes and normalized two lineages
 - screened next 25 active forks; retained seven substantive changes and normalized two lineages
+- screened next 25 active forks; retained one substantive change
 - screened snap-stanford repositories 92/92 and public members 6/6
 - normalized contributors/history/182 PR authors to 83 user logins plus one bot
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
-- screen remaining 394 observed fork identities for substantive unique changes
+- screen remaining 369 observed fork identities for substantive unique changes
 - merge branch-only and substantive-fork-owner accounts into P
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
@@ -44,6 +45,7 @@ unresolved_lineages:
 - Scale unauthenticated tool server, 23abdul arbitrary-path readers, and Ali-Maq prototype await security/scientific decomposition
 - larry plaintext LLM proxy, PheWAS SSRF, llmsc exposure, ZN callbacks, and Nova provider await security/scientific decomposition
 - Minx capped product DAG, katalyze cloud deployment, neuroscience defects, and Edison alternatives/server await deep audit
+- gutendzx cwd/thread/provider refactor awaits concurrency, isolation, credential, and current-main audit
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
 next_action: screen next bounded active fork batch and preserve lineage-first deduplication

@@ -53,3 +53,12 @@
 - Modification: Audited exact queue orders 13–62 through shared REST/GraphQL limits and local SSH/DAG analysis, applied eight independent verifier shards, allocated one composite Change per substantive family and only four evidence-supported Lineages.
 - Result change: Fifty families and 58 repository records became `DEEP_AUDITED`; family coverage rose 12→62, unresolved families fell 2,057→2,007, and queued HIGH records fell 2,143→2,085. No Feature/Implementation was allocated and all direct adoption was rejected.
 - Retained: Yes; report, 50-row canonical manifest, changes 92–113, lineages 36–39, evidence 175–180, repository/entity/control updates and next 50-family shard retained.
+
+## 2026-08-24 — Authenticated GitHub queue correction
+
+- Experimental hypothesis: A shared REST/GraphQL queue can safely serve ten research workers if unauthenticated state cannot contaminate authenticated allowance and cached bodies cannot cross credentials.
+- Observed failure: REST stored authenticated and unauthenticated timestamps plus limits in one singleton bucket; a 60/hour response contaminated prior 5,000/hour state. GraphQL failed closed without a token but still mixed different authenticated tokens.
+- Suspected cause: Reservation and response-update functions received only worker identity, not a credential-scoped state key; sandboxed workers also cannot read the macOS Keychain helper.
+- Modification: Made REST fail closed without authentication, pinned one credential per state directory, shared its REST/GraphQL allowance across workers, isolated response caches by full credential SHA-256, made reset updates monotonic, moved reservation behind slot acquisition, applied global Retry-After, and reconciled GraphQL actual cost.
+- Result change: Offline no-token tests exited 77 without creating state files; a 147-event legacy fixture was ignored and a second synthetic credential exited 77 before cache lookup, rate reservation, slot acquisition or network I/O. Final escalated REST and GraphQL smoke calls used `git-credential`, each reported a 5,000 limit, and wrote mode-0600 state/response/meta files.
+- Retained: Yes; surgical queue code/documentation changes and evidence 181 retained. No token or authorization value was written or printed.

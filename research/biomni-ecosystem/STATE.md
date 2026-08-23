@@ -1,6 +1,6 @@
 # Research State
 
-last_updated_utc: 2026-08-23T18:17:54Z
+last_updated_utc: 2026-08-23T19:08:47Z
 current_phase: Phase 8 - deep audit relevant external repositories
 current_entity: accelerated shard queue orders 63-112 (50 families)
 current_batch: external-deep-audit-006-accelerated
@@ -80,6 +80,7 @@ completed_units:
 - resolved ClawBench PR 11 as merged DOC_ONLY history, duplicate Dr. Claw PR 14/4 as open DOC_ONLY rows, and Pathology PR 1/2 as merged bounded-owner catalog contributions
 - corrected stale ClawBench title/attribution/task-count/repository identity and preserved list-versus-outbound license and person-depth boundaries without allocating IDs
 - established authenticated shared REST/GraphQL queue: 5000/hour live limits, four request slots, 60/min global, six/min/worker, GraphQL point headroom, REST ETag/304 and GraphQL query-hash caching
+- corrected shared queue credential-state mixing: REST now fails closed without authentication, both protocols conservatively share authenticated primary state while isolating response caches by full credential SHA-256, and offline plus live 5000-limit smoke tests passed
 - replaced three-family Phase 8 scheduling with complexity-aware 30–100/10–20/substantive tiers; dispatched accelerated orders 13–62 across all nine service-admitted non-root workers with slot rotation
 - closed accelerated batch 005 across exact orders 13–62: 50 families and 58 bounded repository records, with 22 substantive candidates, 22 no-unique, three DOC_ONLY and three EMPTY results
 - normalized change-000092–change-000113 and lineage-000036–lineage-000039 after eight independent verifier shards; rejected direct adoption for every candidate and allocated no Feature or Implementation ID

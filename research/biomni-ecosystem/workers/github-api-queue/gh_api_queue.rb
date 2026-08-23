@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "fileutils"
+require "digest"
 require "json"
 require "net/http"
 require "open3"
@@ -20,6 +21,7 @@ CONCURRENT_SLOTS = 4
 PRIMARY_HEADROOM = 0.80
 MAX_SINGLE_SLEEP_SECONDS = 55.0
 MAX_RETRIES = 2
+RATE_BUCKET_ID = "authenticated"
 
 FileUtils.mkdir_p(STATE_DIR)
 
@@ -50,6 +52,34 @@ def state_path(name)
   File.join(STATE_DIR, name)
 end
 
+def credential_fingerprint(token)
+  Digest::SHA256.hexdigest(token)
+end
+
+def ensure_credential_scope(fingerprint)
+  matches = with_state do |state|
+    existing = state["credential_fingerprint"]
+    if existing && existing != fingerprint
+      false
+    else
+      state["credential_fingerprint"] = fingerprint
+      true
+    end
+  end
+  return if matches
+
+  warn "queue state belongs to a different GitHub credential"
+  exit 77
+end
+
+def write_json_private(path, value)
+  temporary = "#{path}.#{Process.pid}.#{SecureRandom.hex(4)}"
+  File.open(temporary, File::WRONLY | File::CREAT | File::TRUNC, 0o600) do |file|
+    file.write(JSON.generate(value))
+  end
+  File.rename(temporary, path)
+end
+
 def with_state
   File.open(state_path("state.lock"), File::RDWR | File::CREAT, 0o600) do |lock|
     lock.flock(File::LOCK_EX)
@@ -67,17 +97,21 @@ def prune(values, cutoff)
   Array(values).map(&:to_f).select { |value| value > cutoff }
 end
 
-def reserve_request(agent)
+def reserve_request(agent, bucket_id)
   loop do
     now = Time.now.to_f
     decision = with_state do |state|
       state["global"] = prune(state["global"], now - 60)
-      state["primary"] = prune(state["primary"], now - 3600)
       state["agents"] ||= {}
       state["agents"][agent] = prune(state["agents"][agent], now - 60)
+      state["rest_buckets"] ||= {}
+      bucket = state["rest_buckets"][bucket_id] ||= {}
+      bucket["requests"] = prune(bucket["requests"], now - 3600)
 
       waits = []
-      cooldown = state.fetch("cooldown_until", 0).to_f
+      global_cooldown = state.fetch("cooldown_until", 0).to_f
+      waits << global_cooldown - now if global_cooldown > now
+      cooldown = bucket.fetch("cooldown_until", 0).to_f
       waits << cooldown - now if cooldown > now
       if state["global"].length >= GLOBAL_REQUESTS_PER_MINUTE
         waits << state["global"].first + 60 - now
@@ -86,27 +120,27 @@ def reserve_request(agent)
         waits << state["agents"][agent].first + 60 - now
       end
 
-      primary_limit = state.fetch("primary_limit", 0).to_i
+      primary_limit = bucket.fetch("limit", 0).to_i
       if primary_limit.positive? && primary_limit <= 60
         primary_cap = [(primary_limit * PRIMARY_HEADROOM).floor, 1].max
         reserve_remaining = primary_limit - primary_cap
-        primary_remaining = state.fetch("primary_remaining", primary_limit).to_i
-        primary_reset = state.fetch("primary_reset", 0).to_i
+        primary_remaining = bucket.fetch("remaining", primary_limit).to_i
+        primary_reset = bucket.fetch("reset", 0).to_i
         if primary_remaining <= reserve_remaining && primary_reset > now
           waits << primary_reset + 1 - now
         end
-        if state["primary"].length >= primary_cap
-          waits << state["primary"].first + 3600 - now
+        if bucket["requests"].length >= primary_cap
+          waits << bucket["requests"].first + 3600 - now
         end
       end
 
       wait = waits.select { |value| value.positive? }.max.to_f
       if wait <= 0
         state["global"] << now
-        state["primary"] << now
+        bucket["requests"] << now
         state["agents"][agent] << now
-        if primary_limit.positive? && primary_limit <= 60 && state["primary_remaining"]
-          state["primary_remaining"] = [state["primary_remaining"].to_i - 1, 0].max
+        if primary_limit.positive? && primary_limit <= 60 && bucket["remaining"]
+          bucket["remaining"] = [bucket["remaining"].to_i - 1, 0].max
         end
         { "reserved" => true, "wait" => 0 }
       else
@@ -143,22 +177,28 @@ def request_once(uri, token, etag = nil)
   http.request(request)
 end
 
-def update_rate_state(response)
+def update_rate_state(response, bucket_id)
   with_state do |state|
+    state["rest_buckets"] ||= {}
+    bucket = state["rest_buckets"][bucket_id] ||= {}
     limit = response["x-ratelimit-limit"]
     remaining = response["x-ratelimit-remaining"]
     reset = response["x-ratelimit-reset"]
-    state["primary_limit"] = limit.to_i if limit
-    if remaining
-      if reset && state["primary_reset"].to_i == reset.to_i && state["primary_remaining"]
-        state["primary_remaining"] = [state["primary_remaining"].to_i, remaining.to_i].min
-      else
-        state["primary_remaining"] = remaining.to_i
+    stored_reset = bucket.fetch("reset", 0).to_i
+    incoming_reset = reset&.to_i
+    unless incoming_reset && incoming_reset < stored_reset
+      bucket["limit"] = limit.to_i if limit
+      if remaining
+        if incoming_reset && stored_reset == incoming_reset && bucket["remaining"]
+          bucket["remaining"] = [bucket["remaining"].to_i, remaining.to_i].min
+        else
+          bucket["remaining"] = remaining.to_i
+        end
       end
-    end
-    state["primary_reset"] = reset.to_i if reset
-    if remaining && remaining.to_i <= 0 && reset
-      state["cooldown_until"] = [state.fetch("cooldown_until", 0).to_f, reset.to_i + 1].max
+      bucket["reset"] = incoming_reset if incoming_reset
+      if remaining && remaining.to_i <= 0 && incoming_reset
+        bucket["cooldown_until"] = [bucket.fetch("cooldown_until", 0).to_f, incoming_reset + 1].max
+      end
     end
     retry_after = response["retry-after"]
     if retry_after
@@ -167,29 +207,43 @@ def update_rate_state(response)
   end
 end
 
-def queue_status(auth_source)
+def queue_status(auth_source, bucket_id, credential_fingerprint_value)
   snapshot = with_state { |state| JSON.parse(JSON.generate(state)) }
   now = Time.now.to_f
+  bucket = bucket_id ? snapshot.dig("rest_buckets", bucket_id) || {} : {}
+  pinned_fingerprint = snapshot["credential_fingerprint"]
   output = {
     "auth_source" => auth_source,
+    "authenticated" => !bucket_id.nil?,
+    "authenticated_bucket_available" => !bucket.empty?,
+    "credential_matches_state" => !bucket_id.nil? && pinned_fingerprint == credential_fingerprint_value,
+    "authenticated_primary_state_shared" => true,
+    "credential_cache_isolation" => true,
     "concurrent_slots" => CONCURRENT_SLOTS,
     "global_requests_per_minute" => GLOBAL_REQUESTS_PER_MINUTE,
     "agent_requests_per_minute" => AGENT_REQUESTS_PER_MINUTE,
     "primary_headroom" => PRIMARY_HEADROOM,
-    "observed_primary_limit" => snapshot["primary_limit"],
-    "observed_primary_remaining" => snapshot["primary_remaining"],
-    "observed_primary_reset" => snapshot["primary_reset"],
+    "observed_primary_limit" => bucket["limit"],
+    "observed_primary_remaining" => bucket["remaining"],
+    "observed_primary_reset" => bucket["reset"],
     "recent_global_requests" => prune(snapshot["global"], now - 60).length,
-    "recent_primary_requests" => prune(snapshot["primary"], now - 3600).length,
-    "cooldown_until" => snapshot["cooldown_until"]
+    "recent_primary_requests" => prune(bucket["requests"], now - 3600).length,
+    "primary_cooldown_until" => bucket["cooldown_until"],
+    "global_cooldown_until" => snapshot["cooldown_until"]
   }
   puts JSON.pretty_generate(output)
 end
 
 token, auth_source = credential
+bucket_id = RATE_BUCKET_ID if token && !token.empty?
+credential_fingerprint_value = credential_fingerprint(token) if token && !token.empty?
 if ARGV == ["--status"]
-  queue_status(auth_source)
+  queue_status(auth_source, bucket_id, credential_fingerprint_value)
   exit 0
+end
+unless token && !token.empty?
+  warn "authenticated GitHub credential required for REST"
+  exit 77
 end
 
 unless ARGV.length == 3
@@ -213,27 +267,29 @@ unless allowed_roots.any? { |root| expanded_output.start_with?(root) }
   warn "output must be under a temporary directory"
   exit 64
 end
+ensure_credential_scope(credential_fingerprint_value)
 meta_path = "#{expanded_output}.meta.json"
 cached_meta = if File.exist?(expanded_output) && File.exist?(meta_path)
                 JSON.parse(File.read(meta_path))
               else
                 {}
               end
-etag = cached_meta["url"] == uri.to_s ? cached_meta["etag"] : nil
+same_credential_cache = cached_meta["credential_fingerprint"] == credential_fingerprint_value
+etag = cached_meta["url"] == uri.to_s && same_credential_cache ? cached_meta["etag"] : nil
 
 response = nil
 attempt = 0
 current_uri = uri
 loop do
-  reserve_request(agent)
   slot = acquire_slot
   begin
+    reserve_request(agent, bucket_id)
     response = request_once(current_uri, token, current_uri == uri ? etag : nil)
   ensure
     slot.flock(File::LOCK_UN)
     slot.close
   end
-  update_rate_state(response)
+  update_rate_state(response, bucket_id)
 
   if response.is_a?(Net::HTTPRedirection) && response["location"] && attempt < MAX_RETRIES
     redirected = URI.join(current_uri.to_s, response["location"])
@@ -255,9 +311,9 @@ loop do
   break
 end
 
-if response.is_a?(Net::HTTPNotModified) && File.exist?(expanded_output)
+if response.is_a?(Net::HTTPNotModified) && File.exist?(expanded_output) && same_credential_cache
   cached_meta["checked_at"] = Time.now.utc.iso8601
-  File.write(meta_path, JSON.generate(cached_meta))
+  write_json_private(meta_path, cached_meta)
   puts JSON.generate({
     "status" => response.code.to_i,
     "cached" => true,
@@ -278,14 +334,16 @@ end
 FileUtils.mkdir_p(File.dirname(expanded_output))
 temporary = "#{expanded_output}.#{Process.pid}.#{SecureRandom.hex(4)}"
 File.binwrite(temporary, response.body)
+File.chmod(0o600, temporary)
 File.rename(temporary, expanded_output)
 metadata = {
   "url" => current_uri.to_s,
+  "credential_fingerprint" => credential_fingerprint_value,
   "etag" => response["etag"],
   "last_modified" => response["last-modified"],
   "checked_at" => Time.now.utc.iso8601
 }
-File.write(meta_path, JSON.generate(metadata))
+write_json_private(meta_path, metadata)
 puts JSON.generate({
   "status" => response.code.to_i,
   "cached" => false,

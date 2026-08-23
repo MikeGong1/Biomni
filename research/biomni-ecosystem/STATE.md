@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T14:12:07Z
+last_updated_utc: 2026-08-23T14:46:21Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: repo-002881 jaechang-hits/SciAgent-Skills; repo-002889 JinL0/Drug-Discovery-Safety-Skills
+current_entity: repo-002881 jaechang-hits/SciAgent-Skills
 current_batch: external-deep-audit-001
-current_page_or_cursor: 2272/2272 HIGH records normalized to 2069 stable orders; 1 DEEP_AUDITED/derived-lineage resolved; 2 PARTIAL; 2068 not deep-audited
+current_page_or_cursor: 2272/2272 HIGH records normalized to 2069 stable orders; 2 DEEP_AUDITED; 1 PARTIAL; 2067 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -62,10 +62,13 @@ completed_units:
 - exhausted ezST source/history/PR/release/fork surfaces, screened its sole child fork as ahead 0, and inspected all current/historical blobs
 - resolved ezST as a functional descendant of open Biomni PR #330; normalized three changes and lineage-000029 without allocating duplicate Feature/Implementation IDs
 - verified that `pip install ezST` resolves to an unrelated PyPI project; rejected the repository as-is for correctness, science, security, privacy, supply-chain, and license/provenance blockers
+- exhausted Drug-Discovery-Safety-Skills across three live branches, five commits, one merged PR, 24 blobs, no forks/tags/releases, and one active unmerged docs/demo head
+- checked all 33 committed regulator-source rows: froze and hashed 29 PDFs plus one official HTML, independently live-verified three timeout pages, and visually checked representative claim pages
+- rejected Drug-Discovery-Safety-Skills as-is after FDA, ICH, EMA, MHRA/GB-NI, OECD, WHO, PMDA, TGA, and Health Canada source audits; normalized change-000079–000080 and lineage-000030 without Feature/Implementation IDs
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- close the two PARTIAL batch-001 entries and continue the 2068 not-yet-deep-audited family orders
+- close the remaining SciAgent-Skills PARTIAL entry and continue the 2067 not-yet-deep-audited family orders
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -97,4 +100,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: continue external deep-audit batch 001 by incrementally auditing SciAgent branches, fork families, remaining Skills and provenance, while reacquiring section-addressable primary regulatory sources for Drug-Discovery-Safety-Skills
+next_action: continue external deep-audit batch 001 by incrementally auditing SciAgent branches, fork families, remaining Skills, bundled scripts/references, evaluation claims, and per-Skill provenance

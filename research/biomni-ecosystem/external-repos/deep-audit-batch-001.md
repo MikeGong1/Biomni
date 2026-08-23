@@ -6,8 +6,9 @@ Batch status: **PARTIAL**
 
 This batch statically inspected three apparent independent-source A-tier
 repositories at immutable heads. One has since been resolved to a Biomni PR
-lineage and statically deep-audited; two remain PARTIAL. No formal feature or
-implementation ID is allocated, and no third-party code was executed.
+lineage and statically deep-audited; a second is now statically deep-audited and
+rejected after authority-source verification; one remains PARTIAL. No formal
+feature or implementation ID is allocated, and no third-party code was executed.
 
 ## Acquisition and interpretation rules
 
@@ -106,9 +107,13 @@ open.
 
 - Canonical ID: `repo-002889`; queue order: 8; tier: A.
 - Head: `89364d8ea0bfd1393c51df750198ce086e0ebb84` on `main`.
-- Inventory: two branches, four default-branch commits, one closed/merged PR, no
-  forks/tags/releases, and an untruncated 30-item tree (18 blobs, 12 trees).
-- Decoded sample: 17/18 blobs; `.gitignore` was not decoded.
+- Audit status: **DEEP_AUDITED — STATIC_ONLY; regulatory fidelity failed**.
+- Live inventory: three branches, five unique commits, one closed/merged PR, no
+  forks/tags/releases, 24 unique blobs across refs, and a new active docs/demo
+  branch at `830057e02bf629d3b634fe74e18a341aba2ceb17`.
+- Full scope: all 22 text blobs read; two GIFs inspected as media; all 33 official
+  bibliography rows checked, including 29 frozen PDFs and one frozen landing HTML
+  with hashes plus three separately live-verified authority pages.
 - Disposition: **concept/reference candidate only**.
 
 The repository contains five prose-only Skills and eight reference notes covering
@@ -134,14 +139,20 @@ authority/status router, AI context-of-use worksheet, typed MRSD calculator with
 human approval, DILI checklist, conditioned nonclinical stage gates, FIH safeguard
 planner, AIaMD risk/PMS checklist, and immutable regulatory evidence registry.
 
-Unresolved: source PDFs and exact source sections, current/superseded status,
-regulatory/toxicology review, the missing `.gitignore`, and request/response headers
-needed to independently prove endpoint pagination.
+The prior acquisition gaps are closed. Authority-level checks found material
+errors: FDA AI scope excludes ordinary drug discovery; FDA's later Q&A contradicts
+the repository's 120-day clock; ICH S11 factors are misstated; EMA modality is
+over-strengthened; MHRA consultation proposals and one sandbox case are presented
+too operationally; GB/NI routing is absent; and OECD/WHO/E6 metadata is stale or
+misidentified. The new docs branch adds still stronger “binding rule” language.
+
+The repository remains useful only as a clean-room source-registry and checklist
+lead. A dedicated report and 33-row manifest are in
+`drug-discovery-safety-skills.md` and `drug-safety-source-manifest.jsonl`.
 
 ## Batch decision
 
-Batch 001 now contains **1 DEEP_AUDITED / lineage-resolved** repository and **2
-PARTIAL** repositories. The next bounded work is to audit SciAgent's other
-branches, fork families, remaining Skills and provenance incrementally, and to
-reacquire, hash, and section-map the regulatory sources before evaluating Drug
-Safety content.
+Batch 001 now contains **2 DEEP_AUDITED** repositories—one lineage-resolved and
+one independent rejection—and **1 PARTIAL** repository. The next bounded work is
+to audit SciAgent's other branches, fork families, remaining Skills and provenance
+incrementally.

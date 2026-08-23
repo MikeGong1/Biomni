@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 1 | 111 prior exclusions; 1 derived lineage resolved; 2160 remain queued/partial | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 1 (2 PARTIAL entry audits) | stable deterministic queue orders 1–2069; 2068 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 2 | 111 prior exclusions; 1 derived lineage resolved; 1 independent audit complete; 2159 remain queued/partial | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 2 (1 PARTIAL entry audit) | stable deterministic queue orders 1–2069; 2067 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -274,8 +274,10 @@ families contain 158 records, and 513 families contain an in-database independen
 source member. Scheduling tiers are A 68, B 911, and C 1,090. The tier is only a
 queue heuristic, not an integration score. Static batch 001 inspected ezST,
 SciAgent-Skills, and Drug-Discovery-Safety-Skills at immutable heads. ezST is now
-deep-audited and resolved as a derived Biomni PR #330 lineage; the other two remain
-PARTIAL. Stable queue orders are not renumbered after resolution.
+deep-audited and resolved as a derived Biomni PR #330 lineage. Drug-Discovery-
+Safety-Skills is deep-audited after all 33 authority sources were checked and is
+rejected as-is; SciAgent-Skills remains PARTIAL. Stable queue orders are not
+renumbered after resolution.
 
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains

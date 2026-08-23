@@ -991,3 +991,9 @@
 {"entity_id":"change-000059","entity_type":"change","canonical_id":"change-000059","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-016.md"}
 {"entity_id":"change-000060","entity_type":"change","canonical_id":"change-000060","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-016.md"}
 {"entity_id":"lineage-000016","entity_type":"lineage","canonical_id":"lineage-000016","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-016.md"}
+{"entity_id":"person-github-000132","entity_type":"person","canonical_id":"person-github-000132","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-017.md"}
+{"entity_id":"change-000061","entity_type":"change","canonical_id":"change-000061","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-017.md"}
+{"entity_id":"change-000062","entity_type":"change","canonical_id":"change-000062","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-017.md"}
+{"entity_id":"change-000063","entity_type":"change","canonical_id":"change-000063","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-017.md"}
+{"entity_id":"lineage-000017","entity_type":"lineage","canonical_id":"lineage-000017","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-017.md"}
+{"entity_id":"lineage-000018","entity_type":"lineage","canonical_id":"lineage-000018","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-017.md"}

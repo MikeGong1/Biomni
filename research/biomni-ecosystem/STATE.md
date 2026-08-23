@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T17:09:59Z
+last_updated_utc: 2026-08-23T17:46:27Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: queue order 13 Mr-Milk/Aquila-next; order 14 TissueImageAnalytics/tiatoolbox; order 15 cafferychen777/ChatSpatial
-current_batch: external-deep-audit-005
-current_page_or_cursor: external-deep-audit batches 001-004 complete; 2272/2272 HIGH records normalized to 2069 stable orders; 12 families DEEP_AUDITED; 2057 not deep-audited
+current_entity: accelerated shard queue orders 13-62 (50 families)
+current_batch: external-deep-audit-005-accelerated
+current_page_or_cursor: batches 001-004 complete; orders 13-62 parallel audit in progress; 2272/2272 HIGH records normalized to 2069 stable orders; 12 families DEEP_AUDITED; 2057 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -79,10 +79,12 @@ completed_units:
 - exhausted six native heads, 29 source pull refs and bounded PR/release/child-fork surfaces for three awesome-list fork families
 - resolved ClawBench PR 11 as merged DOC_ONLY history, duplicate Dr. Claw PR 14/4 as open DOC_ONLY rows, and Pathology PR 1/2 as merged bounded-owner catalog contributions
 - corrected stale ClawBench title/attribution/task-count/repository identity and preserved list-versus-outbound license and person-depth boundaries without allocating IDs
+- established authenticated shared REST/GraphQL queue: 5000/hour live limits, four request slots, 60/min global, six/min/worker, GraphQL point headroom, REST ETag/304 and GraphQL query-hash caching
+- replaced three-family Phase 8 scheduling with complexity-aware 30–100/10–20/substantive tiers; dispatched accelerated orders 13–62 across all nine service-admitted non-root workers with slot rotation
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- continue the 2057 not-yet-deep-audited family orders, beginning with queue orders 13–15
+- finish and parent-reduce accelerated queue orders 13–62; do not count partial worker results before verification
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -114,4 +116,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: begin external deep-audit batch 005 with queue orders 13–15; fully audit independent Aquila-next and resolve tiatoolbox/ChatSpatial fork lineages before implementation review
+next_action: continue accelerated batch 005, rotate completed slots, verify all orders 13–62, then atomically persist family/change/lineage decisions

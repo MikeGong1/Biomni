@@ -35,3 +35,12 @@
 - Modification: Froze six mirrors, six fork heads, 29 source pull refs, bounded endpoints, five relevant PR histories, current outbound identities, official ClawBench paper metadata, and license/person boundaries.
 - Result change: Three repository records/families became `DEEP_AUDITED`; unresolved family count fell from 2,060 to 2,057, with no new Repository, Person, Change, Lineage, Feature, or Implementation ID.
 - Retained: Yes; batch report, three-row manifest, evidence 169–173, corrected ClawBench catalog facts, merged Pathology owner-PR history, and duplicate Dr. Claw lead normalization retained.
+
+## 2026-08-24 — Accelerated scheduler and shared GitHub API queue
+
+- Experimental hypothesis: Phase 8 throughput is constrained primarily by three-family scheduling and repeated per-repository REST requests, not the authenticated GitHub allowance.
+- Observed failure: At three families per checkpoint, 2,060 pending families implied roughly 687 batches; the service also admitted nine non-root workers rather than the requested ten.
+- Suspected cause: Prior checkpoints coupled all workers to one small family set and used REST for inventory fields that GraphQL can batch.
+- Modification: Added a shared four-slot queue with 60/min global and six/min/worker limits, authenticated REST/GraphQL rate tracking, GraphQL point headroom, ETag/304 and query-hash caches, cursor-friendly pages, and a complexity-aware 50-family shard across orders 13–62.
+- Result change: Live self-tests returned REST and GraphQL limits of 5,000/hour; GraphQL cost 1 and cache hit, REST 200 then 304. Nine admitted workers now own multiple independent families with slot rotation.
+- Retained: Yes; methodology, queue scripts, runtime evidence 174, index/state/coverage/queue documentation, and research log retained. No token or credential material retained.

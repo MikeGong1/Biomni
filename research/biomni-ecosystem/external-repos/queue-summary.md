@@ -60,6 +60,13 @@ Family counts are **A 68**, **B 911**, and **C 1,090**. Ordering is deterministi
 tier A/B/C, then latest family `pushed_at` descending, then ASCII-lowercased family
 key ascending. Orders are contiguous from 1 through 2,069.
 
+Scheduling now uses complexity-aware checkpoints rather than three families per
+commit: 30–100 obvious fork-only/no-unique/DOC_ONLY families, 10–20 medium
+families, and focused multi-worker review only after substantive code survives
+DAG normalization. The first accelerated shard covers orders 13–62. REST and
+GraphQL traffic uses the shared limiter in
+`methodology/concurrency-and-rate-limits.md`; Git history uses SSH/local analysis.
+
 ## Audit progress
 
 Three apparent independent-source A-tier families were selected near the head of
@@ -98,8 +105,9 @@ and their linked manifests.
 
 Queue construction used only canonical Phase 7 metadata and deterministic family,
 priority, and order predicates. GitHub acquisition for batches 001–004 was
-serialized with bounded requests; repository code and notebooks were decoded and
-inspected statically, never executed. Batch 002–003 source repositories were
+serialized; subsequent parallel acquisition uses one bounded shared queue.
+Repository code and notebooks were decoded and inspected statically, never
+executed. Batch 002–003 source repositories were
 lineage anchors only: their out-of-scope fork networks and full scientific/runtime
 content were not deep-audited. Mutable metadata and unprocessed queue families
 remain explicitly unresolved.

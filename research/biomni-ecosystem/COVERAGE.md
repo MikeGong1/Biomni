@@ -291,6 +291,13 @@ were exact source PR refs and the Pathology fork was a source ancestor. All
 bounded contributions were merged/open DOC_ONLY catalog rows; no implementation
 or capability ID was added.
 
+The first accelerated checkpoint is in progress across queue orders 13–62 (50
+families). Nine non-root workers are active—the current service rejected a tenth
+thread—and completed slots are rotated. REST/GraphQL requests share a four-slot
+authenticated queue; batch inventory uses GraphQL while SSH Git/local DAG work is
+parallel. These in-progress families do not enter the processed numerator until
+parent verification and canonical reduction complete.
+
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains
 explicitly unavailable current. Therefore account-status closure is COMPLETE,

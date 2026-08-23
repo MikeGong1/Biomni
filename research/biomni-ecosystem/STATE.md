@@ -1,9 +1,9 @@
 # Research State
 
-last_updated_utc: 2026-08-23T01:46:07Z
+last_updated_utc: 2026-08-23T01:59:28Z
 current_phase: Phase 3 - normalize Biomni unique changes
 current_entity: snap-stanford/Biomni fork unique changes
-current_batch: fork-screening-018
+current_batch: fork-screening-019
 current_page_or_cursor: commits exhausted; public fork discovery exhausted
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
@@ -28,11 +28,12 @@ completed_units:
 - screened next 25 active forks; retained five substantive changes and normalized one component-duplicate lineage
 - screened next 25 active forks; retained three historical changes and normalized two lineages
 - screened next 25 active forks; retained five substantive changes and normalized three lineages
+- screened next 25 active forks; retained two product changes, normalized two lineages, and excluded one unattributed experiment
 - screened snap-stanford repositories 92/92 and public members 6/6
 - normalized contributors/history/182 PR authors to 83 user logins plus one bot
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
-- screen remaining 244 observed fork identities for substantive unique changes
+- screen remaining 219 observed fork identities for substantive unique changes
 - merge branch-only and substantive-fork-owner accounts into P
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
@@ -56,6 +57,8 @@ unresolved_lineages:
 - ARAMAS/redcell/LangGraph deployment, RCSB MCP, and secure-gateway UDN surfaces await security, privacy, scientific, provenance, license, and feature decomposition
 - Minta registration ancestry, Javkhaa venv attempt, and anngvu Synapse demo await canonical, environment, privacy, terms, and scientific decomposition
 - KSUN minimal package, manu VS Code extension, leezx Ollama/ADMET, lishengting product chain, and NKalavros gateway await deep security, scientific, license, and feature decomposition
+- Jaybee Synapse/Streamlit RCE, shared credentials, controlled-data flow, and Bedrock mapping await clean-room security, privacy, and provenance design
+- Reti unauthenticated medical API, clinical-data assets, fake behavior, disconnected ranking, and capped product DAG await security, privacy, clinical, data, license, and feature decomposition
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
 next_action: screen next bounded active fork batch and preserve lineage-first deduplication

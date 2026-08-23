@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 450 | 0 | batches 001–018 complete | PARTIAL |
+| Fork unique-change screening | 694 | 475 | 0 | batches 001–019 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -100,20 +100,27 @@ exact PR lineages, and one empty-net history. Five changes and three lineages we
 normalized; a 330-commit chain was fully paginated and omitted critical blobs were
 retrieved for the reduced package and VS Code extension audits.
 
+Fork screening batch 019: 21 no-unique, two substantive product lineages, one
+exact closed-unmerged PR lineage, and one excluded unattributed experiment. Two
+changes and two lineages were normalized. A 322-commit nested chain was fully
+paginated; a complete 19,316-item tree and selected immutable blobs closed the
+compare-cap gap for Reti, while the exact maximal Streamlit blob proved critical
+Synapse profile injection and cross-session credential/data risks.
+
 ## People and repositories
 
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Code-visible people | 136 user logins + 1 bot; 56 raw tuples unresolved | 136 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
+| Code-visible people | 141 user logins + 1 bot; 56 raw tuples unresolved | 141 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
 
 The first 83 user logins are the canonical union of public organization members,
-contributors, and all 182 open/merged/closed-unmerged PR authors. Fifty
-additional substantive unique fork owners and three non-owner substantive fork-
-branch contributors bring the human account count to 136. One contributor/PR bot
+contributors, and all 182 open/merged/closed-unmerged PR authors. Fifty-two
+additional substantive unique fork owners and six non-owner substantive fork-
+branch contributors bring the human account count to 141. One contributor/PR bot
 is stored but excluded from that count. Raw commit tuples are not silently mapped
 to accounts.
 

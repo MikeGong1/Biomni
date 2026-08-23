@@ -49,5 +49,13 @@ Use breadth-first inventory, then relevance screening, then deep audit. Collecti
 precedes normalization, feature decomposition, lineage construction, comparison,
 deduplication, and canonical implementation selection.
 
+In this research phase, `DEEP_AUDITED` means the bounded public branches, commit
+history, PR/tag/release surfaces, discoverable fork lineage, current and historical
+source, dependencies, license/provenance signals, and static security/scientific
+contracts were inspected and normalized. It does **not** mean third-party code was
+executed, results were scientifically validated, licensing was cleared, or the
+implementation is integration-ready. Those conclusions require separate status
+fields; runtime testing remains prohibited by `security-policy.md`.
+
 Important conclusions are classified as `FACT`, `INFERENCE`, or
 `RECONSTRUCTION_CANDIDATE` under `evidence-policy.md`.

@@ -81,12 +81,13 @@ response. `Class; relevance` is an `INFERENCE`, not a code-level conclusion.
 | [#325](https://github.com/snap-stanford/Biomni/pull/325) | Expose optional parameters in agent tool schemas | `reacher-z` | 2026-08-18T15:58:53Z / 2026-08-20T03:32:36Z | `main@400c1f366b96a35ca253e13c9b06c5076af41d65` | `reacher-z:fix/optional-tool-parameters@6efd5b31e7548ea63593adfbaf45433d665755e9` | N/—/NA/NA/NA | BUG_FIX/FEATURE; HIGH — tool-schema fidelity |
 | [#328](https://github.com/snap-stanford/Biomni/pull/328) | Fix ClinicalTrials.gov API v2 parameter handling | `QING1105` | 2026-08-20T05:16:00Z / 2026-08-20T05:16:29Z | `main@400c1f366b96a35ca253e13c9b06c5076af41d65` | `QING1105:fix/clinicaltrials-params@10e94bf968179824a26d57aedc776b486f66891b` | N/—/NA/NA/NA | BUG_FIX; HIGH — database API correctness |
 | [#329](https://github.com/snap-stanford/Biomni/pull/329) | fix: handle GRAPH_RECURSION_LIMIT gracefully and prevent state buildup (#237) | `QING1105` | 2026-08-20T07:42:32Z / 2026-08-20T08:01:09Z | `main@400c1f366b96a35ca253e13c9b06c5076af41d65` | `QING1105:fix/recursion-limit-summary@250593271721e87e4a6d02896dbfea9d16fa9b99` | N/—/NA/NA/NA | BUG_FIX; HIGH — agent state/resource handling |
-| [#330](https://github.com/snap-stanford/Biomni/pull/330) | Spatial Transcriptomics (10x Visium) Analysis Tools | `QING1105` | 2026-08-21T17:05:08Z / 2026-08-21T17:05:20Z | `main@400c1f366b96a35ca253e13c9b06c5076af41d65` | `QING1105:feat/spatial-transcriptomics-tools@ef75a199f4786704520bd16a4bce4da0ad2ef4ee` | N/—/NA/NA/NA | FEATURE; HIGH — new spatial transcriptomics tools |
+| [#330](https://github.com/snap-stanford/Biomni/pull/330) | Spatial Transcriptomics (10x Visium) Analysis Tools | `QING1105` | 2026-08-21T17:05:08Z / 2026-08-21T17:05:20Z | `main@400c1f366b96a35ca253e13c9b06c5076af41d65` | `QING1105:feat/spatial-transcriptomics-tools@ef75a199f4786704520bd16a4bce4da0ad2ef4ee` | N/—/NA/NA/NA | FEATURE; DEEP_AUDITED STATIC — `change-000076`, ezST-derived `lineage-000029`; reject as-is |
 
 ## Substantive changes
 
-The title/metadata screen flags 36 of 38 PRs for later static diff review. The
-highest-value capability families are:
+The title/metadata screen flagged 36 of 38 PRs. PR #330 is now statically
+deep-audited and lineage-normalized; 35 flagged PRs remain for later diff review.
+The highest-value capability families are:
 
 - Agent architecture and control: #177, #236, #281, #293, #303, #308, #319,
   #329.

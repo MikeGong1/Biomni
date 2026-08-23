@@ -4,10 +4,10 @@ Observed at: `2026-08-23T12:01:41Z`
 
 Batch status: **PARTIAL**
 
-This batch statically inspected three independent-source A-tier repositories at
-immutable heads. It creates candidate leads only: no feature or implementation ID
-is allocated, no repository is marked `DEEP_AUDITED`, and no third-party code was
-executed.
+This batch statically inspected three apparent independent-source A-tier
+repositories at immutable heads. One has since been resolved to a Biomni PR
+lineage and statically deep-audited; two remain PARTIAL. No formal feature or
+implementation ID is allocated, and no third-party code was executed.
 
 ## Acquisition and interpretation rules
 
@@ -25,10 +25,10 @@ executed.
 
 - Canonical ID: `repo-003211`; queue order: 1; tier: A.
 - Head: `427792f0bbf2564dbf124b4444ffdb07cc400a25` on `master`.
+- Audit status: **DEEP_AUDITED — STATIC_ONLY; resolved derivative of PR #330**.
 - Inventory: one branch, four default-branch commits, no tags/releases/PRs, one
   child fork, and an untruncated 36-item tree (20 blobs, 16 trees).
-- Decoded sample: 16 key text files covering README, packaging/install surfaces,
-  plugin metadata, six Skills, package initialization, and `visium.py`.
+- Full current tree: all 19 text blobs inspected; the remaining blob is a PNG.
 - Disposition: **reject as-is; redesign required**.
 
 The repository exposes six staged Skills and eleven public Python functions for
@@ -53,9 +53,17 @@ Candidate leads are the staged review gates, Visium input scaffolding, typed
 load/QC/cluster adapters, domain/SVG analysis, and a clean-room Python/R bridge.
 Deconvolution and CellChat require correctness and safety redesign first.
 
-Unresolved: the sole child fork and its refs, three likely-text blobs, runtime and
-scientific validation, dependency provenance, and privacy controls. No tests or CI
-were available to reduce this uncertainty.
+The only child fork, `Han-Z02/ezST`, is one commit behind and has no unique commit.
+All fork/PR/release pages, source commits, historical blobs, and current text were
+closed. Cross-repository comparison found that the same author's open Biomni PR
+#330 predates ezST and supplies the same ordered 14 definitions; the near-identical
+runtime and initial README dependency statement support a high-confidence derived
+lineage. Three changes and `lineage-000029` preserve the PR core, unique staged
+Skills, and standalone delta without double-counting scientific features.
+
+Runtime/scientific validation remains deliberately unexecuted under the research
+security policy. This does not reopen the static audit surface, but it prevents
+`VERIFIED` or integration-ready status. A dedicated report is in `ezst.md`.
 
 ## `jaechang-hits/SciAgent-Skills`
 
@@ -132,8 +140,8 @@ needed to independently prove endpoint pagination.
 
 ## Batch decision
 
-All three repositories remain `PARTIAL`; therefore this batch adds **0** to the
-deep-audited denominator. The next bounded work is to close the explicit gaps:
-inspect ezST's child-fork refs and remaining text; audit SciAgent's other branches,
-fork families, remaining Skills and provenance incrementally; and reacquire,
-hash, and section-map the regulatory sources before evaluating Drug Safety content.
+Batch 001 now contains **1 DEEP_AUDITED / lineage-resolved** repository and **2
+PARTIAL** repositories. The next bounded work is to audit SciAgent's other
+branches, fork families, remaining Skills and provenance incrementally, and to
+reacquire, hash, and section-map the regulatory sources before evaluating Drug
+Safety content.

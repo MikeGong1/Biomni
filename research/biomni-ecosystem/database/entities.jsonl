@@ -3472,7 +3472,7 @@
 {"entity_id":"repo-003208","entity_type":"repository","canonical_id":"repo-003208","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-007.md"}
 {"entity_id":"repo-003209","entity_type":"repository","canonical_id":"repo-003209","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-007.md"}
 {"entity_id":"repo-003210","entity_type":"repository","canonical_id":"repo-003210","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-007.md"}
-{"entity_id":"repo-003211","entity_type":"repository","canonical_id":"repo-003211","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-007.md"}
+{"entity_id":"repo-003211","entity_type":"repository","canonical_id":"repo-003211","status":"DEEP_AUDITED","detailed_file":"external-repos/ezst.md"}
 {"entity_id":"repo-003212","entity_type":"repository","canonical_id":"repo-003212","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003213","entity_type":"repository","canonical_id":"repo-003213","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003214","entity_type":"repository","canonical_id":"repo-003214","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
@@ -7849,3 +7849,8 @@
 {"entity_id":"repo-007585","entity_type":"repository","canonical_id":"repo-007585","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-016.md"}
 {"entity_id":"repo-007586","entity_type":"repository","canonical_id":"repo-007586","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-016.md"}
 {"entity_id":"repo-007587","entity_type":"repository","canonical_id":"repo-007587","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-016.md"}
+{"entity_id":"repo-007588","entity_type":"repository","canonical_id":"repo-007588","status":"SCREENED","detailed_file":"external-repos/ezst.md"}
+{"entity_id":"change-000076","entity_type":"change","canonical_id":"change-000076","status":"DEEP_AUDITED","detailed_file":"external-repos/ezst.md"}
+{"entity_id":"change-000077","entity_type":"change","canonical_id":"change-000077","status":"DEEP_AUDITED","detailed_file":"external-repos/ezst.md"}
+{"entity_id":"change-000078","entity_type":"change","canonical_id":"change-000078","status":"DEEP_AUDITED","detailed_file":"external-repos/ezst.md"}
+{"entity_id":"lineage-000029","entity_type":"lineage","canonical_id":"lineage-000029","status":"VERIFIED","detailed_file":"external-repos/ezst.md"}

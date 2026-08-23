@@ -62,17 +62,20 @@ key ascending. Orders are contiguous from 1 through 2,069.
 
 ## Audit progress
 
-Three independent-source A-tier families were selected near the head of the queue
-for the first static batch. They remain `PARTIAL`, so the `DEEP_AUDITED` count is
-still zero.
+Three apparent independent-source A-tier families were selected near the head of
+the queue for the first static batch. Static audit resolved ezST to the Biomni PR
+#330 lineage and closed its bounded public surface; the other two remain PARTIAL.
 
 | Queue order | Repository | Immutable head | Audit status |
 |---:|---|---|---|
-| 1 | `QING1105/ezST` | `427792f0bbf2564dbf124b4444ffdb07cc400a25` | PARTIAL |
+| 1 | `QING1105/ezST` | `427792f0bbf2564dbf124b4444ffdb07cc400a25` | DEEP_AUDITED; DERIVED PR #330 LINEAGE |
 | 5 | `jaechang-hits/SciAgent-Skills` | `a0aac0f4576a550d5316baf6da3d72e53408b3a2` | PARTIAL |
 | 8 | `JinL0/Drug-Discovery-Safety-Skills` | `89364d8ea0bfd1393c51df750198ce086e0ebb84` | PARTIAL |
 
-Detailed evidence and unresolved gaps are in `deep-audit-batch-001.md`.
+Queue orders remain stable historical scheduling identifiers and are not
+renumbered after lineage resolution. The result is one resolved/deep-audited
+family and 2,068 external families not yet deep-audited. Detailed evidence and
+unresolved gaps are in `deep-audit-batch-001.md` and `ezst.md`.
 
 ## Reproducibility boundary
 

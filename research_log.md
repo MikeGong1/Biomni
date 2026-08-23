@@ -44,3 +44,12 @@
 - Modification: Added a shared four-slot queue with 60/min global and six/min/worker limits, authenticated REST/GraphQL rate tracking, GraphQL point headroom, ETag/304 and query-hash caches, cursor-friendly pages, and a complexity-aware 50-family shard across orders 13–62.
 - Result change: Live self-tests returned REST and GraphQL limits of 5,000/hour; GraphQL cost 1 and cache hit, REST 200 then 304. Nine admitted workers now own multiple independent families with slot rotation.
 - Retained: Yes; methodology, queue scripts, runtime evidence 174, index/state/coverage/queue documentation, and research log retained. No token or credential material retained.
+
+## 2026-08-24 — Accelerated external deep audit batch 005
+
+- Experimental hypothesis: Moving from three-family checkpoints to 50 mutually independent families can materially increase Phase 8 throughput without exhausting GitHub limits or weakening evidence quality.
+- Observed failure: Twenty-two substantive candidates all failed at least one material scientific, security, privacy, provenance, licensing, runtime or reproducibility contract; 28 other families reduced to source/PR history, documentation-only content or empty repositories.
+- Suspected cause: Metadata-first screening intentionally maximized recall and could not distinguish independent capabilities from source refs, generated/catalog content, incomplete research prototypes or unsafe wrappers.
+- Modification: Audited exact queue orders 13–62 through shared REST/GraphQL limits and local SSH/DAG analysis, applied eight independent verifier shards, allocated one composite Change per substantive family and only four evidence-supported Lineages.
+- Result change: Fifty families and 58 repository records became `DEEP_AUDITED`; family coverage rose 12→62, unresolved families fell 2,057→2,007, and queued HIGH records fell 2,143→2,085. No Feature/Implementation was allocated and all direct adoption was rejected.
+- Retained: Yes; report, 50-row canonical manifest, changes 92–113, lineages 36–39, evidence 175–180, repository/entity/control updates and next 50-family shard retained.

@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 18 | 111 prior exclusions; 1 derived lineage; 10 fork-lineage no-unique; 5 substantive fork-family records; 2 independent audits; 2143 remain queued | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 12 | stable deterministic queue orders 1–2069; batches 001–004 complete; 2057 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 76 | 111 prior exclusions; batches 001–005 complete; 2085 remain queued | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 62 | stable deterministic queue orders 1–2069; batches 001–005 complete; 2007 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -289,14 +289,19 @@ rejected. Latch is exact source and the Awesome delta is one DOC_ONLY PR row.
 Batch 004 closed three additional awesome-list families: two heads-only deltas
 were exact source PR refs and the Pathology fork was a source ancestor. All
 bounded contributions were merged/open DOC_ONLY catalog rows; no implementation
-or capability ID was added.
+or capability ID was added. Accelerated batch 005 then closed exact queue orders
+13–62: 50 families and 58 bounded repository records. The result distribution is
+22 substantive candidates, 22 no-unique closures, three DOC_ONLY closures and
+three empty repositories. Parent reduction allocated 22 Change and four Lineage
+IDs, rejected every direct-adoption path, and withheld Feature/Implementation
+IDs.
 
-The first accelerated checkpoint is in progress across queue orders 13–62 (50
-families). Nine non-root workers are active—the current service rejected a tenth
-thread—and completed slots are rotated. REST/GraphQL requests share a four-slot
-authenticated queue; batch inventory uses GraphQL while SSH Git/local DAG work is
-parallel. These in-progress families do not enter the processed numerator until
-parent verification and canonical reduction complete.
+The second accelerated checkpoint is in progress across queue orders 63–112 (50
+families). Ten non-root workers own mutually exclusive five-family shards.
+REST/GraphQL requests share the four-slot authenticated queue; bulk inventory can
+use GraphQL while SSH Git/local DAG work remains parallel. These in-progress
+families do not enter the processed numerator until parent verification and
+canonical reduction complete.
 
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains

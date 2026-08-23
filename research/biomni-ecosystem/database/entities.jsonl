@@ -3231,7 +3231,7 @@
 {"entity_id":"repo-002967","entity_type":"repository","canonical_id":"repo-002967","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-006.md"}
 {"entity_id":"repo-002968","entity_type":"repository","canonical_id":"repo-002968","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-006.md"}
 {"entity_id":"repo-002969","entity_type":"repository","canonical_id":"repo-002969","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-006.md"}
-{"entity_id":"repo-002970","entity_type":"repository","canonical_id":"repo-002970","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-006.md"}
+{"entity_id":"repo-002970","entity_type":"repository","canonical_id":"repo-002970","status":"DEEP_AUDITED","detailed_file":"external-repos/deep-audit-batch-004.md","evidence_ids":["evidence-000169","evidence-000172","evidence-000173"]}
 {"entity_id":"repo-002971","entity_type":"repository","canonical_id":"repo-002971","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-006.md"}
 {"entity_id":"repo-002972","entity_type":"repository","canonical_id":"repo-002972","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-006.md"}
 {"entity_id":"repo-002973","entity_type":"repository","canonical_id":"repo-002973","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-006.md"}
@@ -3743,7 +3743,7 @@
 {"entity_id":"repo-003479","entity_type":"repository","canonical_id":"repo-003479","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003480","entity_type":"repository","canonical_id":"repo-003480","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003481","entity_type":"repository","canonical_id":"repo-003481","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
-{"entity_id":"repo-003482","entity_type":"repository","canonical_id":"repo-003482","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
+{"entity_id":"repo-003482","entity_type":"repository","canonical_id":"repo-003482","status":"DEEP_AUDITED","detailed_file":"external-repos/deep-audit-batch-004.md","evidence_ids":["evidence-000169","evidence-000171","evidence-000173"]}
 {"entity_id":"repo-003483","entity_type":"repository","canonical_id":"repo-003483","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003484","entity_type":"repository","canonical_id":"repo-003484","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003485","entity_type":"repository","canonical_id":"repo-003485","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
@@ -3865,7 +3865,7 @@
 {"entity_id":"repo-003601","entity_type":"repository","canonical_id":"repo-003601","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003602","entity_type":"repository","canonical_id":"repo-003602","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003603","entity_type":"repository","canonical_id":"repo-003603","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
-{"entity_id":"repo-003604","entity_type":"repository","canonical_id":"repo-003604","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
+{"entity_id":"repo-003604","entity_type":"repository","canonical_id":"repo-003604","status":"DEEP_AUDITED","detailed_file":"external-repos/deep-audit-batch-004.md","evidence_ids":["evidence-000169","evidence-000170","evidence-000171","evidence-000173"]}
 {"entity_id":"repo-003605","entity_type":"repository","canonical_id":"repo-003605","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003606","entity_type":"repository","canonical_id":"repo-003606","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}
 {"entity_id":"repo-003607","entity_type":"repository","canonical_id":"repo-003607","status":"SCREENED","detailed_file":"people/github/repository-inventory-batch-008.md"}

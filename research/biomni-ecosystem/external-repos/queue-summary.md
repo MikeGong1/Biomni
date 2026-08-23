@@ -68,7 +68,8 @@ the queue for the first static batch. Static audit resolved ezST to the Biomni P
 Skills; full corpus/branch/PR/fork audit closed/rejected SciAgent-Skills. Batch
 002 then resolved the three earlier fork-only families against their upstream
 source DAGs. Batch 003 resolved K-Dense, Latch and Awesome Medical AI fork
-families and retained four substantive K-Dense change sets.
+families and retained four substantive K-Dense change sets. Batch 004 closed
+three awesome-list fork families as DOC_ONLY source-PR/catalog history.
 
 | Queue order | Repository | Immutable head | Audit status |
 |---:|---|---|---|
@@ -81,18 +82,22 @@ families and retained four substantive K-Dense change sets.
 | 7 | `shantanusharma/latch` | `3f31cad1851b7ac7bfa08a4cb2bab8f9850547b8` | DEEP_AUDITED; EXACT SOURCE MAIN; NO UNIQUE CODE |
 | 8 | `JinL0/Drug-Discovery-Safety-Skills` | `89364d8ea0bfd1393c51df750198ce086e0ebb84` | DEEP_AUDITED; REJECT AS-IS |
 | 9 | `reacher-z/awesome-medical-ai` | `2c07fb87e498548eae357b64f1e9b2797ccf28ba` | DEEP_AUDITED; OPEN DOC_ONLY PR #2; NO IMPLEMENTATION |
+| 10 | `reacher-z/Awesome-LLM-Agents-Scientific-Discovery` | `3e079cd88b573556eba8bc0ef899ba7cee10ddf9` | DEEP_AUDITED; MERGED CLAWBENCH + OPEN DR. CLAW DOC_ONLY PRS |
+| 11 | `reacher-z/awesome-ai-for-science-skills` | `710783a792e200207e841f8b3171dd5c849a6563` | DEEP_AUDITED; EXACT SOURCE MAIN + OPEN DR. CLAW DOC_ONLY PR |
+| 12 | `KalinNonchev/Awesome-Pathology-Agents` | `fac3ae861c814750559b6722d0388e2f9890b483` | DEEP_AUDITED; SOURCE ANCESTOR + MERGED DOC_ONLY OWNER PR HISTORY |
 
 Queue orders remain stable historical scheduling identifiers and are not
-renumbered after lineage resolution. Batches 001–003 are complete at nine
+renumbered after lineage resolution. Batches 001–004 are complete at twelve
 deep-audited families: one derived-lineage resolution, two independent
-rejections, four fork/source no-capability closures, one DOC_ONLY catalog closure,
-and one substantive K-Dense family. **2,060** families are not yet deep-audited.
-Detailed evidence is in the three batch reports and their linked manifests.
+rejections, seven fork/source no-capability or DOC_ONLY catalog closures, one
+DOC_ONLY medical catalog closure, and one substantive K-Dense family. **2,057**
+families are not yet deep-audited. Detailed evidence is in the four batch reports
+and their linked manifests.
 
 ## Reproducibility boundary
 
 Queue construction used only canonical Phase 7 metadata and deterministic family,
-priority, and order predicates. GitHub acquisition for batches 001–003 was
+priority, and order predicates. GitHub acquisition for batches 001–004 was
 serialized with bounded requests; repository code and notebooks were decoded and
 inspected statically, never executed. Batch 002–003 source repositories were
 lineage anchors only: their out-of-scope fork networks and full scientific/runtime

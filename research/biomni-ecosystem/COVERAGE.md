@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 15 | 111 prior exclusions; 1 derived lineage; 7 fork-lineage no-unique; 5 substantive fork-family records; 2 independent audits; 2146 remain queued | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 9 | stable deterministic queue orders 1–2069; batches 001–003 complete; 2060 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 18 | 111 prior exclusions; 1 derived lineage; 10 fork-lineage no-unique; 5 substantive fork-family records; 2 independent audits; 2143 remain queued | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 12 | stable deterministic queue orders 1–2069; batches 001–004 complete; 2057 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -286,6 +286,10 @@ Batch 003 processed seven more bounded forks across K-Dense, Latch and Awesome
 Medical AI. Four K-Dense change sets and three lineages preserve the merged Kuan
 and BIDS Skills, fork-only API fixes and open DataLad PR; all direct adoption is
 rejected. Latch is exact source and the Awesome delta is one DOC_ONLY PR row.
+Batch 004 closed three additional awesome-list families: two heads-only deltas
+were exact source PR refs and the Pathology fork was a source ancestor. All
+bounded contributions were merged/open DOC_ONLY catalog rows; no implementation
+or capability ID was added.
 
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains

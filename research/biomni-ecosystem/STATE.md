@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T16:52:08Z
+last_updated_utc: 2026-08-23T17:09:59Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: queue order 10 zjlrock777/Awesome-LLM-Agents-Scientific-Discovery; order 11 Agents365-ai/awesome-ai-for-science-skills; order 12 G14nTDo4/Awesome-Pathology-Agents
-current_batch: external-deep-audit-004
-current_page_or_cursor: external-deep-audit batches 001-003 complete; 2272/2272 HIGH records normalized to 2069 stable orders; 9 families DEEP_AUDITED; 2060 not deep-audited
+current_entity: queue order 13 Mr-Milk/Aquila-next; order 14 TissueImageAnalytics/tiatoolbox; order 15 cafferychen777/ChatSpatial
+current_batch: external-deep-audit-005
+current_page_or_cursor: external-deep-audit batches 001-004 complete; 2272/2272 HIGH records normalized to 2069 stable orders; 12 families DEEP_AUDITED; 2057 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -76,10 +76,13 @@ completed_units:
 - retained merged Kuan 12-Skill PR 75, two fork-only API fix patches, merged BIDS PR 125 and open DataLad PR 227 as change-000088–change-000091 and lineage-000033–lineage-000035
 - rejected direct adoption across all 12 Kuan Skills, BIDS and DataLad after material scientific, privacy, security, destructive-operation, supply-chain and provenance failures; no Feature/Implementation ID allocated
 - closed Latch as exact source, Awesome DILRAN as one DOC_ONLY PR row, codespell as environment/format only and Alex security report as unsupported DOC_ONLY assurance
+- exhausted six native heads, 29 source pull refs and bounded PR/release/child-fork surfaces for three awesome-list fork families
+- resolved ClawBench PR 11 as merged DOC_ONLY history, duplicate Dr. Claw PR 14/4 as open DOC_ONLY rows, and Pathology PR 1/2 as merged bounded-owner catalog contributions
+- corrected stale ClawBench title/attribution/task-count/repository identity and preserved list-versus-outbound license and person-depth boundaries without allocating IDs
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- continue the 2060 not-yet-deep-audited family orders, beginning with queue orders 10–12
+- continue the 2057 not-yet-deep-audited family orders, beginning with queue orders 13–15
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -111,4 +114,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: begin external deep-audit batch 004 with queue orders 10–12; resolve the three awesome-list fork families against source refs before content audit
+next_action: begin external deep-audit batch 005 with queue orders 13–15; fully audit independent Aquila-next and resolve tiatoolbox/ChatSpatial fork lineages before implementation review

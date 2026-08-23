@@ -26,3 +26,12 @@
 - Modification: Froze and normalized 15 heads, 170 tags, 674 source PR refs, bounded PR/release/child-fork surfaces, 12 Kuan Skills, BIDS PR 125, DataLad PR 227, two fork API patches, and minor documentation/environment deltas.
 - Result change: Seven repository records and three families became `DEEP_AUDITED`; four changes and three lineages were retained, unresolved family count fell from 2,063 to 2,060, and no Feature/Implementation was allocated.
 - Retained: Yes; batch report, two machine manifests, evidence 163–168, changes 88–91, lineages 33–35, database/control updates, and same-name tag collision warnings retained.
+
+## 2026-08-24 — Awesome-list fork families batch 004
+
+- Experimental hypothesis: Three high-relevance awesome-list forks may contain independent biomedical-agent, scientific-Skill, or pathology implementations.
+- Observed failure: Every delta was a README catalog row already represented by a merged/open source PR; the Pathology fork itself was only a source ancestor.
+- Suspected cause: Metadata screening correctly recognized domain-rich descriptions but could not distinguish curated links from executable implementations or source PR refs.
+- Modification: Froze six mirrors, six fork heads, 29 source pull refs, bounded endpoints, five relevant PR histories, current outbound identities, official ClawBench paper metadata, and license/person boundaries.
+- Result change: Three repository records/families became `DEEP_AUDITED`; unresolved family count fell from 2,060 to 2,057, with no new Repository, Person, Change, Lineage, Feature, or Implementation ID.
+- Retained: Yes; batch report, three-row manifest, evidence 169–173, corrected ClawBench catalog facts, merged Pathology owner-PR history, and duplicate Dr. Claw lead normalization retained.

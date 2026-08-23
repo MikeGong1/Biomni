@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T03:46:25Z
-current_phase: Phase 3 - normalize Biomni unique changes
-current_entity: snap-stanford/Biomni fork unique changes
-current_batch: fork-screening-028
-current_page_or_cursor: commits, public fork discovery, and fork screening exhausted
+last_updated_utc: 2026-08-23T04:08:40Z
+current_phase: Phase 5 - inventory code-visible people
+current_entity: code-visible GitHub account universe P
+current_batch: people-universe-reconciliation-001
+current_page_or_cursor: all P entry surfaces and 1791/1791 normalized change author objects exhausted; public repositories not started
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -40,14 +40,16 @@ completed_units:
 - screened terminal 19 active forks; all heads upstream-known and fork screening complete 694/694
 - screened snap-stanford repositories 92/92 and public members 6/6
 - normalized contributors/history/182 PR authors to 83 user logins plus one bot
+- reconciled all code-visible account entry surfaces to 161 accounts; 159 User-type, two Bots, 156 human-counted
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
-- merge branch-only and substantive-fork-owner accounts into P
+- inventory and relevance-screen public repositories for all 161 canonical accounts
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
 unresolved_identity_mappings:
 - 56 exact Git author/committer tuples remain unmapped; see people/github/seed-inventory-001.md
+- 26 exact no-login fork-change author tuples across 13 changes remain unmapped; see people/github/universe-reconciliation-001.md
 - contributor login RyanLi1028 and raw noreply string RyanLi0802 are not assumed equivalent
 unresolved_lineages:
 - PR #289 and #290 exact PR-surface duplicate candidate; patch identity pending
@@ -73,4 +75,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: merge remaining branch-only and substantive-fork-owner accounts into P, then continue lineage-first feature decomposition
+next_action: inventory public repositories for the 161 canonical accounts in bounded batches, then relevance-screen before deep audit

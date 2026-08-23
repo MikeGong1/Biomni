@@ -287,3 +287,7 @@ by explicit GitHub login. Keep the 56 raw Git tuples in the unresolved-identity
 ledger until direct public evidence supports a mapping; never infer mappings from
 name similarity alone. Only after the bounded people set is normalized should a
 separate phase inventory each eligible person's public repositories.
+
+Canonical follow-up: the bounded merge is complete in
+`people/github/universe-reconciliation-001.md`; this historical seed report and
+its 56 unresolved tuples remain unchanged as source evidence.

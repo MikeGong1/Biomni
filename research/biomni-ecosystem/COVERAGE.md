@@ -160,18 +160,20 @@ earlier identities remain explicitly unavailable rather than inferred.
 
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Code-visible people | 145 user logins + 1 bot; 56 raw tuples unresolved | 145 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors/fork screening complete; raw tuples unresolved | PARTIAL |
+| Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
 
-The first 83 user logins are the canonical union of public organization members,
-contributors, and all 182 open/merged/closed-unmerged PR authors. Fifty-five
-additional substantive unique fork owners and seven non-owner substantive fork-
-branch contributors bring the human account count to 145. One contributor/PR bot
-is stored but excluded from that count. Raw commit tuples are not silently mapped
-to accounts.
+The first 83 human-counted logins plus one bot are the union of public members,
+contributors, and 182/182 PR authors. Fork screening added 55 human-counted
+substantive owners and seven human-counted non-owner contributors; final exact-SHA
+reconciliation added 11 human-counted contributors, three User-type automation
+accounts, and one Bot. The canonical total is 161 accounts: 156 human-counted and
+five automation/non-human. All 1,791 normalized change SHAs have official author
+objects; 96 resolved logins are canonical and 26 no-login raw fork tuples remain
+unmapped. The separate 56-tuple frozen-main ledger is also preserved.
 
 ## Commercial
 

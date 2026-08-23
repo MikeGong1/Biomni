@@ -93,3 +93,7 @@ and `upstream/prs/closed-unmerged-inventory.md`.
 
 This completes the PR-author surface only. Branch-only contributors and owners of
 forks later proven to contain substantive unique commits remain pending.
+
+Canonical follow-up: branch and fork author/owner reconciliation is complete in
+`people/github/universe-reconciliation-001.md`; this statement records the scope
+boundary at the time of the PR-only inventory.

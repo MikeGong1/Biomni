@@ -161,8 +161,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
-| Canonical accounts with repository status closed | 161 | 151 | 0 | 148 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 10 pending | PARTIAL |
-| Person public repositories | 6830 discovered from available processed Users; global denominator unknown | 6830 metadata-screened | 0 | 148 User owner connections exhausted; one unavailable; global incomplete | PARTIAL |
+| Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
+| Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -258,6 +258,18 @@ Copilot was marked not applicable as a Bot. Four existing fork IDs were reused
 and 125 new IDs added. Screening produced 38 HIGH, 17 POSSIBLE, 18 LOW, and 56
 IRRELEVANT. Cumulative: 2,261 HIGH, 667 POSSIBLE, 2,151 LOW, and 1,751
 IRRELEVANT.
+
+Person-repository batch 016 exhausted terminal IDs `person-github-000152`–
+`000161`: ten available Users yielded 82 repositories in ten GraphQL pages. One
+existing fork ID was reused and 81 new IDs added. Screening produced 11 HIGH,
+3 POSSIBLE, 24 LOW, and 44 IRRELEVANT. Final available-User total: 6,912
+relations — 2,272 HIGH, 670 POSSIBLE, 2,175 LOW, and 1,795 IRRELEVANT.
+
+All 161 canonical account statuses are now closed. All 158 available User owner
+connections are exhausted, both Bots are not applicable, and lwsinclair remains
+explicitly unavailable current. Therefore account-status closure is COMPLETE,
+while the public-repository collection remains PARTIAL rather than pretending the
+unavailable User has a known repository denominator.
 
 Person-repository batch 003 closed stable IDs `person-github-000021`–`000031`:
 10 User cursors yielded 205 repositories, while the intervening Bot was marked

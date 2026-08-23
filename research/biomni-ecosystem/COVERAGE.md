@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 625 | 0 | batches 001–025 complete | PARTIAL |
+| Fork unique-change screening | 694 | 650 | 0 | batches 001–026 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -140,11 +140,17 @@ targets are currently unavailable through GitHub and remain explicit limitations
 No compare was necessary and no change, lineage, feature, implementation, or
 person ID was added.
 
+Fork screening batch 026: 24 repositories expose only upstream-known heads; one
+Organization fork adds a substantive one-commit Docker/uv migration. One change,
+one lineage, and one non-owner contributor were normalized. The immutable uv lock
+was retrieved, while build-context, unauthenticated Jupyter, dependency coverage,
+supply-chain, and license conflicts block direct integration.
+
 ## People and repositories
 
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Code-visible people | 144 user logins + 1 bot; 56 raw tuples unresolved | 144 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
+| Code-visible people | 145 user logins + 1 bot; 56 raw tuples unresolved | 145 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
@@ -152,8 +158,8 @@ person ID was added.
 
 The first 83 user logins are the canonical union of public organization members,
 contributors, and all 182 open/merged/closed-unmerged PR authors. Fifty-five
-additional substantive unique fork owners and six non-owner substantive fork-
-branch contributors bring the human account count to 144. One contributor/PR bot
+additional substantive unique fork owners and seven non-owner substantive fork-
+branch contributors bring the human account count to 145. One contributor/PR bot
 is stored but excluded from that count. Raw commit tuples are not silently mapped
 to accounts.
 

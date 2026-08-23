@@ -1030,3 +1030,6 @@
 {"entity_id":"lineage-000025","entity_type":"lineage","canonical_id":"lineage-000025","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-021.md"}
 {"entity_id":"lineage-000026","entity_type":"lineage","canonical_id":"lineage-000026","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-021.md"}
 {"entity_id":"lineage-000027","entity_type":"lineage","canonical_id":"lineage-000027","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-021.md"}
+{"entity_id":"person-github-000146","entity_type":"person","canonical_id":"person-github-000146","status":"INVENTORIED","detailed_file":"upstream/forks/screening-batch-026.md"}
+{"entity_id":"change-000075","entity_type":"change","canonical_id":"change-000075","status":"PARTIAL","detailed_file":"upstream/forks/screening-batch-026.md"}
+{"entity_id":"lineage-000028","entity_type":"lineage","canonical_id":"lineage-000028","status":"VERIFIED","detailed_file":"upstream/forks/screening-batch-026.md"}

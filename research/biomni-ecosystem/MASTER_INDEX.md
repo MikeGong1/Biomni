@@ -6,7 +6,7 @@
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |
-| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000786`, `person-github-000001`–`person-github-000145`, `change-000001`–`change-000074`, `lineage-000001`–`lineage-000027`, `evidence-000001`–`evidence-000114` |
+| Structured database | database | ACTIVE | Stable IDs and canonical evidence records | `database/` | `repo-000001`–`repo-000786`, `person-github-000001`–`person-github-000146`, `change-000001`–`change-000075`, `lineage-000001`–`lineage-000028`, `evidence-000001`–`evidence-000117` |
 | Merged PRs, batch 001 | PR inventory | COMPLETE | First 100 of 111 merged PRs, created ascending | `upstream/prs/merged-batch-001.md` | `evidence-000010` |
 | Public forks, batch 001 | fork inventory | COMPLETE | Public forks 1–100, newest first | `upstream/forks/batch-001.md` | `evidence-000011` |
 | Open PRs | PR inventory | COMPLETE | 38 of 38 open PRs inventoried; substantive candidates await deep audit | `upstream/prs/open-inventory.md` | `evidence-000012` |
@@ -56,3 +56,4 @@
 | Fork screening batch 023 | unique-change screening | COMPLETE | 25 fork identities screened; 24 no-unique and one currently unavailable | `upstream/forks/screening-batch-023.md` | `evidence-000112` |
 | Fork screening batch 024 | unique-change screening | COMPLETE | 25 forks screened; all 28 refs upstream-known | `upstream/forks/screening-batch-024.md` | `evidence-000113` |
 | Fork screening batch 025 | unique-change screening | COMPLETE | 25 fork identities screened; 23 no-unique and two currently unavailable | `upstream/forks/screening-batch-025.md` | `evidence-000114` |
+| Fork screening batch 026 | unique-change screening | COMPLETE | 25 forks screened; one Docker/uv environment change and lineage retained | `upstream/forks/screening-batch-026.md` | `change-000075`, `lineage-000028`, `evidence-000115`–`evidence-000117` |

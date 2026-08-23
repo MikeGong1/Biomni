@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 675 | 0 | batches 001–027 complete | PARTIAL |
+| Fork unique-change screening | 694 | 694 | 0 | batches 001–028 exhausted | COMPLETE |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -151,11 +151,16 @@ repository also retains the exact head of already inventoried closed-unmerged PR
 #2. No compare was necessary and no change, lineage, feature, implementation, or
 person ID was added.
 
+Fork screening batch 028: the terminal 19 repositories and their 19 refs all
+resolved to upstream-known heads. No compare was necessary and no canonical ID
+was added. All 694 reconciled fork identities have now been processed; four
+earlier identities remain explicitly unavailable rather than inferred.
+
 ## People and repositories
 
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
-| Code-visible people | 145 user logins + 1 bot; 56 raw tuples unresolved | 145 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors complete; fork screening partial | PARTIAL |
+| Code-visible people | 145 user logins + 1 bot; 56 raw tuples unresolved | 145 user logins + 1 bot; 56 tuples preserved | 0 | contributor/history/PR authors/fork screening complete; raw tuples unresolved | PARTIAL |
 | Person public repositories | unknown | 0 | 0 | not started | NOT_STARTED |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |

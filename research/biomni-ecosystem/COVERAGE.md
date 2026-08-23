@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 650 | 0 | batches 001–026 complete | PARTIAL |
+| Fork unique-change screening | 694 | 675 | 0 | batches 001–027 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -145,6 +145,11 @@ Organization fork adds a substantive one-commit Docker/uv migration. One change,
 one lineage, and one non-owner contributor were normalized. The immutable uv lock
 was retrieved, while build-context, unauthenticated Jupyter, dependency coverage,
 supply-chain, and license conflicts block direct integration.
+
+Fork screening batch 027: 24 repositories expose only upstream-known heads; one
+repository also retains the exact head of already inventoried closed-unmerged PR
+#2. No compare was necessary and no change, lineage, feature, implementation, or
+person ID was added.
 
 ## People and repositories
 

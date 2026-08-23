@@ -161,8 +161,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Collection | Discovered | Processed/screened | Deep audited | Pagination | Status |
 |---|---:|---:|---:|---|---|
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
-| Canonical accounts with public-repository cursor exhausted | 161 | 20 | 0 | batches 001–002 complete; 141 accounts pending | PARTIAL |
-| Person public repositories | 804 discovered from processed accounts; global denominator unknown | 804 metadata-screened | 0 | all 20 processed owner connections exhausted; global collection incomplete | PARTIAL |
+| Canonical accounts with repository status closed | 161 | 31 | 0 | 30 User cursors exhausted + 1 Bot not applicable; 130 accounts pending | PARTIAL |
+| Person public repositories | 1009 discovered from processed User accounts; global denominator unknown | 1009 metadata-screened | 0 | all 30 processed User owner connections exhausted; global collection incomplete | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -187,6 +187,13 @@ Person-repository batch 002 exhausted owner-public-repository cursors for
 Biomni fork IDs and 580 new IDs. Metadata screening produced 143 HIGH, 92
 POSSIBLE, 121 LOW, and 231 IRRELEVANT results. Cumulative processed-account
 coverage is 804 repository relations: 207 HIGH, 148 POSSIBLE, 180 LOW, and 269
+IRRELEVANT.
+
+Person-repository batch 003 closed stable IDs `person-github-000021`–`000031`:
+10 User cursors yielded 205 repositories, while the intervening Bot was marked
+not applicable. Eight existing Biomni lineage IDs were reused and 197 new IDs
+allocated. Screening produced 52 HIGH, 41 POSSIBLE, 44 LOW, and 68 IRRELEVANT.
+Cumulative coverage is 1,009 relations: 259 HIGH, 189 POSSIBLE, 224 LOW, and 337
 IRRELEVANT.
 
 ## Commercial

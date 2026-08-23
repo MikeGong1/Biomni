@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 600 | 0 | batches 001–024 complete | PARTIAL |
+| Fork unique-change screening | 694 | 625 | 0 | batches 001–025 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -134,6 +134,11 @@ from available repositories were exhausted in one GraphQL page.
 Fork screening batch 024: all 25 repositories and 28 branch refs resolved; every
 head is already upstream-known. No compare was necessary and no change, lineage,
 feature, implementation, or person ID was added.
+
+Fork screening batch 025: 23 repositories expose only upstream-known heads; two
+targets are currently unavailable through GitHub and remain explicit limitations.
+No compare was necessary and no change, lineage, feature, implementation, or
+person ID was added.
 
 ## People and repositories
 

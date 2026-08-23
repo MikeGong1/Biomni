@@ -22,7 +22,7 @@ Status: PARTIAL
 | Public fork REST snapshot | 683 | 683 | 0 | exhausted | COMPLETE |
 | Current Network tree view | 690 | 690 | 0 | full DOM enumerated | COMPLETE |
 | Fork identity union | 694 | 694 | 0 | reconciled | COMPLETE |
-| Fork unique-change screening | 694 | 550 | 0 | batches 001–022 complete | PARTIAL |
+| Fork unique-change screening | 694 | 575 | 0 | batches 001–023 complete | PARTIAL |
 
 All commit batches contain 111 explicit subject-to-PR mappings. Network tree/REST
 reconciliation found 679 common, 11 tree-only, and four REST-only identities: the
@@ -125,6 +125,11 @@ merge history, and one documentation-only repository. No change, lineage, featur
 implementation, or person ID was added. The Chinese guide was statically checked
 and found to mix some accurate overview material with systematic inventory/API/
 environment errors and unsafe secret-printing guidance.
+
+Fork screening batch 023: 24 repositories expose only upstream-known heads; one
+target is currently unavailable through GitHub and remains explicitly unresolved.
+No change, lineage, feature, implementation, or person ID was added. All 30 refs
+from available repositories were exhausted in one GraphQL page.
 
 ## People and repositories
 

@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-23T09:48:38Z
+last_updated_utc: 2026-08-23T09:59:31Z
 current_phase: Phase 7 - screen public repositories of P
-current_entity: person-github-000092 through person-github-000101 repository status
-current_batch: person-repository-inventory-010
-current_page_or_cursor: 101/161 statuses closed; 99 User cursors, one Bot N/A, one User unavailable; 5446 repositories screened
+current_entity: person-github-000102 through person-github-000111 repository status
+current_batch: person-repository-inventory-011
+current_page_or_cursor: 111/161 statuses closed; 109 User cursors, one Bot N/A, one User unavailable; 5712 repositories screened
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -51,9 +51,10 @@ completed_units:
 - exhausted public repository cursors for stable IDs 000072–000081; screened 978 repositories and allocated 970 IDs
 - exhausted public repository cursors for stable IDs 000082–000091; screened 1690 repositories and allocated 1680 IDs
 - exhausted public repository cursors for stable IDs 000092–000101; screened 310 repositories and allocated 300 IDs
+- exhausted public repository cursors for stable IDs 000102–000111; screened 266 repositories and allocated 256 IDs
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
-- inventory and relevance-screen public repositories for the remaining 60 canonical accounts
+- inventory and relevance-screen public repositories for the remaining 50 canonical accounts
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -85,4 +86,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: inventory public repositories for the next stable-ID account batch, beginning person-github-000102 through person-github-000111
+next_action: inventory public repositories for the next stable-ID account batch, beginning person-github-000112 through person-github-000121

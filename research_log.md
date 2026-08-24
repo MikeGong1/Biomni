@@ -62,3 +62,12 @@
 - Modification: Made REST fail closed without authentication, pinned one credential per state directory, shared its REST/GraphQL allowance across workers, isolated response caches by full credential SHA-256, made reset updates monotonic, moved reservation behind slot acquisition, applied global Retry-After, and reconciled GraphQL actual cost.
 - Result change: Offline no-token tests exited 77 without creating state files; a 147-event legacy fixture was ignored and a second synthetic credential exited 77 before cache lookup, rate reservation, slot acquisition or network I/O. Final escalated REST and GraphQL smoke calls used `git-credential`, each reported a 5,000 limit, and wrote mode-0600 state/response/meta files.
 - Retained: Yes; surgical queue code/documentation changes and evidence 181 retained. No token or authorization value was written or printed.
+
+## 2026-08-24 — Accelerated external deep audit batch 006
+
+- Experimental hypothesis: A second 50-family shard can sustain ten-agent throughput while parent reverse-identity validation prevents stale order/ID reuse.
+- Observed failure: The first reducer accepted five unrelated but valid Biomni repository IDs because it checked only ID existence, not ID-to-queue round trips; it also omitted one ai-nuggets member. Twenty-one substantive families independently failed scientific, security, privacy, provenance, licensing or reproducibility contracts.
+- Suspected cause: One worker reused numeric orders from an older fork shard, and the structural reducer harvested literal IDs without comparing the complete canonical repository set for each external queue order.
+- Modification: Re-audited the five real OpenFold3/plugin-registry/NSCLC-Agent/TorchGeo/isic-cli families, added parent primary-artifact verification, and enforced G1–G10 exact set, queue round-trip, name/family/member completeness and verifier-identity gates before allocating 26 Changes and 12 Lineages.
+- Result change: Fifty families and 64 repository records became `DEEP_AUDITED`; family coverage rose 62→112, unresolved families fell 2,007→1,957, and queued HIGH records fell 2,085→2,021. No Feature/Implementation was allocated and all direct adoption was rejected or deferred.
+- Retained: Yes; corrected report, 50-row/64-ID manifest, changes 114–139, lineages 40–51, evidence 182–189, database/control updates, identity-gate failure history and next 50-family shard retained.

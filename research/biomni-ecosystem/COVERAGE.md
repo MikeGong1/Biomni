@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 76 | 111 prior exclusions; batches 001–005 complete; 2085 remain queued | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 62 | stable deterministic queue orders 1–2069; batches 001–005 complete; 2007 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 140 | 111 prior exclusions; batches 001–006 complete; 2021 remain queued | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 112 | stable deterministic queue orders 1–2069; batches 001–006 complete; 1957 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -296,12 +296,22 @@ three empty repositories. Parent reduction allocated 22 Change and four Lineage
 IDs, rejected every direct-adoption path, and withheld Feature/Implementation
 IDs.
 
-The second accelerated checkpoint is in progress across queue orders 63–112 (50
-families). Ten non-root workers own mutually exclusive five-family shards.
-REST/GraphQL requests share the four-slot authenticated queue; bulk inventory can
-use GraphQL while SSH Git/local DAG work remains parallel. These in-progress
-families do not enter the processed numerator until parent verification and
-canonical reduction complete.
+Accelerated batch 006 closed exact queue orders 63–112: 50 families and 64
+bounded repository records. The result distribution is 21 substantive
+candidates, 26 no-unique/source-lineage closures, and three
+DOC/metadata/maintenance-only closures. Parent reduction allocated 26 Change and
+12 Lineage IDs, rejected every direct-adoption path, and withheld
+Feature/Implementation IDs. Parent validation also caught and reversed a stale
+five-order Biomni shard before canonical write and added exact reverse-completeness
+identity gates.
+
+The third accelerated checkpoint is in progress across queue orders 113–162 (50
+families). Eight non-root workers currently own mutually exclusive five-family
+shards; two agents were tool-quota blocked before API/file activity and their
+orders await completed-slot rotation. REST/GraphQL requests share the four-slot
+authenticated queue; bulk inventory can use GraphQL while SSH Git/local DAG work
+remains parallel. These in-progress families do not enter the processed numerator
+until parent verification and canonical reduction complete.
 
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains

@@ -63,8 +63,8 @@ key ascending. Orders are contiguous from 1 through 2,069.
 Scheduling now uses complexity-aware checkpoints rather than three families per
 commit: 30–100 obvious fork-only/no-unique/DOC_ONLY families, 10–20 medium
 families, and focused multi-worker review only after substantive code survives
-DAG normalization. The first three accelerated shards closed orders 13–162; the
-fourth shard covers orders 163–212. REST and
+DAG normalization. The first four accelerated shards closed orders 13–212; the
+next unstarted shard is orders 213–262. REST and
 GraphQL traffic uses the shared limiter in
 `methodology/concurrency-and-rate-limits.md`; Git history uses SSH/local analysis.
 

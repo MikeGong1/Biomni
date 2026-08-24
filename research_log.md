@@ -89,3 +89,21 @@
 - Modification: Added `http_status`, `graphql_errors` and `successful` sidecar fields and required successful HTTP 200/no-errors state before any cache hit; diagnostic failure bodies remain inspectable.
 - Result change: The frozen 502 entry made real retry attempts and persisted `successful=false`; a separate cost-1 query returned 200 on first call and `cached=true` only on the second.
 - Retained: Yes; surgical queue/README changes, redacted live verification and evidence 198 retained. The invalid cached body was excluded from research evidence.
+
+## 2026-08-24 — Accelerated external deep audit batch 008
+
+- Experimental hypothesis: Success-only API evidence and strict identity gates can sustain a fourth 50-family checkpoint while preserving rejected historical/source-PR changes.
+- Observed failure: A GraphQL 502 body exposed the false-cache-success defect and was excluded. Twenty-one substantive families failed scientific, security, privacy, provenance, licensing or reproducibility contracts; one independent repository was a non-biomedical screening false positive.
+- Suspected cause: Metadata screening mixed exact forks, catalog rows, historical maintainer branches, scientific prototypes and medical platforms, while the queue cache lacked original-response outcome fields.
+- Modification: Corrected and live-verified the GraphQL cache, ran ten MAP/ten verifier paths, enforced 56-row exact identity sets and zero-weight failed API evidence, and normalized 29 changes plus 12 lineages.
+- Result change: Fifty families and 56 repository records became `DEEP_AUDITED`; family coverage rose 162→212, unresolved families fell 1,907→1,857, and queued HIGH records fell 1,968→1,912. No Feature/Implementation was allocated and all direct adoption was rejected or deferred.
+- Retained: Yes; report, 50-row/56-ID manifest, changes 168–196, lineages 61–72, evidence 199–206, database/control updates, success-only cache evidence and next 50-family shard retained.
+
+## 2026-08-24 — GPT Pro handoff boundary
+
+- Experimental hypothesis: A clean GitHub checkpoint plus an explicit prompt can transfer the remaining long-running audit without replaying completed batches or losing identity/rate-limit invariants.
+- Observed failure: N/A; the user requested that Batch 009 not start under the current agent.
+- Suspected cause: N/A.
+- Modification: Interrupted the sole just-dispatched Batch 009 worker, accepted no Batch 009 MAP result, and set orders 213–262 back to `NOT_STARTED` while preserving completed Batch 008.
+- Result change: Canonical coverage remains 212/2,069 external families and 249 deep-audited records; the next agent has an exact unstarted boundary.
+- Retained: Yes; authoritative state, coverage, queue boundary and GPT Pro handoff prompt retained.

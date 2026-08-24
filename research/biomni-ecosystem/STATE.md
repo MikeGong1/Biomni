@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-24T04:07:43Z
+last_updated_utc: 2026-08-24T04:50:39Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: accelerated shard queue orders 163-212 (50 families)
-current_batch: external-deep-audit-008-accelerated
-current_page_or_cursor: batches 001-007 complete; orders 163-212 parallel audit in progress; 2272/2272 HIGH records normalized to 2069 stable orders; 162 families DEEP_AUDITED; 1907 not deep-audited
+current_entity: GPT Pro handoff; next unstarted queue orders 213-262 (50 families)
+current_batch: handoff-checkpoint-after-external-deep-audit-008
+current_page_or_cursor: batches 001-008 complete; batch 009 NOT_STARTED; 2272/2272 HIGH records normalized to 2069 stable orders; 212 families DEEP_AUDITED; 1857 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -93,10 +93,13 @@ completed_units:
 - normalized change-000140–change-000167 and lineage-000052–lineage-000060 after ten exact-identity verifier overlays; rejected or deferred every direct-adoption path and allocated no Feature or Implementation ID
 - attempted ten mutually exclusive Batch 008 shards for orders 163–212; eight non-root workers are active and two persistently quota-blocked shards await completed-slot rotation without API or file activity
 - corrected GraphQL cache-success integrity: 502/error bodies remain diagnostics and only fresh HTTP-200/no-errors responses can return cached success; failed and successful live smoke paths passed
+- closed accelerated batch 008 across exact orders 163–212: 50 families and 56 bounded repository records, with 21 substantive candidates, 19 DOC/metadata/maintenance, nine no-unique/source-lineage and one non-biomedical false positive
+- normalized change-000168–change-000196 and lineage-000061–lineage-000072 after ten exact-identity verifier overlays; failed GraphQL evidence received zero weight and no Feature or Implementation ID was allocated
+- stopped Batch 009 before research at user request; one just-dispatched worker was interrupted and produced no accepted MAP result, so orders 213–262 remain NOT_STARTED for GPT Pro handoff
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- finish, independently verify and parent-reduce accelerated queue orders 163–212; do not count partial worker results before verification
+- GPT Pro should begin Batch 009 at exact queue orders 213–262; do not count partial worker results before identity-bound verification and parent reduction
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -128,4 +131,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: continue accelerated batch 008, rotate completed slots, verify all orders 163–212, then atomically persist family/change/lineage decisions
+next_action: hand off to GPT Pro; read this STATE plus MASTER_INDEX/COVERAGE and start exact queue orders 213–262 from NOT_STARTED

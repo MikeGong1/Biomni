@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 193 | 111 prior exclusions; batches 001–007 complete; 1968 remain queued | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 162 | stable deterministic queue orders 1–2069; batches 001–007 complete; 1907 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 249 | 111 prior exclusions; batches 001–008 complete; 1912 remain queued | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 212 | stable deterministic queue orders 1–2069; batches 001–008 complete; 1857 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -311,13 +311,19 @@ candidates, 26 DOC/metadata/maintenance-only and five no-unique/source-lineage
 closures. Parent reduction allocated 28 Change and nine Lineage IDs, rejected or
 deferred every direct-adoption path, and withheld Feature/Implementation IDs.
 
-The fourth accelerated checkpoint is in progress across queue orders 163–212 (50
-families). Eight non-root workers currently own mutually exclusive five-family
-shards; two agents were tool-quota blocked before API/file activity and their
-orders await completed-slot rotation. REST/GraphQL requests share the four-slot
-authenticated queue; bulk inventory can use GraphQL while SSH Git/local DAG work
-remains parallel. These in-progress families do not enter the processed numerator
-until parent verification and canonical reduction complete.
+Accelerated batch 008 closed exact queue orders 163–212: 50 families and 56
+bounded repository records. The result distribution is 21 substantive
+candidates, 19 DOC/metadata/maintenance-only, nine no-unique/source-lineage and
+one non-biomedical false positive. Parent reduction allocated 29 Change and 12
+Lineage IDs, rejected or deferred every direct-adoption path, gave failed
+GraphQL/HTTP502 artifacts zero evidence weight, and withheld
+Feature/Implementation IDs.
+
+The fifth accelerated checkpoint, queue orders 213–262 (50 families), is
+`NOT_STARTED` for GPT Pro handoff. One just-dispatched worker was interrupted at
+the user's request before any accepted MAP result; no Batch 009 family enters the
+processed numerator. The next agent must derive exact bounded identity sets from
+current `repositories.jsonl` before scheduling.
 
 All 161 canonical account statuses are now closed. All 158 available User owner
 connections are exhausted, both Bots are not applicable, and lwsinclair remains

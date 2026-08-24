@@ -4,14 +4,16 @@
 Biomni 全生态代码考古、功能发现和集成规划项目。立即继续，不要重新开始已完成
 批次，也不要把“写长总结”误当成项目完成。
 
-## 1. 强制先读
+## 1. 远程恢复与强制先读
+
+你不能访问上一执行环境的本地工作区，也不需要访问它。以 GitHub 远端分支为唯一
+恢复入口。本 prompt 已包含继续执行所需的长期目标、边界和当前断点，不依赖本地附件。
 
 在任何计划、命令、API、文件修改或回答之前：
 
-1. 完整读取 `/Users/mike/.codex/skills/karpathy-guidelines/SKILL.md`。
-2. 完整读取长期任务原文：
-   `/Users/mike/.codex/attachments/1e880d0f-51e0-41aa-9041-92d376b7474c/pasted-text-1.txt`。
-3. 读取以下 GitHub 权威断点文件：
+1. 应用以下简化行为准则：先声明关键假设；采用满足目标的最简单方案；只改动任务
+   必需文件；把任务拆成可验证步骤；遇到身份或证据不确定性时不得静默猜测。
+2. 从 GitHub 分支 `research/biomni-ecosystem-audit` 读取以下权威断点文件：
    - `research/biomni-ecosystem/STATE.md`
    - `research/biomni-ecosystem/MASTER_INDEX.md`
    - `research/biomni-ecosystem/COVERAGE.md`
@@ -20,18 +22,27 @@ Biomni 全生态代码考古、功能发现和集成规划项目。立即继续�
    - `research/biomni-ecosystem/external-repos/deep-audit-batch-008-manifest.jsonl`
    - `research/biomni-ecosystem/methodology/concurrency-and-rate-limits.md`
    - `research/biomni-ecosystem/methodology/github-queue-credential-scope-verification.md`
-4. 以当前工作树和远端 GitHub 为权威，不依赖本 prompt 中可能过时的聊天记忆。
+3. 以远端 GitHub 与检出的工作树为权威，不依赖可能过时的聊天记忆。
+
+启动能力门：若你不能读取该 GitHub 分支，或没有可执行 Git、静态文件分析及向该分支
+commit/push 的环境，不得伪装成能够继续项目。明确报告缺少哪一项能力，并要求用户连接
+GitHub 读写工具或提供可写的云端代码工作区。只有网页浏览、没有代码执行与 GitHub 写入
+能力时，只能提供分析，不能宣称完成任何 batch。
 
 ## 2. 仓库与精确检查点
 
-- Workspace：`/Users/mike/Documents/ChatGPT/Biomni`
-- GitHub：`git@github.com:MikeGong1/Biomni.git`
+- GitHub repository：`https://github.com/MikeGong1/Biomni`
+- Git remote（优先使用当前环境已安全配置的方式）：
+  `git@github.com:MikeGong1/Biomni.git` 或
+  `https://github.com/MikeGong1/Biomni.git`
 - Branch：`research/biomni-ecosystem-audit`
-- 已验证 Batch 008 checkpoint：
-  `774e9641553eb72cdaa0a3898abd97c2b66cbc54`
-- 其后的队列缓存修复 checkpoint 已在同一分支；开始时必须用
-  `git status --short --branch`、`git log -2` 和 `git ls-remote` 验证本地、upstream、
-  remote 是否一致且工作区干净。
+- 已验证远端交接 checkpoint：
+  `0eb89b86da261cf1673f72ff74a7bd7d59ad06de`
+- 其中 Batch 008 数据 checkpoint 为
+  `774e9641553eb72cdaa0a3898abd97c2b66cbc54`；后续提交只增加交接资料。
+- 在你自己的临时或云端工作区 clone/fetch 该分支。开始时必须用
+  `git status --short --branch`、`git log -2` 和 `git ls-remote` 验证 checkout、upstream、
+  remote 是否一致且工作区干净；不得依赖上一环境的绝对路径。
 - 不要修改 `main`、`biomni/`、`biomni_env/`、`tutorials/` 或任何生产代码。
   本阶段只写 `research/biomni-ecosystem/`，另按全局规则维护仓库根
   `research_log.md`。
@@ -123,10 +134,11 @@ Final manifest 必须包含 exact canonical IDs，不信任 MAP literal IDs。
 Batch 008 已修复“502 HTML 被伪装为 `200 cached=true`”的问题，证据为
 `evidence-000198`。不要恢复旧逻辑。
 
-凭据边界：GitHub PAT 存在 macOS Keychain，账户 `MikeGong1`，helper 为
-`osxkeychain`。沙箱可能无法读 Keychain；通过批准的沙箱外 queue 调用读取。
-严禁打印、传参、写仓库、写日志或在子代理之间复制 token。不要直接用 curl 调
-`api.github.com`。
+上一环境曾通过 macOS Keychain 提供 GitHub 凭据，但你的远程环境不能访问且不得依赖
+该 Keychain。只能使用用户为当前 GPT Pro/GitHub connector/云端工作区明确配置的安全
+凭据。若没有凭据，先做只读能力检查；需要写入或提高 API 配额时，明确报告能力缺口，
+不得要求用户把 PAT 粘贴进聊天。严禁打印、传参、写仓库、写日志或在代理之间复制
+token。不要直接用 curl 调 `api.github.com`。
 
 批量 inventory 优先 GraphQL；Git refs/history 使用 SSH clone/fetch，本地完成 DAG、
 ancestry、diff、patch-id。不要逐 commit 消耗 REST。

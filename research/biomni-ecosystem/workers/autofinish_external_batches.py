@@ -1083,7 +1083,7 @@ def correct_remote_handoff_counts(repositories: list[dict[str, Any]]) -> None:
     initial_records = len(batch8_rows)
     initial_families = len({int(r["external_deep_audit_queue_order"]) for r in batch8_rows})
     remaining_families = 2069 - initial_families
-    remaining_records = 2124 - initial_records
+    remaining_records = 2161 - initial_records
     checkpoint = EXT_DIR / "queue-checkpoint-after-batch-008.md"
     if checkpoint.exists():
         text = checkpoint.read_text(encoding="utf-8")
@@ -1093,14 +1093,14 @@ def correct_remote_handoff_counts(repositories: list[dict[str, Any]]) -> None:
     recovery = EXT_DIR / "deep-audit-batch-009-remote-recovery.md"
     if recovery.exists():
         text = recovery.read_text(encoding="utf-8")
-        text = re.sub(r"prior completed checkpoint remains \*\*\d+ / 2,069 families\*\* and \*\*\d+ / 2,124 queued repository records\*\*\.", f"prior completed checkpoint remains **{initial_families} / 2,069 families** and **{initial_records} / 2,124 queued repository records**.", text)
+        text = re.sub(r"prior completed checkpoint remains \*\*\d+ / 2,069 families\*\* and \*\*\d+ / 2,161 queued repository records\*\*\.", f"prior completed checkpoint remains **{initial_families} / 2,069 families** and **{initial_records} / 2,161 queued repository records**.", text)
         recovery.write_text(text, encoding="utf-8")
 
 
 def update_state(batch: int, completed_families: int, completed_records: int) -> None:
     text = STATE_FILE.read_text(encoding="utf-8")
     total_families = 2069
-    total_records = 2124
+    total_records = 2161
     remaining_families = total_families - completed_families
     remaining_records = total_records - completed_records
     timestamp = now_utc()
@@ -1144,7 +1144,7 @@ def update_state(batch: int, completed_families: int, completed_records: int) ->
 def update_coverage(batch: int, completed_families: int, completed_records: int) -> None:
     text = COVERAGE_FILE.read_text(encoding="utf-8")
     remaining_families = 2069 - completed_families
-    remaining_records = 2124 - completed_records
+    remaining_records = 2161 - completed_records
     final = batch == 46
     text = re.sub(
         r"\| External HIGH person-repository records \| 2272 \| 2272 normalized \| \d+ \|[^\n]*\| (PARTIAL|COMPLETE) \|",
@@ -1157,7 +1157,7 @@ def update_coverage(batch: int, completed_families: int, completed_records: int)
         text,
     )
     ledger_header = "## External deep-audit completion ledger"
-    entry = f"- Batch {batch:03d}: completed exact queue orders {batch_bounds(batch)[0]}–{batch_bounds(batch)[1]}; cumulative {completed_families}/2069 families and {completed_records}/2124 queued records."
+    entry = f"- Batch {batch:03d}: completed exact queue orders {batch_bounds(batch)[0]}–{batch_bounds(batch)[1]}; cumulative {completed_families}/2069 families and {completed_records}/2161 queued records."
     if ledger_header not in text:
         text += f"\n\n{ledger_header}\n\n{entry}\n"
     elif entry not in text:
@@ -1180,7 +1180,7 @@ def update_queue_summary(batch: int, completed_families: int, completed_records:
         text,
     )
     ledger_header = "## Canonical completion ledger after accelerated batches"
-    entry = f"- Batch {batch:03d}: orders {batch_bounds(batch)[0]}–{batch_bounds(batch)[1]} complete; cumulative **{completed_families}/2,069 families** and **{completed_records}/2,124 queued records**; **{2069-completed_families} families** remain."
+    entry = f"- Batch {batch:03d}: orders {batch_bounds(batch)[0]}–{batch_bounds(batch)[1]} complete; cumulative **{completed_families}/2,069 families** and **{completed_records}/2,161 queued records**; **{2069-completed_families} families** remain."
     if ledger_header not in text:
         text += f"\n\n{ledger_header}\n\n{entry}\n"
     elif entry not in text:
@@ -1208,7 +1208,7 @@ def update_master_index(batch: int, audits: list[dict[str, Any]], evidence_ids: 
     )
     text = re.sub(
         r"\| External deep-audit queue \| queue normalization \| (COMPLETE|PARTIAL) \|[^\n]*",
-        f"| External deep-audit queue | queue normalization and static audit | {'COMPLETE' if batch == 46 else 'PARTIAL'} | 2,272 HIGH records normalized into 2,069 stable families; {completed_records} records/{completed_families} families deep-audited and {2124-completed_records} queued records/{2069-completed_families} families remain | `external-repos/queue-summary.md` | `{evidence_ids[0]}`–`{evidence_ids[-1]}` |",
+        f"| External deep-audit queue | queue normalization and static audit | {'COMPLETE' if batch == 46 else 'PARTIAL'} | 2,272 HIGH records normalized into 2,069 stable families; {completed_records} records/{completed_families} families deep-audited and {2161-completed_records} queued records/{2069-completed_families} families remain | `external-repos/queue-summary.md` | `{evidence_ids[0]}`–`{evidence_ids[-1]}` |",
         text,
     )
     MASTER_INDEX_FILE.write_text(text, encoding="utf-8")
@@ -1242,7 +1242,7 @@ def write_final_summary(repositories: list[dict[str, Any]], evidence: list[dict[
         "Status: **COMPLETE**",
         "",
         "- Stable family queue: **2,069 / 2,069 complete**.",
-        "- Queued repository records: **2,124 / 2,124 complete**.",
+        "- Queued repository records: **2,161 / 2,161 complete**.",
         "- Previously screened Biomni-lineage exclusions: **111 records**.",
         "- Batch reports: **001–046**.",
         "- Third-party code execution: **none**.",
@@ -1359,7 +1359,7 @@ def main() -> int:
         update_research_log(batch, audits, total_records, evidence_ids)
         final = batch == END_BATCH == 46
         if final:
-            if completed_families != 2069 or completed_records != 2124:
+            if completed_families != 2069 or completed_records != 2161:
                 raise AuditError(f"final canonical counts mismatch: families={completed_families}, records={completed_records}")
             write_final_summary(repositories, evidence, changes, lineages)
         commit_and_push(batch, final)

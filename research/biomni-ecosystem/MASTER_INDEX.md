@@ -4,6 +4,7 @@
 |---|---|---|---|---|---|
 | Research state | control | ACTIVE | Authoritative resume checkpoint | `STATE.md` | N/A |
 | Coverage ledger | control | PARTIAL | Measurable collection completion | `COVERAGE.md` | N/A |
+| GPT Pro handoff prompt | control/handoff | COMPLETE | Copy-ready continuation prompt frozen after Batch 008; Batch 009 orders 213–262 remain unstarted | `GPT_PRO_HANDOFF_PROMPT.md` | Batch 008 checkpoint `774e9641553eb72cdaa0a3898abd97c2b66cbc54` |
 | Research methodology | methodology | COMPLETE | Scope, evidence, deduplication, security, and limits | `methodology/` | N/A |
 | Concurrent scheduling and GitHub API queue | methodology/runtime | COMPLETE | Shared 4-slot authenticated limiter, conservative primary state, credential-isolated success-only cache, no-credential fail-closed behavior, cursor recovery, and 30–100-family fast closures | `methodology/concurrency-and-rate-limits.md`, `methodology/github-queue-credential-scope-verification.md`, `workers/github-api-queue/` | `evidence-000174`, `evidence-000181`, `evidence-000198` |
 | snap-stanford/Biomni baseline | repository baseline | VERIFIED | Main frozen at `400c1f366b96a35ca253e13c9b06c5076af41d65` | `upstream/baseline.md` | `repo-000001` |

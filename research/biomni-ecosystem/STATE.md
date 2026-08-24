@@ -1,6 +1,6 @@
 # Research State
 
-last_updated_utc: 2026-08-24T04:50:39Z
+last_updated_utc: 2026-08-24T04:57:23Z
 current_phase: Phase 8 - deep audit relevant external repositories
 current_entity: GPT Pro handoff; next unstarted queue orders 213-262 (50 families)
 current_batch: handoff-checkpoint-after-external-deep-audit-008
@@ -96,6 +96,7 @@ completed_units:
 - closed accelerated batch 008 across exact orders 163–212: 50 families and 56 bounded repository records, with 21 substantive candidates, 19 DOC/metadata/maintenance, nine no-unique/source-lineage and one non-biomedical false positive
 - normalized change-000168–change-000196 and lineage-000061–lineage-000072 after ten exact-identity verifier overlays; failed GraphQL evidence received zero weight and no Feature or Implementation ID was allocated
 - stopped Batch 009 before research at user request; one just-dispatched worker was interrupted and produced no accepted MAP result, so orders 213–262 remain NOT_STARTED for GPT Pro handoff
+- persisted a copy-ready GPT Pro continuation prompt at GPT_PRO_HANDOFF_PROMPT.md with the Batch 008 SHA, exact database counts, queue/cache controls and G1-G10 identity gates
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
@@ -131,4 +132,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: hand off to GPT Pro; read this STATE plus MASTER_INDEX/COVERAGE and start exact queue orders 213–262 from NOT_STARTED
+next_action: hand off with GPT_PRO_HANDOFF_PROMPT.md; GPT Pro should verify the branch, read STATE/MASTER_INDEX/COVERAGE and start exact queue orders 213–262 from NOT_STARTED

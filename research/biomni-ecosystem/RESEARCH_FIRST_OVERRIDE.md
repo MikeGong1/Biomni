@@ -64,9 +64,11 @@ It does **not** erase or rewrite the historical Batch 001–046 findings. The ex
 11. `Rasic2/Biomni`, `change-000073`: Azure/MCP/LangGraph supervisor prototype.
 12. `cvxluo/reti`, `change-000070`: medical-genetics product architecture; reference only until clinical, privacy and security blockers are resolved.
 
-The complete machine-readable reopening set is stored in:
+The initial machine-readable priority reopening set is stored in:
 
 `external-repos/research-first-reopen-manifest.jsonl`
+
+This manifest is the first high-value tranche, not an assertion that all 598 families have already been individually reclassified. The remaining candidates must be clustered and processed under the rule-level overlay above.
 
 The governing method is stored in:
 

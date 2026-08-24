@@ -1,41 +1,50 @@
 # Biomni Public Ecosystem Research Database
 
-This directory is the durable, evidence-backed record for the bounded Biomni
-ecosystem audit. It stores human-readable research notes beside machine-readable
-JSONL records so that later Codex sessions can resume from Git rather than chat
-memory.
+本目录保存 Biomni 及其相关生态的可追溯调研记录，包括人类可读报告和机器可读 JSONL。后续 GPT Pro／Codex 应从 Git 中恢复，而不是依赖聊天记忆。
 
-## Resume protocol
+## 当前恢复顺序
 
-Read these files first, in order:
+Phase 9 已开始。请按以下顺序读取：
 
-1. `RESEARCH_FIRST_OVERRIDE.md`
-2. `methodology/research-first-source-policy.md`
-3. `external-repos/research-first-reopen-manifest.jsonl`
-4. `STATE.md`
-5. `MASTER_INDEX.md`
-6. `COVERAGE.md`
-7. the detailed file named by `current_entity` in `STATE.md`
+1. `PHASE_9_STATE.md`
+2. `PHASE_9_MASTER_INDEX.md`
+3. `PHASE_9_COVERAGE.md`
+4. `RESEARCH_FIRST_OVERRIDE.md`
+5. `methodology/research-first-source-policy.md`
+6. `phase-9/feature-taxonomy-v001.md`
+7. `external-repos/research-first-reopen-manifest.jsonl`
+8. 当前 workpack 或 batch report
+9. `STATE.md`、`MASTER_INDEX.md`、`COVERAGE.md`，仅用于 Phase 8 历史细节
 
-For local Codex continuation, read:
+本地 Codex 全局入口：
 
 - `CODEX_RESEARCH_FIRST_PROMPT.md`
 
-The research-first overlay supersedes the former license-led candidate-selection
-policy, but it does not erase historical scientific, security, privacy, runtime,
-lineage or provenance findings. Missing or unclear licensing no longer prevents
-Feature/Implementation discovery. Public redistribution and publication review
-remain a separate later gate.
+首个代码级验证入口：
 
-## Governing rules
+- `phase-9/CODEX_WORKPACK_001_KDENSE_KUAN.md`
 
-- Research universe and the one-hop people boundary: `methodology/scope.md`
-- Claim and source handling: `methodology/evidence-policy.md`
-- Unique-change and lineage resolution: `methodology/deduplication-policy.md`
-- Research-first source use and provenance: `methodology/research-first-source-policy.md`
-- Static-research safety constraints: `methodology/security-policy.md`
-- Observability limits: `methodology/limitations.md`
+## 当前状态
 
-Canonical state, coverage, IDs, feature selection, and JSONL records are managed
-by the parent research coordinator. Worker output is provisional until verified
-and normalized.
+- Phase 8：Batch 001–046 完成；
+- external families：2,069／2,069；
+- queued repository records：2,161／2,161；
+- `DEEP_AUDIT_CANDIDATE`：598；
+- canonical Feature：0；
+- canonical Implementation：0；
+- Phase 9：source-first Feature／Implementation normalization 已启动。
+
+旧 `STATE.md`、`MASTER_INDEX.md` 和 `COVERAGE.md` 保留了完整执行历史，但其中部分中间段落仍含 Batch 009 未开始或旧累计数。当前状态以 `PHASE_9_*` 文件为准。
+
+## 研究规则
+
+- 范围与人员边界：`methodology/scope.md`
+- Evidence：`methodology/evidence-policy.md`
+- Deduplication：`methodology/deduplication-policy.md`
+- Source-first 与 provenance：`methodology/research-first-source-policy.md`
+- Static safety：`methodology/security-policy.md`
+- Limitations：`methodology/limitations.md`
+
+License 不再阻止功能发现，但仍作为 provenance 和后续 publication review 信息。科学、安全、隐私、临床、模型信任、数据治理和供应链风险不因科研用途而降低。
+
+Canonical state、ID、Feature selection 和 JSONL cross-reference 由研究协调者维护；worker 输出在验证和归一化前均为 provisional。

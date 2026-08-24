@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-24T02:43:36Z
+last_updated_utc: 2026-08-24T03:51:16Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: accelerated shard queue orders 113-162 (50 families)
-current_batch: external-deep-audit-007-accelerated
-current_page_or_cursor: batches 001-006 complete; orders 113-162 parallel audit in progress; 2272/2272 HIGH records normalized to 2069 stable orders; 112 families DEEP_AUDITED; 1957 not deep-audited
+current_entity: accelerated shard queue orders 163-212 (50 families)
+current_batch: external-deep-audit-008-accelerated
+current_page_or_cursor: batches 001-007 complete; orders 163-212 parallel audit in progress; 2272/2272 HIGH records normalized to 2069 stable orders; 162 families DEEP_AUDITED; 1907 not deep-audited
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -89,10 +89,13 @@ completed_units:
 - detected and reversed a stale five-order Biomni shard before canonical write; enforced G1–G10 exact ID-set, queue round-trip, reverse-member and verifier-identity gates and restored the omitted ai-nuggets member
 - normalized change-000114–change-000139 and lineage-000040–lineage-000051; rejected or deferred every direct-adoption path and allocated no Feature or Implementation ID
 - attempted ten mutually exclusive Batch 007 shards for orders 113–162; eight non-root workers are active and two tool-quota-blocked shards await completed-slot rotation without API or file activity
+- closed accelerated batch 007 across exact orders 113–162: 50 families and 53 bounded repository records, with 19 substantive candidates, 26 DOC/metadata/maintenance and five no-unique/source-lineage results
+- normalized change-000140–change-000167 and lineage-000052–lineage-000060 after ten exact-identity verifier overlays; rejected or deferred every direct-adoption path and allocated no Feature or Implementation ID
+- attempted ten mutually exclusive Batch 008 shards for orders 163–212; eight non-root workers are active and two persistently quota-blocked shards await completed-slot rotation without API or file activity
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- finish, independently verify and parent-reduce accelerated queue orders 113–162; do not count partial worker results before verification
+- finish, independently verify and parent-reduce accelerated queue orders 163–212; do not count partial worker results before verification
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -124,4 +127,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: continue accelerated batch 007, rotate completed slots, verify all orders 113–162, then atomically persist family/change/lineage decisions
+next_action: continue accelerated batch 008, rotate completed slots, verify all orders 163–212, then atomically persist family/change/lineage decisions

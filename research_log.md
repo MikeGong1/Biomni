@@ -71,3 +71,12 @@
 - Modification: Re-audited the five real OpenFold3/plugin-registry/NSCLC-Agent/TorchGeo/isic-cli families, added parent primary-artifact verification, and enforced G1–G10 exact set, queue round-trip, name/family/member completeness and verifier-identity gates before allocating 26 Changes and 12 Lineages.
 - Result change: Fifty families and 64 repository records became `DEEP_AUDITED`; family coverage rose 62→112, unresolved families fell 2,007→1,957, and queued HIGH records fell 2,085→2,021. No Feature/Implementation was allocated and all direct adoption was rejected or deferred.
 - Retained: Yes; corrected report, 50-row/64-ID manifest, changes 114–139, lineages 40–51, evidence 182–189, database/control updates, identity-gate failure history and next 50-family shard retained.
+
+## 2026-08-24 — Accelerated external deep audit batch 007
+
+- Experimental hypothesis: Strict database-derived identity sets can sustain another 50-family checkpoint while preserving substantive source-PR and nested-branch evidence without promoting catalog duplicates.
+- Observed failure: Nineteen substantive families failed scientific, security, privacy, provenance, licensing or reproducibility contracts; 26 other families were catalog/document/maintenance lineages and five had no bounded unique code. Large external child universes, such as 24,484 superpowers forks, could not be described as globally audited.
+- Suspected cause: Metadata screening intentionally maximized recall across catalogs, exact forks and research prototypes, while several source PRs or nondefault branches contained real but unaccepted changes.
+- Modification: Ran ten exact-identity MAP and ten independent verifier paths, applied count/scientific/severity/privacy corrections, preserved 28 change components and nine lineages, and explicitly bounded child-fork and API-invisible-ref claims.
+- Result change: Fifty families and 53 repository records became `DEEP_AUDITED`; family coverage rose 112→162, unresolved families fell 1,957→1,907, and queued HIGH records fell 2,021→1,968. No Feature/Implementation was allocated and all direct adoption was rejected or deferred.
+- Retained: Yes; report, 50-row/53-ID manifest, changes 140–167, lineages 52–60, evidence 190–197, database/control updates and next 50-family shard retained.

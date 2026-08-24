@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 140 | 111 prior exclusions; batches 001–006 complete; 2021 remain queued | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 112 | stable deterministic queue orders 1–2069; batches 001–006 complete; 1957 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 193 | 111 prior exclusions; batches 001–007 complete; 1968 remain queued | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 162 | stable deterministic queue orders 1–2069; batches 001–007 complete; 1907 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -305,7 +305,13 @@ Feature/Implementation IDs. Parent validation also caught and reversed a stale
 five-order Biomni shard before canonical write and added exact reverse-completeness
 identity gates.
 
-The third accelerated checkpoint is in progress across queue orders 113–162 (50
+Accelerated batch 007 closed exact queue orders 113–162: 50 families and 53
+bounded repository records. The result distribution is 19 substantive
+candidates, 26 DOC/metadata/maintenance-only and five no-unique/source-lineage
+closures. Parent reduction allocated 28 Change and nine Lineage IDs, rejected or
+deferred every direct-adoption path, and withheld Feature/Implementation IDs.
+
+The fourth accelerated checkpoint is in progress across queue orders 163–212 (50
 families). Eight non-root workers currently own mutually exclusive five-family
 shards; two agents were tool-quota blocked before API/file activity and their
 orders await completed-slot rotation. REST/GraphQL requests share the four-slot

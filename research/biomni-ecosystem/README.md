@@ -20,9 +20,10 @@ Phase 9 已开始。请按以下顺序读取：
 
 - `CODEX_RESEARCH_FIRST_PROMPT.md`
 
-首个代码级验证入口：
+当前代码级验证入口：
 
 - `phase-9/CODEX_WORKPACK_001_KDENSE_KUAN.md`
+- `phase-9/CODEX_WORKPACK_002_SCIAGENT_TRANCHE_001.md`
 
 ## 当前状态
 
@@ -30,9 +31,13 @@ Phase 9 已开始。请按以下顺序读取：
 - external families：2,069／2,069；
 - queued repository records：2,161／2,161；
 - `DEEP_AUDIT_CANDIDATE`：598；
+- Phase 9 statically normalized candidate families：2／598；
+- SciAgent candidate Skills：20／125 静态归一化；
+- provisional capability clusters/units：38；
 - canonical Feature：0；
 - canonical Implementation：0；
-- Phase 9：source-first Feature／Implementation normalization 已启动。
+- third-party runtime executions：0；
+- Phase 9：source-first Feature／Implementation normalization ACTIVE。
 
 旧 `STATE.md`、`MASTER_INDEX.md` 和 `COVERAGE.md` 保留了完整执行历史，但其中部分中间段落仍含 Batch 009 未开始或旧累计数。当前状态以 `PHASE_9_*` 文件为准。
 

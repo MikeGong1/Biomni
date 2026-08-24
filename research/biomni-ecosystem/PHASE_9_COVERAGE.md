@@ -19,7 +19,7 @@
 
 | Collection | Static normalized | Canonical normalized | Total | Status |
 |---|---:|---:|---:|---|
-| `DEEP_AUDIT_CANDIDATE` families | 0 | 0 | 598 | ACTIVE |
+| `DEEP_AUDIT_CANDIDATE` families | 1 | 0 | 598 | ACTIVE |
 | High-value reopening groups | 13 | 0 | 13 | PRIORITIZED |
 | K-Dense/Kuan/BIDS/DataLad source surfaces | 14 | 0 | 14 | STATIC_BATCH_001_COMPLETE |
 | Provisional capability units from Batch 001 | 21 | 0 | 21 | STATIC_BATCH_001_COMPLETE |
@@ -42,8 +42,8 @@
 Research disposition：
 
 - `DUPLICATE_OR_SUPERSEDED`：6；
-- `SOURCE_FIRST_WITH_REMEDIATION`：11；
-- `REFERENCE_ONLY_BLOCKED`：4。
+- `SOURCE_FIRST_WITH_REMEDIATION`：12；
+- `REFERENCE_ONLY_BLOCKED`：3。
 
 ## 4. Runtime 和验证覆盖
 

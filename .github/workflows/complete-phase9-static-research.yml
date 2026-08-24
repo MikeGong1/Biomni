@@ -52,6 +52,16 @@ jobs:
           target = pathlib.Path("research/biomni-ecosystem/workers/complete_phase9_static.py")
           target.parent.mkdir(parents=True, exist_ok=True)
           target.write_bytes(zlib.decompress(base64.b64decode(payload)))
+
+          # Phase 8 repository rows evolved through several result-field names.
+          # Patch the deterministic generator to recognize the canonical token
+          # under any historical/nested schema instead of silently dropping it.
+          source = target.read_text(encoding="utf-8")
+          old = '''def result_class(rec: dict[str, Any]) -> str:\n    return str(pick(rec, "external_deep_audit_result", "result_class", "metadata_classification", default=""))\n'''
+          new = '''def result_class(rec: dict[str, Any]) -> str:\n    value = str(pick(\n        rec,\n        "external_deep_audit_result",\n        "external_deep_audit_result_class",\n        "external_deep_audit_classification",\n        "external_deep_audit_outcome",\n        "result_class",\n        "metadata_classification",\n        default="",\n    ))\n    if value:\n        return value\n    if "DEEP_AUDIT_CANDIDATE" in json.dumps(rec, ensure_ascii=False, sort_keys=True):\n        return "DEEP_AUDIT_CANDIDATE"\n    return ""\n'''
+          if old not in source:
+              raise SystemExit("candidate schema patch target not found")
+          target.write_text(source.replace(old, new), encoding="utf-8")
           PY
           python3 -m py_compile research/biomni-ecosystem/workers/complete_phase9_static.py
           rm -rf research/biomni-ecosystem/workers/phase9_payload
@@ -105,4 +115,4 @@ jobs:
             git push origin HEAD:research/biomni-ecosystem-audit
           fi
 
-# Trigger revision: 4
+# Trigger revision: 5

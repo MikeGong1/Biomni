@@ -1,10 +1,10 @@
 # Research State
 
-last_updated_utc: 2026-08-24T06:22:12Z
+last_updated_utc: 2026-08-24T06:22:40Z
 current_phase: Phase 8 - deep audit relevant external repositories
-current_entity: next external deep-audit queue orders 563-612
-current_batch: external-deep-audit-015-complete
-current_page_or_cursor: batches 001-015 complete; 562/2069 families and 620/2124 queued records DEEP_AUDITED; 1507 families/1504 records remain
+current_entity: next external deep-audit queue orders 613-662
+current_batch: external-deep-audit-016-complete
+current_page_or_cursor: batches 001-016 complete; 612/2069 families and 673/2124 queued records DEEP_AUDITED; 1457 families/1451 records remain
 completed_units:
 - initialized methodology/database and froze baseline 400c1f366b96a35ca253e13c9b06c5076af41d65
 - completed branches 33/33 and PRs open 38/38, merged 111/111, closed-unmerged 33/33
@@ -105,9 +105,10 @@ completed_units:
 - completed external deep-audit Batch 013; exact bounded queue interval closed and committed with static-only direct-adoption rejection
 - completed external deep-audit Batch 014; exact bounded queue interval closed and committed with static-only direct-adoption rejection
 - completed external deep-audit Batch 015; exact bounded queue interval closed and committed with static-only direct-adoption rejection
+- completed external deep-audit Batch 016; exact bounded queue interval closed and committed with static-only direct-adoption rejection
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available
-- continue Phase 8 from the next exact queue interval after Batch 015; do not inflate counters before canonical round-trip verification
+- continue Phase 8 from the next exact queue interval after Batch 016; do not inflate counters before canonical round-trip verification
 - continue official commercial discovery where pagination/indexing permits
 - compare verified commercial behaviors against frozen OSS baseline
 - assess clean-room reconstruction only after OSS comparison
@@ -139,4 +140,4 @@ unresolved_lineages:
 - standardmodelbio Docker/uv migration awaits build-context, Jupyter auth, secret, dependency, supply-chain, and license redesign
 unresolved_questions:
 - why four REST-only identities are absent from the current tree and 11 tree-only identities were absent from REST snapshot is UNKNOWN
-next_action: start exact queue orders 563-612 as Batch 016; preserve static-only and exact canonical identity gates
+next_action: start exact queue orders 613-662 as Batch 017; preserve static-only and exact canonical identity gates

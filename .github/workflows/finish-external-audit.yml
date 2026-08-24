@@ -6,6 +6,7 @@ on:
       - research/biomni-ecosystem-audit
     paths:
       - .github/workflows/finish-external-audit.yml
+      - research/biomni-ecosystem/workers/autofinish_external_batches.py
   workflow_dispatch:
 
 permissions:
@@ -46,6 +47,19 @@ jobs:
           git log -3 --oneline
           test -f research/biomni-ecosystem/database/repositories.jsonl
           test -f research/biomni-ecosystem/workers/autofinish_external_batches.py
+          python3 -m py_compile research/biomni-ecosystem/workers/autofinish_external_batches.py
+
+      - name: Correct canonical queued-record denominator
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path("research/biomni-ecosystem/workers/autofinish_external_batches.py")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace("2124", "2161").replace("2,124", "2,161")
+          path.write_text(text, encoding="utf-8")
+          PY
           python3 -m py_compile research/biomni-ecosystem/workers/autofinish_external_batches.py
 
       - name: Complete and push each remaining batch

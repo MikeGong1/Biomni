@@ -1,0 +1,55 @@
+name: Finish external repository deep audit
+
+on:
+  push:
+    branches:
+      - research/biomni-ecosystem-audit
+    paths:
+      - .github/workflows/finish-external-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: biomni-external-deep-audit-finish
+  cancel-in-progress: false
+
+jobs:
+  finish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      TARGET_BRANCH: research/biomni-ecosystem-audit
+      START_BATCH: "9"
+      END_BATCH: "46"
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MAX_ARCHIVE_COMPRESSED: "73400320"
+      MAX_TEXT_BYTES_PER_REPO: "8388608"
+      MAX_FILES_PER_REPO: "750"
+      MAX_FILE_BYTES: "819200"
+      MAX_COMPARE_FILES: "80"
+      MAX_RAW_FILES: "45"
+    steps:
+      - name: Check out the research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/biomni-ecosystem-audit
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Verify checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short --branch
+          git log -3 --oneline
+          test -f research/biomni-ecosystem/database/repositories.jsonl
+          test -f research/biomni-ecosystem/workers/autofinish_external_batches.py
+          python3 -m py_compile research/biomni-ecosystem/workers/autofinish_external_batches.py
+
+      - name: Complete and push each remaining batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 research/biomni-ecosystem/workers/autofinish_external_batches.py

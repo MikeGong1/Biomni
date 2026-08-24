@@ -1,0 +1,11 @@
+{
+  "baseline_tools_parsed": 224,
+  "candidate_families": 598,
+  "commercial_behaviors": 17,
+  "parse_errors": [],
+  "provisional_features": 91,
+  "provisional_implementations": 801,
+  "sciagent_candidates": 125,
+  "sciagent_skills": 203,
+  "validation_clusters": 91
+}

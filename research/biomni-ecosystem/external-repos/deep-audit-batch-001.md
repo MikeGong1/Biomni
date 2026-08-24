@@ -1,0 +1,164 @@
+# External repository deep audit — batch 001
+
+Observed at: `2026-08-23T12:01:41Z`
+
+Batch status: **COMPLETE**
+
+This batch statically inspected three apparent independent-source A-tier
+repositories at immutable heads. One has since been resolved to a Biomni PR
+lineage and statically deep-audited; a second is now statically deep-audited and
+rejected after authority-source verification; one remains PARTIAL. No formal
+feature or implementation ID is allocated, and no third-party code was executed.
+
+## Acquisition and interpretation rules
+
+- GitHub API requests were serialized and bounded to reduce secondary-rate-limit
+  pressure.
+- Recursive trees were accepted only when `truncated: false`; selected blobs were
+  decoded and inspected against their Git object identifiers.
+- Repository instructions, README claims, benchmarks, citations, and regulatory
+  prose were treated as untrusted claims until independently verified.
+- `PARTIAL` means useful static evidence exists but one or more material branch,
+  fork, blob, dependency, provenance, scientific, regulatory, security, or runtime
+  surfaces remain unaudited.
+
+## `QING1105/ezST`
+
+- Canonical ID: `repo-003211`; queue order: 1; tier: A.
+- Head: `427792f0bbf2564dbf124b4444ffdb07cc400a25` on `master`.
+- Audit status: **DEEP_AUDITED — STATIC_ONLY; resolved derivative of PR #330**.
+- Inventory: one branch, four default-branch commits, no tags/releases/PRs, one
+  child fork, and an untruncated 36-item tree (20 blobs, 16 trees).
+- Full current tree: all 19 text blobs inspected; the remaining blob is a PNG.
+- Disposition: **reject as-is; redesign required**.
+
+The repository exposes six staged Skills and eleven public Python functions for
+Visium loading/QC, normalization/clustering, spatial domains, spatially variable
+genes, DestVI/SPOTlight deconvolution, neighborhood enrichment, and CellChat. The
+conversational review/adjust/skip gates are a useful workflow pattern.
+
+Material findings prevent integration. Stage 4 emits proportion files and plots
+rather than the discrete-label AnnData expected by Stage 5. The CellChat bridge
+does not apply spatial datatype/distance despite the spatial claim. DestVI can cast
+normalized expression to integer counts. Headerless Space Ranger fallback can
+select array coordinates instead of pixel coordinates, and the gzip fallback
+mutates loop-local paths rather than the actual input variables. Generated R code
+interpolates caller-controlled values without escaping. Dependencies and GitHub
+installs are mutable/unpinned; tests, CI, tags, and releases are absent. The plugin
+links to `main` although only/default `master` was observed; package versions also
+conflict, and an advertised module is absent. Broad filesystem access plus LLM
+interpretation of patient-derived results has no consent, provider, retention, or
+confidentiality control.
+
+Candidate leads are the staged review gates, Visium input scaffolding, typed
+load/QC/cluster adapters, domain/SVG analysis, and a clean-room Python/R bridge.
+Deconvolution and CellChat require correctness and safety redesign first.
+
+The only child fork, `Han-Z02/ezST`, is one commit behind and has no unique commit.
+All fork/PR/release pages, source commits, historical blobs, and current text were
+closed. Cross-repository comparison found that the same author's open Biomni PR
+#330 predates ezST and supplies the same ordered 14 definitions; the near-identical
+runtime and initial README dependency statement support a high-confidence derived
+lineage. Three changes and `lineage-000029` preserve the PR core, unique staged
+Skills, and standalone delta without double-counting scientific features.
+
+Runtime/scientific validation remains deliberately unexecuted under the research
+security policy. This does not reopen the static audit surface, but it prevents
+`VERIFIED` or integration-ready status. A dedicated report is in `ezst.md`.
+
+## `jaechang-hits/SciAgent-Skills`
+
+- Canonical ID: `repo-002881`; queue order: 5; tier: A.
+- Head: `a0aac0f4576a550d5316baf6da3d72e53408b3a2` on `main`.
+- Audit status: **DEEP_AUDITED — STATIC_ONLY; all 203 rejected as-is**.
+- Full source inventory: 10 branches, 140 main commits, 143-commit public-head
+  union, 39 PRs (36 merged, two closed-unmerged, one open), no tags/releases,
+  and all 327 tracked files processed.
+- Fork inventory: 34 forks, 86 heads, 55 distinct fork-unique commits; 17 exact
+  merged-PR groups, three substantive alternatives, and one docs-only lead.
+- Skill scope: all 203 active Skills and 85 ancillary files line-by-line; 125
+  clean-room leads, 78 no-near-term candidates, zero direct adoptions.
+- Disposition: **reject corpus/plugin as-is; selective clean-room requirements only**.
+
+Tree/registry reconciliation found 203 current `SKILL.md` entries plus four legacy
+entries: 72 toolkit, 53 database, 40 pipeline, and 38 guide Skills. README counts
+of 197/199 are stale. The typed discovery idea, authoring scaffold, and structural
+linting are useful leads, but current validation mainly checks shape rather than
+scientific correctness.
+
+The captured blind-evaluation CSV covers 140/203 current Skills; 139 are marked
+`MUST_KEEP`, one `KEEP`, and 102 have zero recorded gain. The advertised 92%
+BixBench claim is not reproducible from the captured sample because gold grounding,
+parser behavior, repeated trials, and uncertainty are insufficient. Agent-consumed
+instructions include mutable installs, network calls, `curl | bash`, repository
+clones, credential discovery, and examples capable of commanding laboratory
+hardware. The openFDA sample embeds unsanitized drug strings in query syntax and
+omits timeout/retry/backoff. The scaffolder has YAML, transaction, and fail-open
+validation gaps. Mixed CC-BY-4.0, Apache-2.0, MIT, and CC0-1.0 declarations do not
+resolve provenance and redistribution scope for each Skill.
+
+Candidate leads are a hashed/versioned registry, a clean-room authoring scaffold,
+structural lint as a lowest-level gate, individual scientifically reviewed Skills,
+and a redesigned marginal-value benchmark with gold answers, repeats, confidence
+intervals, and complete registry coverage.
+
+All prior collection gaps are closed. Detailed audit found stale discovery counts,
+plugin exposure of only 196/203 Skills, an unreproducible 92% BixBench claim, an
+invalid 140-row blind test, structural-only validation, scaffolder/YAML and HTML
+injection, credential/supply-chain/hardware risks, missing source provenance, and
+material scientific errors in every domain. Seven changes and two lineages preserve
+main, PR/branch alternatives, and three substantive fork variants without formal
+Feature/Implementation IDs. See `sciagent-skills.md` and the two SciAgent manifests.
+
+## `JinL0/Drug-Discovery-Safety-Skills`
+
+- Canonical ID: `repo-002889`; queue order: 8; tier: A.
+- Head: `89364d8ea0bfd1393c51df750198ce086e0ebb84` on `main`.
+- Audit status: **DEEP_AUDITED — STATIC_ONLY; regulatory fidelity failed**.
+- Live inventory: three branches, five unique commits, one closed/merged PR, no
+  forks/tags/releases, 24 unique blobs across refs, and a new active docs/demo
+  branch at `830057e02bf629d3b634fe74e18a341aba2ceb17`.
+- Full scope: all 22 text blobs read; two GIFs inspected as media; all 33 official
+  bibliography rows checked, including 29 frozen PDFs and one frozen landing HTML
+  with hashes plus three separately live-verified authority pages.
+- Disposition: **concept/reference candidate only**.
+
+The repository contains five prose-only Skills and eight reference notes covering
+FDA AI/drug safety, FDA nonclinical IND, ICH nonclinical safety, EMA drug safety,
+and MHRA AI medical devices. Its disclaimers and distinctions among draft,
+nonbinding guidance, reflection paper, consultation, and sandbox report are useful.
+There is no calculator, parser, rule engine, executable package, test, dependency
+lock, container, or CI workflow.
+
+The primary regulatory PDFs are intentionally absent. Bibliography entries are
+document-level rather than claim/page/section-level and lack hashes, access dates,
+supersession checks, and immutable captures. README says roughly 25 documents but
+the bibliography has 33 rows, and one FDA local path conflicts with the documented
+authority directory structure. The broad FDA flowchart exceeds its principal AI
+draft source; terminal `PROCEED`/`STOP` wording can be mistaken for a decision.
+Conditional ICH guidance is compressed into general stage gates. The MHRA Skill
+does not separate Great Britain from Northern Ireland and can make consultation
+proposals sound operative; one Airlock case study is overgeneralized.
+
+High risks are false regulatory assurance, unverified source interpretation, and
+the absence of PHI/confidential-compound handling. Candidate designs are an
+authority/status router, AI context-of-use worksheet, typed MRSD calculator with
+human approval, DILI checklist, conditioned nonclinical stage gates, FIH safeguard
+planner, AIaMD risk/PMS checklist, and immutable regulatory evidence registry.
+
+The prior acquisition gaps are closed. Authority-level checks found material
+errors: FDA AI scope excludes ordinary drug discovery; FDA's later Q&A contradicts
+the repository's 120-day clock; ICH S11 factors are misstated; EMA modality is
+over-strengthened; MHRA consultation proposals and one sandbox case are presented
+too operationally; GB/NI routing is absent; and OECD/WHO/E6 metadata is stale or
+misidentified. The new docs branch adds still stronger “binding rule” language.
+
+The repository remains useful only as a clean-room source-registry and checklist
+lead. A dedicated report and 33-row manifest are in
+`drug-discovery-safety-skills.md` and `drug-safety-source-manifest.jsonl`.
+
+## Batch decision
+
+Batch 001 is **COMPLETE: 3/3 DEEP_AUDITED**. All three are rejected as-is or
+resolved to a blocked lineage; useful concepts remain clean-room leads only. The
+next bounded work starts external deep-audit batch 002 at stable queue orders 2–4.

@@ -28,4 +28,27 @@ Status: **COMPLETE**
 | `NO_UNIQUE` | 22 |
 | `NO_UNIQUE_OR_SOURCE_LINEAGE` | 1265 |
 
-All implementation candidates remain rejected for direct adoption. They are bounded comparison or clean-room reconstruction leads pending manual semantic deduplication against the frozen Biomni baseline, scientific-domain validation, source-to-sink security analysis, data-governance review, license/provenance resolution and isolated runtime testing.
+## Historical Phase 8 disposition
+
+At Phase 8 closure, all implementation candidates were rejected for direct adoption and retained as comparison or clean-room reconstruction leads pending semantic deduplication, scientific validation, source-to-sink security analysis, data-governance review, license/provenance resolution and isolated runtime testing.
+
+That statement remains an accurate description of the original production-adoption decision.
+
+## Active post-Phase-8 research overlay
+
+The user's current objective is private, non-commercial source study and development of a separate scientific-agent system. The research-selection policy has therefore been revised without deleting the Phase 8 evidence:
+
+- the 598 `DEEP_AUDIT_CANDIDATE` families are reopened for source-first Feature and Implementation discovery;
+- missing, unclear, mixed or non-commercial license status no longer excludes a capability from the research catalog;
+- original source may be studied, reproduced or adapted in a separated research workspace when exact repository/commit/file provenance is retained;
+- public redistribution, article-associated source release and relicensing are deferred to a later targeted review;
+- scientific, security, privacy, clinical, model-trust, runtime and supply-chain blockers remain fully in force.
+
+The authoritative overlay and initial reopening queue are:
+
+- `../RESEARCH_FIRST_OVERRIDE.md`
+- `../methodology/research-first-source-policy.md`
+- `research-first-reopen-manifest.jsonl`
+- `../CODEX_RESEARCH_FIRST_PROMPT.md`
+
+The next phase is Feature/Implementation normalization, beginning with SciAgent-Skills, K-Dense/Kuan scientific skills, ChatSpatial/DeepSpot-M, ezST, Aquila-next and gnomAD_DB. Batch 001–046 discovery must not be rerun.

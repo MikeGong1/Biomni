@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 1953 | 111 prior exclusions; external batches 001–041 complete; 171 queued records remain | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 1862 | stable deterministic queue orders 1–2069; external batches 001–041 complete; 207 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 2004 | 111 prior exclusions; external batches 001–042 complete; 120 queued records remain | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 1912 | stable deterministic queue orders 1–2069; external batches 001–042 complete; 157 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -390,3 +390,4 @@ pagination is exhausted. Unknown denominators and unfinished cursors are always
 - Batch 039: completed exact queue orders 1713–1762; cumulative 1762/2069 families and 1853/2124 queued records.
 - Batch 040: completed exact queue orders 1763–1812; cumulative 1812/2069 families and 1903/2124 queued records.
 - Batch 041: completed exact queue orders 1813–1862; cumulative 1862/2069 families and 1953/2124 queued records.
+- Batch 042: completed exact queue orders 1863–1912; cumulative 1912/2069 families and 2004/2124 queued records.

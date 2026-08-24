@@ -1,0 +1,1 @@
+Trigger Phase 9A deterministic static-research generation.

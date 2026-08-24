@@ -1,0 +1,100 @@
+name: Phase 9 candidate schema diagnostics
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - reopened
+      - synchronize
+    paths:
+      - .github/workflows/phase9-schema-diagnostics.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/biomni-ecosystem-audit
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Inspect candidate source schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          root = Path('research/biomni-ecosystem')
+          repos = [json.loads(x) for x in (root/'database/repositories.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          normalized = [json.loads(x) for x in (root/'phase-9/candidate-family-static-normalization.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
+          unclassified = [x for x in normalized if x.get('primary_feature_key') == 'research.reference.unclassified']
+          orders = {x['queue_order'] for x in unclassified[:25]}
+
+          def qorder(r):
+              for k in ('external_deep_audit_queue_order','queue_order'):
+                  try:
+                      return int(r.get(k))
+                  except Exception:
+                      pass
+              return None
+
+          raw = [r for r in repos if qorder(r) in orders]
+          top = Counter()
+          recursive = Counter()
+          candidate_paths = Counter()
+          def walk(v, prefix=''):
+              if isinstance(v, dict):
+                  for k, x in v.items():
+                      p = f'{prefix}.{k}' if prefix else k
+                      recursive[p] += 1
+                      if 'DEEP_AUDIT_CANDIDATE' in json.dumps(x, ensure_ascii=False):
+                          candidate_paths[p] += 1
+                      walk(x, p)
+              elif isinstance(v, list):
+                  for x in v:
+                      walk(x, prefix+'[]')
+          for r in raw:
+              top.update(r.keys())
+              walk(r)
+
+          enrich = {}
+          for path in sorted((root/'external-repos').glob('remote-research-batch-*-manifest.jsonl')):
+              for line in path.read_text(encoding='utf-8').splitlines():
+                  if not line.strip(): continue
+                  row=json.loads(line)
+                  try: q=int(row.get('queue_order'))
+                  except Exception: continue
+                  if q in orders: enrich[q]=row
+
+          report = {
+              'unclassified_count': len(unclassified),
+              'sample_orders': sorted(orders),
+              'top_level_key_frequency': dict(top.most_common()),
+              'recursive_key_frequency': dict(recursive.most_common()),
+              'candidate_token_paths': dict(candidate_paths.most_common()),
+              'normalized_samples': unclassified[:25],
+              'raw_repository_records': raw,
+              'enrichment_samples': enrich,
+          }
+          out=root/'phase-9/candidate-schema-diagnostics.json'
+          out.write_text(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True)+'\n', encoding='utf-8')
+          PY
+      - name: Commit diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f research/biomni-ecosystem/phase-9/candidate-schema-diagnostics.json
+          git rm .github/workflows/phase9-schema-diagnostics.yml
+          git commit -m 'research: inspect Phase 9 candidate schema'
+          git push origin HEAD:research/biomni-ecosystem-audit

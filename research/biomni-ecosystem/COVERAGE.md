@@ -163,8 +163,8 @@ earlier identities remain explicitly unavailable rather than inferred.
 | Code-visible GitHub accounts | 159 User-type + 2 Bots; 56 main-history and 26 fork-change raw tuples separately unresolved | 161/161 accounts; all raw tuples preserved without inference | 0 | members/contributors/history/PRs/branches/forks/change-author SHAs exhausted | COMPLETE |
 | Canonical accounts with repository status closed | 161 | 161 | 0 | 158 User cursors exhausted + 2 Bots N/A + 1 User unavailable; 0 pending | COMPLETE |
 | Person public repositories | 6912 discovered from available processed Users; one unavailable User denominator unknown | 6912 metadata-screened | 0 | all 158 available User owner connections exhausted; one unavailable | PARTIAL |
-| External HIGH person-repository records | 2272 | 2272 normalized | 408 | 111 prior exclusions; external batches 001–011 complete; 1716 queued records remain | PARTIAL |
-| External HIGH lineage families | 2069 | 2069 normalized | 362 | stable deterministic queue orders 1–2069; external batches 001–011 complete; 1707 not deep-audited | PARTIAL |
+| External HIGH person-repository records | 2272 | 2272 normalized | 458 | 111 prior exclusions; external batches 001–012 complete; 1666 queued records remain | PARTIAL |
+| External HIGH lineage families | 2069 | 2069 normalized | 412 | stable deterministic queue orders 1–2069; external batches 001–012 complete; 1657 not deep-audited | PARTIAL |
 | snap-stanford public repositories | 92 | 92 | 0 | exhausted | COMPLETE |
 | snap-stanford public members | 6 | 6 | 0 | exhausted | COMPLETE |
 | Public fork repository identities | 694 | 694 | 0 | reconciled | COMPLETE |
@@ -360,3 +360,4 @@ pagination is exhausted. Unknown denominators and unfinished cursors are always
 - Batch 009: completed exact queue orders 213–262; cumulative 262/2069 families and 301/2124 queued records.
 - Batch 010: completed exact queue orders 263–312; cumulative 312/2069 families and 357/2124 queued records.
 - Batch 011: completed exact queue orders 313–362; cumulative 362/2069 families and 408/2124 queued records.
+- Batch 012: completed exact queue orders 363–412; cumulative 412/2069 families and 458/2124 queued records.

@@ -1,10 +1,15 @@
-# Trigger revision 2: workflow existed in the parent commit before this push.
+# Trigger revision 3: add pull-request fallback for repositories that ignore non-default-branch workflow pushes.
 name: Biomni remote research triage
 
 on:
   push:
     branches:
       - research/biomni-ecosystem-audit
+    paths:
+      - .github/workflows/biomni-remote-research.yml
+  pull_request:
+    branches:
+      - main
     paths:
       - .github/workflows/biomni-remote-research.yml
 
@@ -59,5 +64,5 @@ jobs:
             fi
 
             git commit -m "research: complete remote metadata triage batch ${batch3}"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            git push origin "HEAD:research/biomni-ecosystem-audit"
           done

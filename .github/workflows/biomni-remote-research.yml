@@ -1,17 +1,11 @@
-# Trigger revision 3: add pull-request fallback for repositories that ignore non-default-branch workflow pushes.
+# Trigger revision 4: run exactly once when the temporary draft PR is reopened.
 name: Biomni remote research triage
 
 on:
-  push:
-    branches:
-      - research/biomni-ecosystem-audit
-    paths:
-      - .github/workflows/biomni-remote-research.yml
   pull_request:
+    types: [reopened]
     branches:
       - main
-    paths:
-      - .github/workflows/biomni-remote-research.yml
 
 permissions:
   contents: write
@@ -51,7 +45,9 @@ jobs:
             batch3=$(printf "%03d" "${batch}")
             python /tmp/generate_remote_research.py "${batch}"
 
-            git add               "research/biomni-ecosystem/external-repos/remote-research-batch-${batch3}.md"               "research/biomni-ecosystem/external-repos/remote-research-batch-${batch3}-manifest.jsonl"
+            git add -f \
+              "research/biomni-ecosystem/external-repos/remote-research-batch-${batch3}.md" \
+              "research/biomni-ecosystem/external-repos/remote-research-batch-${batch3}-manifest.jsonl"
 
             if [ "${batch}" -eq 46 ]; then
               git add "research/biomni-ecosystem/external-repos/remote-research-summary.md"

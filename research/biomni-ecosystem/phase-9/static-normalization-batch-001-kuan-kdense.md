@@ -49,8 +49,8 @@ DataLad PR #227 head：`997202b7d481c40ca5e22e197077846fc9adc2048e`
 研究 disposition：
 
 - `DUPLICATE_OR_SUPERSEDED`：**6**
-- `SOURCE_FIRST_WITH_REMEDIATION`：**11**
-- `REFERENCE_ONLY_BLOCKED`：**4**
+- `SOURCE_FIRST_WITH_REMEDIATION`：**12**
+- `REFERENCE_ONLY_BLOCKED`：**3**
 
 ## 4. Provisional capability matrix
 

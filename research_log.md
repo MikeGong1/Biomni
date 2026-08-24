@@ -107,3 +107,10 @@
 - Modification: Interrupted the sole just-dispatched Batch 009 worker, accepted no Batch 009 MAP result, and set orders 213–262 back to `NOT_STARTED` while preserving completed Batch 008.
 - Result change: Canonical coverage remains 212/2,069 external families and 249 deep-audited records; the next agent has an exact unstarted boundary.
 - Retained: Yes; authoritative state, coverage, queue boundary and GPT Pro handoff prompt retained.
+
+## 2026-08-24T06:18:57Z — External deep audit Batch 009
+
+- Closed exact queue orders 213–262: 50 families / 52 records.
+- Result counts: DEEP_AUDIT_CANDIDATE=13, DOC_METADATA_MAINTENANCE_ONLY=2, NO_UNIQUE_OR_SOURCE_LINEAGE=35.
+- Static-only review; no third-party code executed; all direct adoption rejected.
+- Evidence: evidence-000207, evidence-000208, evidence-000209, evidence-000210.

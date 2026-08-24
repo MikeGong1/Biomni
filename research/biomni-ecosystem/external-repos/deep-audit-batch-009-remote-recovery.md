@@ -19,7 +19,7 @@ Batch 009 is the stable queue interval **213–262**, inclusive:
 - **50** external repository families;
 - **52** canonical repository records;
 - canonical completion state remains `NOT_STARTED`;
-- prior completed checkpoint remains **212 / 2,069 families** and **212 / 2,124 queued repository records**.
+- prior completed checkpoint remains **212 / 2,069 families** and **249 / 2,124 queued repository records**.
 
 This handoff does not increment those canonical completion counters.
 

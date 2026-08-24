@@ -8,7 +8,7 @@ Status: **AUTHORITATIVE COMPLETION CHECKPOINT; BATCH 009 REMAINS NOT_STARTED**
 
 - Stable external family queue: **2,069 families**.
 - Queued repository records: **2,124 records**.
-- Completed through Batch 008: **212 families** and **212 records**.
+- Completed through Batch 008: **212 families** and **249 records**.
 - Remaining before final Batch 009 completion: **1,857 families** and **1,912 records**.
 - Next exact interval: Batch 009, orders **213–262**, containing **50 families / 52 records**.
 

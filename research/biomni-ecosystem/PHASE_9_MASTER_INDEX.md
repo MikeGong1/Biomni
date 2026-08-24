@@ -35,14 +35,36 @@
 |---|---|---|
 | `phase-9/feature-taxonomy-v001.md` | ACTIVE_PROVISIONAL | Feature 分类和 identity 规则 |
 | `external-repos/research-first-reopen-manifest.jsonl` | ACTIVE | 第一批 13 个 reopening group |
-| `phase-9/static-normalization-batch-001-kuan-kdense.md` | COMPLETE_STATIC_ONLY | 12 Skills、BIDS、DataLad 的 21 capability units |
-| `phase-9/static-normalization-batch-001-manifest.jsonl` | COMPLETE_STATIC_ONLY | 21-row 机器可读 manifest |
-| `phase-9/CODEX_WORKPACK_001_KDENSE_KUAN.md` | READY | 代码级比较和验证任务 |
+
+## Static normalization Batch 001
+
+| 文件 | 状态 | 内容 |
+|---|---|---|
+| `phase-9/static-normalization-batch-001-kuan-kdense.md` | COMPLETE_STATIC_ONLY | K-Dense/Kuan 12 Skills、BIDS、DataLad；21 capability units |
+| `phase-9/static-normalization-batch-001-manifest.jsonl` | COMPLETE_STATIC_ONLY | 21-row machine-readable manifest |
+| `phase-9/CODEX_WORKPACK_001_KDENSE_KUAN.md` | READY | 代码级比较、验证和 canonical normalization |
+
+## Static normalization Batch 002
+
+| 文件 | 状态 | 内容 |
+|---|---|---|
+| `phase-9/static-normalization-batch-002-sciagent-tranche-001.md` | COMPLETE_STATIC_ONLY | SciAgent 首批 20 个 candidate Skills；17 capability clusters |
+| `phase-9/static-normalization-batch-002-manifest.jsonl` | COMPLETE_STATIC_ONLY | 20-row Skill→cluster mapping |
+| `phase-9/CODEX_WORKPACK_002_SCIAGENT_TRANCHE_001.md` | READY | statistics、bioimage、genomics、microbiology、database cluster 验证 |
+
+## 当前静态覆盖
+
+- statically normalized candidate families：2／598；
+- statically normalized SciAgent candidate Skills：20／125；
+- statically normalized provisional capability clusters/units：38；
+- canonical Features：0；
+- canonical Implementations：0；
+- third-party runtime executions：0。
 
 ## 下一批静态研究
 
-1. SciAgent 203 Skills 分类；
-2. 125 个 candidate leads 的优先级；
+1. SciAgent 剩余 105 个 candidate leads；
+2. SciAgent 78 个 no-near-term entries 的 reference/archive 分类；
 3. ChatSpatial／DeepSpot-M；
 4. ezST；
 5. Aquila-next；

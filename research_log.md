@@ -303,3 +303,10 @@
 - Result counts: DEEP_AUDIT_CANDIDATE=17, DOC_METADATA_MAINTENANCE_ONLY=3, NO_UNIQUE_OR_SOURCE_LINEAGE=30.
 - Static-only review; no third-party code executed; all direct adoption rejected.
 - Evidence: evidence-000315, evidence-000316, evidence-000317, evidence-000318.
+
+## 2026-08-24T06:29:44Z — External deep audit Batch 037
+
+- Closed exact queue orders 1613–1662: 50 families / 50 records.
+- Result counts: DEEP_AUDIT_CANDIDATE=16, DOC_METADATA_MAINTENANCE_ONLY=7, NON_BIOMEDICAL_FALSE_POSITIVE=1, NO_UNIQUE_OR_SOURCE_LINEAGE=26.
+- Static-only review; no third-party code executed; all direct adoption rejected.
+- Evidence: evidence-000319, evidence-000320, evidence-000321, evidence-000322.

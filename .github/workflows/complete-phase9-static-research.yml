@@ -1,33 +1,25 @@
-name: Complete Phase 9A static research
+name: Persist complete Phase 9A static research catalog
 
 on:
-  push:
-    branches:
-      - research/biomni-ecosystem-audit
-    paths:
-      - .github/workflows/complete-phase9-static-research.yml
   pull_request:
     branches:
       - main
-      - research/phase9-runner-base
     types:
-      - opened
       - synchronize
       - reopened
     paths:
       - .github/workflows/complete-phase9-static-research.yml
-      - research/biomni-ecosystem/workers/phase9-trigger/**
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: biomni-phase9-static-completion
+  group: biomni-phase9-static-persistence
   cancel-in-progress: false
 
 jobs:
-  complete-phase9-static:
+  persist-phase9-static:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -38,38 +30,11 @@ jobs:
           fetch-depth: 1
           persist-credentials: true
 
-      - name: Restore deterministic generator
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import base64
-          import pathlib
-          import zlib
-
-          parts = pathlib.Path("research/biomni-ecosystem/workers/phase9_payload")
-          payload = "".join(path.read_text(encoding="utf-8").strip() for path in sorted(parts.glob("part-*.txt")))
-          target = pathlib.Path("research/biomni-ecosystem/workers/complete_phase9_static.py")
-          target.parent.mkdir(parents=True, exist_ok=True)
-          target.write_bytes(zlib.decompress(base64.b64decode(payload)))
-
-          # Phase 8 repository rows evolved through several result-field names.
-          # Patch the deterministic generator to recognize the canonical token
-          # under any historical/nested schema instead of silently dropping it.
-          source = target.read_text(encoding="utf-8")
-          old = '''def result_class(rec: dict[str, Any]) -> str:\n    return str(pick(rec, "external_deep_audit_result", "result_class", "metadata_classification", default=""))\n'''
-          new = '''def result_class(rec: dict[str, Any]) -> str:\n    value = str(pick(\n        rec,\n        "external_deep_audit_result",\n        "external_deep_audit_result_class",\n        "external_deep_audit_classification",\n        "external_deep_audit_outcome",\n        "result_class",\n        "metadata_classification",\n        default="",\n    ))\n    if value:\n        return value\n    if "DEEP_AUDIT_CANDIDATE" in json.dumps(rec, ensure_ascii=False, sort_keys=True):\n        return "DEEP_AUDIT_CANDIDATE"\n    return ""\n'''
-          if old not in source:
-              raise SystemExit("candidate schema patch target not found")
-          target.write_text(source.replace(old, new), encoding="utf-8")
-          PY
-          python3 -m py_compile research/biomni-ecosystem/workers/complete_phase9_static.py
-          rm -rf research/biomni-ecosystem/workers/phase9_payload
-
       - name: Generate complete Phase 9A static research outputs
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m py_compile research/biomni-ecosystem/workers/complete_phase9_static.py
           python3 research/biomni-ecosystem/workers/complete_phase9_static.py
 
       - name: Validate generated artifacts
@@ -89,30 +54,47 @@ jobs:
           for path, count in expected.items():
               rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
               assert len(rows) == count, (path, len(rows), count)
+
           features = [json.loads(line) for line in (root / "phase-9/provisional-features.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
           implementations = [json.loads(line) for line in (root / "phase-9/provisional-implementations.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
           queue = [json.loads(line) for line in (root / "phase-9/codex-phase9-validation-queue.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
-          assert features and implementations and queue
-          assert len(features) == len(queue)
+
+          assert len(features) == 91, len(features)
+          assert len(implementations) == 801, len(implementations)
+          assert len(queue) == 91, len(queue)
           assert len({row["provisional_feature_id"] for row in features}) == len(features)
           assert len({row["provisional_implementation_id"] for row in implementations}) == len(implementations)
           assert "COMPLETE_STATIC_RESEARCH" in (root / "phase-9/PHASE9_STATIC_COMPLETION_SUMMARY.md").read_text(encoding="utf-8")
           assert "PHASE 9A STATIC RESEARCH COMPLETE" in (root / "PHASE_9_STATE.md").read_text(encoding="utf-8")
-          print(json.dumps({"features": len(features), "implementations": len(implementations), "validation_clusters": len(queue)}, sort_keys=True))
+          print(json.dumps({
+              "candidate_families": 598,
+              "sciagent_skills": 203,
+              "features": len(features),
+              "implementations": len(implementations),
+              "validation_clusters": len(queue),
+          }, sort_keys=True))
           PY
 
-      - name: Commit and push Phase 9A completion
+      - name: Commit and push machine-readable Phase 9A completion
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add research/biomni-ecosystem
+          git add -f \
+            research/biomni-ecosystem/phase-9/candidate-family-static-normalization.jsonl \
+            research/biomni-ecosystem/phase-9/sciagent-phase9-all-skills.jsonl \
+            research/biomni-ecosystem/phase-9/provisional-features.jsonl \
+            research/biomni-ecosystem/phase-9/provisional-implementations.jsonl \
+            research/biomni-ecosystem/phase-9/commercial-oss-gap-static.jsonl \
+            research/biomni-ecosystem/phase-9/codex-phase9-validation-queue.jsonl
+          git rm .github/workflows/complete-phase9-static-research.yml
+
           if git diff --cached --quiet; then
             echo "No generated changes"
           else
-            git commit -m "research: complete Phase 9A static normalization"
+            git commit -m "research: persist complete Phase 9A static catalog"
             git push origin HEAD:research/biomni-ecosystem-audit
           fi
-
-# Trigger revision: 5

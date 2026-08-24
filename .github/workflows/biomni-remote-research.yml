@@ -1,0 +1,459 @@
+name: Biomni remote research triage
+
+on:
+  push:
+    branches:
+      - research/biomni-ecosystem-audit
+    paths:
+      - .github/workflows/biomni-remote-research.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: biomni-remote-research-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+        with:
+          ref: research/biomni-ecosystem-audit
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Generate and push one commit per batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          cat > /tmp/generate_remote_research.py <<'PY'
+          from __future__ import annotations
+
+          import collections
+          import datetime as dt
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+          from typing import Any
+
+          REPO_DB = Path("research/biomni-ecosystem/database/repositories.jsonl")
+          OUT_DIR = Path("research/biomni-ecosystem/external-repos")
+          SUMMARY_PATH = OUT_DIR / "remote-research-summary.md"
+          STATUS = "REMOTE_METADATA_STATIC_TRIAGE_COMPLETE_NOT_SOURCE_LEVEL_DEEP_AUDIT"
+          OBSERVED_AT = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+          CATALOG_TERMS = (
+              "awesome", "catalog", "directory", "resource list", "reading list",
+              "papers", "paper list", "bibliography", "survey", "handbook",
+              "guide", "collection", "notes", "website", "github.io"
+          )
+          DATA_TERMS = (
+              "dataset", "benchmark", "challenge", "evaluation", "corpus",
+              "data portal", "database", "registry", "atlas"
+          )
+          IMPLEMENTATION_TERMS = (
+              "agent", "mcp", "server", "pipeline", "workflow", "platform",
+              "tool", "package", "library", "framework", "api", "app",
+              "analysis", "annotation", "visualizer", "viewer", "portal",
+              "dashboard", "automation", "inference", "prediction", "parser",
+              "converter", "client", "sdk", "plugin", "extension"
+          )
+          SCIENCE_TERMS = (
+              "model", "deep learning", "machine learning", "transformer",
+              "neural", "foundation model", "single-cell", "single cell",
+              "spatial transcript", "genom", "omics", "protein", "drug",
+              "clinical", "patholog", "medical imaging", "bioinformatics",
+              "biomedical", "crispr", "perturb", "rna", "dna", "molecule"
+          )
+
+          def safe_int(value: Any, default: int = 0) -> int:
+              try:
+                  return int(value)
+              except (TypeError, ValueError):
+                  return default
+
+          def text_of(row: dict[str, Any]) -> str:
+              topics = row.get("topics") or []
+              if not isinstance(topics, list):
+                  topics = [str(topics)]
+              fields = [
+                  row.get("full_name"),
+                  row.get("description"),
+                  row.get("parent_full_name"),
+                  row.get("external_deep_audit_family_key"),
+                  row.get("external_deep_audit_family_source"),
+                  row.get("primary_language"),
+                  " ".join(str(x) for x in topics),
+              ]
+              return " ".join(str(x) for x in fields if x).lower()
+
+          def classify(rows: list[dict[str, Any]]) -> tuple[str, list[str], str, str, list[str]]:
+              texts = " ".join(text_of(r) for r in rows)
+              all_archived = all(bool(r.get("archived") or r.get("disabled")) for r in rows)
+              all_empty = all(
+                  safe_int(r.get("size_kb"), 0) == 0
+                  or not (r.get("default_head_sha") or r.get("head_sha"))
+                  for r in rows
+              )
+              any_fork = any(bool(r.get("is_fork")) or r.get("parent_full_name") for r in rows)
+              uncertain_license = any(
+                  not r.get("code_license")
+                  or str(r.get("code_license")).upper() in {"NOASSERTION", "LICENSE_UNCLEAR", "NONE", "NULL"}
+                  for r in rows
+              )
+              recent = any(str(r.get("pushed_at") or "") >= "2025-01-01" for r in rows)
+              release = any(
+                  str(r.get("latest_release") or "").upper()
+                  not in {"", "NONE", "NONE_VISIBLE", "UNKNOWN_NOT_COLLECTED", "NULL"}
+                  for r in rows
+              )
+              child_forks = any(safe_int(r.get("child_forks_count"), 0) > 0 for r in rows)
+              languages = {
+                  str(r.get("primary_language"))
+                  for r in rows
+                  if r.get("primary_language")
+              }
+
+              flags: list[str] = []
+              if any_fork:
+                  flags.append("FORK_LINEAGE_REQUIRED")
+              if uncertain_license:
+                  flags.append("LICENSE_UNCLEAR")
+              if any(bool(r.get("archived") or r.get("disabled")) for r in rows):
+                  flags.append("ARCHIVED_OR_DISABLED")
+              if any(
+                  safe_int(r.get("size_kb"), 0) == 0
+                  or not (r.get("default_head_sha") or r.get("head_sha"))
+                  for r in rows
+              ):
+                  flags.append("EMPTY_OR_MINIMAL")
+              if len(rows) > 1:
+                  flags.append("MULTI_MEMBER_FAMILY")
+              if recent:
+                  flags.append("RECENT_ACTIVE")
+              if release:
+                  flags.append("RELEASE_SURFACE")
+              if child_forks:
+                  flags.append("CHILD_FORK_SURFACE")
+
+              has_catalog = any(term in texts for term in CATALOG_TERMS)
+              has_data = any(term in texts for term in DATA_TERMS)
+              has_impl = any(term in texts for term in IMPLEMENTATION_TERMS)
+              has_science = any(term in texts for term in SCIENCE_TERMS)
+              code_signal = bool(languages - {"HTML", "CSS", "SCSS", "TeX", "Markdown"})
+
+              if all_archived:
+                  triage = "ARCHIVED_OR_DISABLED"
+                  next_action = "DEFER_LOW_INFORMATION"
+                  conclusion = "全部 bounded 记录已归档或禁用；保留为历史线索，后续仅在本地需要时核验来源与许可证。"
+              elif all_empty:
+                  triage = "EMPTY_OR_MINIMAL"
+                  next_action = "DEFER_LOW_INFORMATION"
+                  conclusion = "记录为空或缺少可固定的默认头；当前没有足够静态证据支持功能判断。"
+              elif has_catalog and not (has_impl and code_signal):
+                  triage = "CURATED_CATALOG_OR_DOCS"
+                  next_action = "CATALOG_LEAD_ONLY"
+                  conclusion = "主要表现为目录、论文清单或文档资源；可用于发现外部线索，但不视为可直接集成实现。"
+              elif has_data and ("benchmark" in texts or "dataset" in texts or "challenge" in texts or "evaluation" in texts):
+                  triage = "DATASET_OR_BENCHMARK"
+                  next_action = "PRIORITY_LOCAL_CODEX_STATIC_REVIEW"
+                  conclusion = "元数据指向数据集、评测或基准资产；需要本地核验数据来源、访问条件、任务定义与许可证。"
+              elif has_impl and (code_signal or recent):
+                  triage = "IMPLEMENTATION_OR_PIPELINE"
+                  next_action = "SOURCE_DAG_COMPARISON" if any_fork else "PRIORITY_LOCAL_CODEX_STATIC_REVIEW"
+                  conclusion = "元数据显示存在工具、代理、MCP、流程或软件实现面；应优先进行源码级静态审查。"
+              elif has_science and code_signal:
+                  triage = "SCIENTIFIC_METHOD_OR_MODEL"
+                  next_action = "SOURCE_DAG_COMPARISON" if any_fork else "PRIORITY_LOCAL_CODEX_STATIC_REVIEW"
+                  conclusion = "元数据显示生物医学方法、模型或分析代码；科学有效性、复现性与许可仍需源码级核验。"
+              elif any_fork:
+                  triage = "FORK_OR_MIRROR_LINEAGE_LEAD"
+                  next_action = "SOURCE_DAG_COMPARISON"
+                  conclusion = "bounded 记录属于 fork 或镜像家族；当前只能确认 lineage 线索，独有变更需本地 DAG 比较。"
+              else:
+                  triage = "LOW_INFORMATION_RECHECK"
+                  next_action = "VERIFY_METADATA"
+                  conclusion = "元数据不足以稳定区分实现、研究资产或文档；需要读取 README 与文件树后再分类。"
+
+              return triage, flags, next_action, conclusion, sorted(languages)
+
+          def esc(value: Any) -> str:
+              text = "" if value is None else str(value)
+              return text.replace("|", "｜").replace("\n", " ").strip()
+
+          def compact_repo(row: dict[str, Any]) -> str:
+              rid = row.get("repository_id") or "UNKNOWN_ID"
+              name = row.get("full_name") or "UNKNOWN_NAME"
+              role = row.get("external_deep_audit_family_role") or "UNKNOWN_ROLE"
+              parent = row.get("parent_full_name")
+              suffix = f"；parent={parent}" if parent else ""
+              return f"`{esc(rid)}` `{esc(name)}`（{esc(role)}{esc(suffix)}）"
+
+          def batch_bounds(batch: int) -> tuple[int, int]:
+              if not 9 <= batch <= 46:
+                  raise ValueError(f"unsupported batch {batch}")
+              start = 213 + (batch - 9) * 50
+              return start, min(start + 49, 2069)
+
+          def load_groups() -> tuple[dict[int, list[dict[str, Any]]], str]:
+              groups: dict[int, list[dict[str, Any]]] = collections.defaultdict(list)
+              with REPO_DB.open("r", encoding="utf-8") as fh:
+                  for line_no, line in enumerate(fh, 1):
+                      line = line.strip()
+                      if not line:
+                          continue
+                      try:
+                          row = json.loads(line)
+                      except json.JSONDecodeError as exc:
+                          raise RuntimeError(f"invalid JSONL at line {line_no}: {exc}") from exc
+                      order = row.get("external_deep_audit_queue_order")
+                      if isinstance(order, int) and 213 <= order <= 2069:
+                          groups[order].append(row)
+              expected = set(range(213, 2070))
+              actual = set(groups)
+              missing = sorted(expected - actual)
+              extra = sorted(actual - expected)
+              if missing or extra:
+                  raise RuntimeError(f"queue coverage mismatch; missing={missing[:20]} extra={extra[:20]}")
+              blob_sha = subprocess.check_output(
+                  ["git", "rev-parse", f"HEAD:{REPO_DB.as_posix()}"],
+                  text=True,
+              ).strip()
+              return groups, blob_sha
+
+          def build_record(batch: int, order: int, rows: list[dict[str, Any]], blob_sha: str) -> dict[str, Any]:
+              rows = sorted(
+                  rows,
+                  key=lambda r: (
+                      0 if r.get("external_deep_audit_family_role") == "REPRESENTATIVE" else 1,
+                      str(r.get("repository_id") or ""),
+                  ),
+              )
+              rep = next(
+                  (r for r in rows if r.get("external_deep_audit_family_role") == "REPRESENTATIVE"),
+                  rows[0],
+              )
+              triage, flags, next_action, conclusion, languages = classify(rows)
+              family_key = rep.get("external_deep_audit_family_key")
+              family_source = rep.get("external_deep_audit_family_source")
+              representative_count = sum(
+                  r.get("external_deep_audit_family_role") == "REPRESENTATIVE" for r in rows
+              )
+              canonical_member_counts = sorted(
+                  {
+                      safe_int(r.get("external_deep_audit_family_member_count"), len(rows))
+                      for r in rows
+                  }
+              )
+              identity_notes: list[str] = []
+              if representative_count != 1:
+                  identity_notes.append(f"REPRESENTATIVE_COUNT_{representative_count}")
+              if canonical_member_counts != [len(rows)]:
+                  identity_notes.append(
+                      "MEMBER_COUNT_MISMATCH_"
+                      + "_".join(str(x) for x in canonical_member_counts)
+                      + f"_ACTUAL_{len(rows)}"
+                  )
+              return {
+                  "schema_version": "biomni-remote-metadata-triage-v1",
+                  "research_status": STATUS,
+                  "batch": batch,
+                  "queue_order": order,
+                  "family_key": family_key,
+                  "family_source": family_source,
+                  "canonical_repository_ids": [r.get("repository_id") for r in rows],
+                  "repository_names": [r.get("full_name") for r in rows],
+                  "family_member_count": len(rows),
+                  "representative_count": representative_count,
+                  "triage_class": triage,
+                  "flags": flags,
+                  "next_action": next_action,
+                  "confidence": (
+                      "LOW" if identity_notes else
+                      ("HIGH" if triage in {"CURATED_CATALOG_OR_DOCS", "FORK_OR_MIRROR_LINEAGE_LEAD", "ARCHIVED_OR_DISABLED", "EMPTY_OR_MINIMAL"} else "MEDIUM")
+                  ),
+                  "languages": languages,
+                  "licenses": sorted(
+                      {
+                          str(r.get("code_license") or "LICENSE_UNCLEAR")
+                          for r in rows
+                      }
+                  ),
+                  "research_conclusion": conclusion,
+                  "identity_notes": identity_notes,
+                  "source_database_blob_sha": blob_sha,
+                  "observed_at": OBSERVED_AT,
+                  "canonical_status_mutated": False,
+                  "source_code_executed": False,
+              }
+
+          def write_batch(batch: int, groups: dict[int, list[dict[str, Any]]], blob_sha: str) -> tuple[Path, Path, list[dict[str, Any]]]:
+              start, end = batch_bounds(batch)
+              records = [build_record(batch, order, groups[order], blob_sha) for order in range(start, end + 1)]
+              report_path = OUT_DIR / f"remote-research-batch-{batch:03d}.md"
+              manifest_path = OUT_DIR / f"remote-research-batch-{batch:03d}-manifest.jsonl"
+
+              class_counts = collections.Counter(r["triage_class"] for r in records)
+              flag_counts = collections.Counter(flag for r in records for flag in r["flags"])
+              record_count = sum(r["family_member_count"] for r in records)
+              identity_issue_count = sum(bool(r["identity_notes"]) for r in records)
+
+              lines = [
+                  f"# 远程调研 Batch {batch:03d}",
+                  "",
+                  f"状态：**{STATUS}**",
+                  "",
+                  f"范围：queue orders **{start}–{end}**；**{len(records)}** 个 family；**{record_count}** 条 bounded repository records。",
+                  "",
+                  f"数据源：`database/repositories.jsonl`，Git blob `{blob_sha}`。",
+                  "",
+                  "方法：仅使用 canonical GitHub 元数据进行确定性 family 聚合、研究类型分层和后续审查优先级标注。未执行第三方代码、notebook、模型、installer、workflow 或测试；未修改 canonical repository 状态、Evidence、Change、Lineage、Feature 或 Implementation 数据。",
+                  "",
+                  "该批次的“完成”仅表示**远程元数据静态调研完成**，不等同于源码级 deep audit，也不构成集成、医学、科学有效性或许可证结论。",
+                  "",
+                  "## 汇总",
+                  "",
+                  "| 指标 | 数量 |",
+                  "|---|---:|",
+                  f"| Family | {len(records)} |",
+                  f"| Bounded repository records | {record_count} |",
+                  f"| Identity note families | {identity_issue_count} |",
+              ]
+              for key, value in sorted(class_counts.items()):
+                  lines.append(f"| 分类 `{key}` | {value} |")
+              for key, value in sorted(flag_counts.items()):
+                  lines.append(f"| 标记 `{key}` | {value} |")
+
+              lines += [
+                  "",
+                  "## Family 调研表",
+                  "",
+                  "| Order | Family | Bounded records | 元数据分类 | 风险与边界 | 调研结论 | 后续动作 |",
+                  "|---:|---|---|---|---|---|---|",
+              ]
+              for record in records:
+                  rows = groups[record["queue_order"]]
+                  bounded = "<br>".join(compact_repo(r) for r in sorted(
+                      rows,
+                      key=lambda r: (
+                          0 if r.get("external_deep_audit_family_role") == "REPRESENTATIVE" else 1,
+                          str(r.get("repository_id") or ""),
+                      ),
+                  ))
+                  family = (
+                      f"`{esc(record['family_key'] or 'UNKNOWN_FAMILY_KEY')}`"
+                      f"<br>source=`{esc(record['family_source'] or 'UNKNOWN_FAMILY_SOURCE')}`"
+                  )
+                  flags = "、".join(f"`{x}`" for x in record["flags"]) or "无额外标记"
+                  if record["identity_notes"]:
+                      flags += "；" + "、".join(f"`{x}`" for x in record["identity_notes"])
+                  lines.append(
+                      f"| {record['queue_order']} | {family} | {bounded} | "
+                      f"`{record['triage_class']}` | {flags} | "
+                      f"{esc(record['research_conclusion'])} | `{record['next_action']}` |"
+                  )
+
+              lines += [
+                  "",
+                  "## 完整性边界",
+                  "",
+                  f"- 本文件连续覆盖 orders `{start}–{end}`，共 `{len(records)}` 个 family。",
+                  f"- 机器可读记录位于 `{manifest_path.name}`，每个 family 一行。",
+                  "- 本批没有把任何 family 标记为 canonical `DEEP_AUDITED`。",
+                  "- Fork 独有变更、历史 ancestry、patch-id、PR lineage、源码安全、数据隐私、科学复现、模型权利和许可证兼容性仍需本地 Codex 按 `next_action` 继续核验。",
+                  "",
+              ]
+
+              report_path.write_text("\n".join(lines), encoding="utf-8")
+              with manifest_path.open("w", encoding="utf-8") as fh:
+                  for record in records:
+                      fh.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+              return report_path, manifest_path, records
+
+          def write_summary(groups: dict[int, list[dict[str, Any]]], blob_sha: str) -> None:
+              batch_rows = []
+              total_families = 0
+              total_records = 0
+              for batch in range(9, 47):
+                  start, end = batch_bounds(batch)
+                  count = end - start + 1
+                  records = sum(len(groups[o]) for o in range(start, end + 1))
+                  batch_rows.append((batch, start, end, count, records))
+                  total_families += count
+                  total_records += records
+
+              lines = [
+                  "# Biomni 外部生态远程调研总览",
+                  "",
+                  f"状态：**{STATUS}**",
+                  "",
+                  f"数据源：`database/repositories.jsonl`，Git blob `{blob_sha}`。",
+                  "",
+                  f"完成范围：Batch 009–046，queue orders 213–2069，共 **{total_families}** 个 family、**{total_records}** 条 bounded repository records。",
+                  "",
+                  "本总览统计的是远程元数据静态调研，不替代源码级 deep audit。Canonical strict-audit 计数未在本轮更新。",
+                  "",
+                  "| Batch | Orders | Families | Records | 报告 | Manifest |",
+                  "|---:|---|---:|---:|---|---|",
+              ]
+              for batch, start, end, families, records in batch_rows:
+                  lines.append(
+                      f"| {batch:03d} | {start}–{end} | {families} | {records} | "
+                      f"`remote-research-batch-{batch:03d}.md` | "
+                      f"`remote-research-batch-{batch:03d}-manifest.jsonl` |"
+                  )
+              lines += [
+                  "",
+                  "## 使用说明",
+                  "",
+                  "- `PRIORITY_LOCAL_CODEX_STATIC_REVIEW`：优先读取文件树、README、依赖、关键实现、测试与许可证。",
+                  "- `SOURCE_DAG_COMPARISON`：优先比较 fork/source refs、unique commits、patch-id、PR 与 release lineage。",
+                  "- `CATALOG_LEAD_ONLY`：仅作为论文、数据集、工具或外部实现发现入口。",
+                  "- `VERIFY_METADATA`：元数据不足，先核验仓库内容与真实用途。",
+                  "- `DEFER_LOW_INFORMATION`：空、极小、归档或禁用记录，除非后续证据提升优先级。",
+                  "",
+              ]
+              SUMMARY_PATH.write_text("\n".join(lines), encoding="utf-8")
+
+          def main() -> None:
+              if len(sys.argv) != 2:
+                  raise SystemExit("usage: generate_remote_research.py BATCH")
+              batch = int(sys.argv[1])
+              groups, blob_sha = load_groups()
+              write_batch(batch, groups, blob_sha)
+              if batch == 46:
+                  write_summary(groups, blob_sha)
+
+          if __name__ == "__main__":
+              main()
+          PY
+
+          for batch in $(seq 9 46); do
+            batch3=$(printf "%03d" "${batch}")
+            python /tmp/generate_remote_research.py "${batch}"
+
+            git add \
+              "research/biomni-ecosystem/external-repos/remote-research-batch-${batch3}.md" \
+              "research/biomni-ecosystem/external-repos/remote-research-batch-${batch3}-manifest.jsonl"
+
+            if [ "${batch}" -eq 46 ]; then
+              git add "research/biomni-ecosystem/external-repos/remote-research-summary.md"
+              git rm ".github/workflows/biomni-remote-research.yml"
+            fi
+
+            if git diff --cached --quiet; then
+              echo "No staged changes for Batch ${batch3}" >&2
+              exit 1
+            fi
+
+            git commit -m "research: complete remote metadata triage batch ${batch3}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          done

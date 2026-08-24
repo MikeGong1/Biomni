@@ -24,13 +24,15 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import importlib.util, json
+          import importlib.util, json, sys
           from collections import defaultdict
           from pathlib import Path
 
           root=Path('research/biomni-ecosystem')
           spec=importlib.util.spec_from_file_location('p9', root/'workers/complete_phase9_static.py')
-          p9=importlib.util.module_from_spec(spec); spec.loader.exec_module(p9)
+          p9=importlib.util.module_from_spec(spec)
+          sys.modules['p9']=p9
+          spec.loader.exec_module(p9)
           repos=[json.loads(x) for x in (root/'database/repositories.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
           grouped=defaultdict(list)
           for r in repos:

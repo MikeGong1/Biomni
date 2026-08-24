@@ -6,6 +6,15 @@ on:
       - research/biomni-ecosystem-audit
     paths:
       - .github/workflows/complete-phase9-static-research.yml
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - .github/workflows/complete-phase9-static-research.yml
   workflow_dispatch:
 
 permissions:
@@ -94,4 +103,4 @@ jobs:
             git push origin HEAD:research/biomni-ecosystem-audit
           fi
 
-# Trigger revision: 2
+# Trigger revision: 3

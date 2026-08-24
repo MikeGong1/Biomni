@@ -113,6 +113,30 @@ returned `cached=true`, while a public repository REST request returned 200 and
 then 304 with cached-body reuse. The pinned synthetic second credential exits 77
 before either cache path, so it cannot receive the first credential's body.
 
+## GraphQL cache-success integrity correction
+
+Observed at: `2026-08-24T04:07:43Z`
+
+Batch 008 exposed a second cache defect: a large GraphQL query returned HTTP 502
+with an HTML body, but the original sidecar recorded only input identity and age.
+An identical invocation therefore returned `status=200,cached=true` without a
+network request. The failed body was excluded from research evidence.
+
+GraphQL sidecars now record `http_status`, `graphql_errors`, and `successful`.
+A cache hit requires all of:
+
+- matching query/variables/credential input SHA;
+- age within the cache window;
+- `successful=true`;
+- `http_status=200`;
+- `graphql_errors=false`.
+
+Failure bodies remain mode-0600 diagnostic artifacts but are never returned as
+cached success. Re-running the frozen 502 entry after the patch issued three real
+attempts and rewrote its sidecar as `http_status=502`, `successful=false` and
+three null-cost attempts. A separate small query returned 200/cost 1 with
+`successful=true`; only its second invocation returned `cached=true`.
+
 One pre-final live smoke exposed a Ruby block-local `actual_cost` scope error
 after the successful response. It was corrected by initializing the value before
 the retry loop, then the final smoke passed. The failed pre-final run is not used

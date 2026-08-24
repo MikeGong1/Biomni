@@ -1,6 +1,6 @@
 # Research State
 
-last_updated_utc: 2026-08-24T03:51:16Z
+last_updated_utc: 2026-08-24T04:07:43Z
 current_phase: Phase 8 - deep audit relevant external repositories
 current_entity: accelerated shard queue orders 163-212 (50 families)
 current_batch: external-deep-audit-008-accelerated
@@ -92,6 +92,7 @@ completed_units:
 - closed accelerated batch 007 across exact orders 113–162: 50 families and 53 bounded repository records, with 19 substantive candidates, 26 DOC/metadata/maintenance and five no-unique/source-lineage results
 - normalized change-000140–change-000167 and lineage-000052–lineage-000060 after ten exact-identity verifier overlays; rejected or deferred every direct-adoption path and allocated no Feature or Implementation ID
 - attempted ten mutually exclusive Batch 008 shards for orders 163–212; eight non-root workers are active and two persistently quota-blocked shards await completed-slot rotation without API or file activity
+- corrected GraphQL cache-success integrity: 502/error bodies remain diagnostics and only fresh HTTP-200/no-errors responses can return cached success; failed and successful live smoke paths passed
 - verified commercial discovery batch 001: 17 grouped behaviors and 11 timeline events
 pending_units:
 - retry lwsinclair public repository inventory if the User becomes available

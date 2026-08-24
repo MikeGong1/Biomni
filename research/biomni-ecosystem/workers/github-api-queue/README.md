@@ -57,7 +57,9 @@ ruby research/biomni-ecosystem/workers/github-api-queue/gh_graphql_queue.rb \
 
 REST responses persist credential-bound `ETag`/`Last-Modified` sidecars and reuse
 cached bodies on 304 only for the same credential fingerprint. GraphQL responses
-use a credential-bound query+variables SHA-256 cache for five minutes.
+use a credential-bound query+variables SHA-256 cache for five minutes, but only
+HTTP 200 responses with no GraphQL `errors` are cacheable. Failure and diagnostic
+bodies remain inspectable and are never returned as cached success.
 Cursor variables and one stable output path per page provide incremental resume.
 
 At 60/minute the global ceiling is 3,600/hour. Ten workers therefore average at

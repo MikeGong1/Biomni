@@ -291,8 +291,11 @@ input_sha = Digest::SHA256.hexdigest(JSON.generate({
 }))
 if File.exist?(expanded_output) && File.exist?(meta_path)
   meta = JSON.parse(File.read(meta_path))
-  if meta["input_sha"] == input_sha && Time.now.to_f - meta.fetch("checked_at_epoch", 0).to_f <= CACHE_MAX_AGE_SECONDS
-    puts JSON.generate({ "status" => 200, "cached" => true, "auth_source" => auth_source, "output" => expanded_output })
+  cacheable = meta["successful"] == true && meta["http_status"].to_i == 200 &&
+              meta["graphql_errors"] == false
+  fresh = Time.now.to_f - meta.fetch("checked_at_epoch", 0).to_f <= CACHE_MAX_AGE_SECONDS
+  if meta["input_sha"] == input_sha && cacheable && fresh
+    puts JSON.generate({ "status" => meta["http_status"].to_i, "cached" => true, "auth_source" => auth_source, "output" => expanded_output })
     exit 0
   end
 end
@@ -340,6 +343,8 @@ temporary = "#{expanded_output}.#{Process.pid}.#{SecureRandom.hex(4)}"
 File.binwrite(temporary, response.body)
 File.chmod(0o600, temporary)
 File.rename(temporary, expanded_output)
+graphql_errors = !parsed["errors"].nil?
+successful = response.code.to_i == 200 && !graphql_errors
 metadata = {
   "input_sha" => input_sha,
   "checked_at" => Time.now.utc.iso8601,
@@ -347,7 +352,10 @@ metadata = {
   "estimated_cost" => estimated_cost,
   "actual_cost" => actual_cost,
   "cost_underestimated" => any_cost_underestimated,
-  "attempt_costs" => attempt_costs
+  "attempt_costs" => attempt_costs,
+  "http_status" => response.code.to_i,
+  "graphql_errors" => graphql_errors,
+  "successful" => successful
 }
 write_json_private(meta_path, metadata)
 

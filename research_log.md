@@ -80,3 +80,12 @@
 - Modification: Ran ten exact-identity MAP and ten independent verifier paths, applied count/scientific/severity/privacy corrections, preserved 28 change components and nine lineages, and explicitly bounded child-fork and API-invisible-ref claims.
 - Result change: Fifty families and 53 repository records became `DEEP_AUDITED`; family coverage rose 112→162, unresolved families fell 1,957→1,907, and queued HIGH records fell 2,021→1,968. No Feature/Implementation was allocated and all direct adoption was rejected or deferred.
 - Retained: Yes; report, 50-row/53-ID manifest, changes 140–167, lineages 52–60, evidence 190–197, database/control updates and next 50-family shard retained.
+
+## 2026-08-24 — GraphQL cache success-integrity correction
+
+- Experimental hypothesis: A query cache is safe only if cached identity and freshness are combined with proof that the original GraphQL response succeeded.
+- Observed failure: A large Batch 008 query returned a 502 HTML body; because its sidecar lacked HTTP/error outcome fields, the next identical call returned false `200 cached=true`.
+- Suspected cause: The cache-hit predicate checked only input SHA and age, while metadata was written before HTTP/GraphQL success checks.
+- Modification: Added `http_status`, `graphql_errors` and `successful` sidecar fields and required successful HTTP 200/no-errors state before any cache hit; diagnostic failure bodies remain inspectable.
+- Result change: The frozen 502 entry made real retry attempts and persisted `successful=false`; a separate cost-1 query returned 200 on first call and `cached=true` only on the second.
+- Retained: Yes; surgical queue/README changes, redacted live verification and evidence 198 retained. The invalid cached body was excluded from research evidence.

@@ -63,8 +63,8 @@ key ascending. Orders are contiguous from 1 through 2,069.
 Scheduling now uses complexity-aware checkpoints rather than three families per
 commit: 30–100 obvious fork-only/no-unique/DOC_ONLY families, 10–20 medium
 families, and focused multi-worker review only after substantive code survives
-DAG normalization. External deep-audit batches are complete through Batch 030.
-The next unstarted shard is orders 1313–1362. REST and
+DAG normalization. External deep-audit batches are complete through Batch 031.
+The next unstarted shard is orders 1363–1412. REST and
 GraphQL traffic uses the shared limiter in
 `methodology/concurrency-and-rate-limits.md`; Git history uses SSH/local analysis.
 
@@ -138,3 +138,4 @@ remain explicitly unresolved.
 - Batch 028: orders 1163–1212 complete; cumulative **1212/2,069 families** and **1298/2,124 queued records**; **857 families** remain.
 - Batch 029: orders 1213–1262 complete; cumulative **1262/2,069 families** and **1349/2,124 queued records**; **807 families** remain.
 - Batch 030: orders 1263–1312 complete; cumulative **1312/2,069 families** and **1399/2,124 queued records**; **757 families** remain.
+- Batch 031: orders 1313–1362 complete; cumulative **1362/2,069 families** and **1449/2,124 queued records**; **707 families** remain.
